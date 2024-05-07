@@ -3,7 +3,7 @@
     <header class="h-10">
       <ToolBar />
     </header>
-    <main class="h-full">
+    <main class="h-full mx-2 px-2">
     <NuxtPage />
     </main>
     <footer class="h-12">

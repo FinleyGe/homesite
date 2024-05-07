@@ -4,10 +4,10 @@ import ColorfulButton from '~/components/common/ColorfulButton.vue';
 </script>
 <template>
   <div>
-    Index
-    <colorful-button
-      color="pink"
-    >
+    <span class="title">
+      Finley Ge
+    </span>
+    <colorful-button color="pink">
       Click me
     </colorful-button>
   </div>
@@ -15,4 +15,16 @@ import ColorfulButton from '~/components/common/ColorfulButton.vue';
 
 <style scoped lang="scss">
 
+@font-face {
+  font-family: victor;
+  src: url("/fonts/victor.ttf");
+  font-style: italic;
+}
+
+.title {
+  font-size: 24px;
+  color: #333;
+  font-family: victor;
+  font-style: italic;
+}
 </style>

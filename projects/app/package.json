@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/eslint": "^0.3.10",
     "@nuxtjs/color-mode": "^3.4.1",
+    "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
@@ -19,6 +20,5 @@
   },
   "devDependencies": {
     "sass": "^1.76.0"
-  },
-  "packageManager": "pnpm@8.15.4+sha1.c85a4305534f76d461407b59277b954bac97b5c4"
+  }
 }

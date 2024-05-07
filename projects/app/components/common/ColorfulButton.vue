@@ -24,7 +24,7 @@ async function handleClick(){
   <button
     @click="handleClick"
   >
-    <span class="content text-black dark:text-gray-100 font-serif font-thin">
+    <span class="content text-black dark:text-gray-100">
       <slot />
     </span>
     <span class="bar" />
@@ -38,7 +38,7 @@ button {
   background-color: transparent;
   position: relative;
   .content {
-    font-size: 20px;
+    font-size: 1rem;
     z-index: 2;
     background-color: transparent;
     position: relative;

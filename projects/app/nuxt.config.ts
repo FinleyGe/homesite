@@ -2,5 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/eslint", "@nuxtjs/color-mode"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxt/eslint",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/fontaine"
+  ],
+  css: [
+    '~/assets/styles/main.css'
+  ]
 });
