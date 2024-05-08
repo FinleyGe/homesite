@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxtjs/color-mode",
     "@nuxtjs/fontaine",
+    "@nuxtjs/i18n"
   ],
   css: [
     '~/assets/styles/main.css'
@@ -21,14 +22,10 @@ export default defineNuxtConfig({
         jsxImportSource: 'vue',
       })
     ],
-    // build: {
-    //   rollupOptions:{
-    //     plugins: [
-    //       mdx({
-    //         providerImportSource: '@mdx-js/vue',
-    //       })
-    //     ]
-    //   }
-    // }
+  },
+  i18n: {
+    locales: ['en', 'zh'],
+    defaultLocale: 'en',
+    vueI18n: 'i18n.config.ts',
   }
 });

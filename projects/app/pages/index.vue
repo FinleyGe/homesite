@@ -1,14 +1,18 @@
 <script setup lang="ts">
-// import {MDXProvider} from '@mdx-js/vue';
+import H1 from '~/components/md/h1.vue';
 import about from './content/about.mdx';
-import md from '~/components/common/md.vue';
-
+import aboutZh from './content/about.zh.mdx';
+// import md from '~/components/common/md.vue';
+import { MDXProvider } from '@mdx-js/vue';
+import md from '~/components/md'
+const { locale } = useI18n();
 </script>
 <template>
   <div class="mx-4 p-4">
-    <md>
-      <about />
-    </md>
+    <MDXProvider :components="md">
+      <about v-if="locale == 'en'" />
+      <aboutZh v-else />
+    </MDXProvider>
     <!-- <colorful-button color="pink"> -->
     <!--   Click me -->
     <!-- </colorful-button> -->

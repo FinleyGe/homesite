@@ -7,46 +7,76 @@ const h3Color = computed(() => colorMode.value === "dark" ? "rgb(227, 77, 163)" 
 
 </script>
 <template>
-  <div class="md">
-    <slot/>
+  <div class="markdown-body">
+    <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.md {
-  ::v-deep h1 {
+.markdown-body {
+  :deep(h1) {
     color: v-bind("h1Color");
     font-size: 1.5rem;
   }
 
-  ::v-deep h2 {
+  :deep(h2) {
     font-size: 1.25rem;
     color: v-bind("h2Color");
   }
 
-  ::v-deep h3 {
+  :deep(h3) {
     font-size: 1.125rem;
     color: v-bind("h3Color");
   }
 
-  ::v-deep em {
+  :deep(em) {
     font-style: italic;
     color: v-bind("color");
   }
 
-  ::v-deep strong {
+  :deep(strong) {
     font-weight: bold;
     color: v-bind("color");
   }
 
-  ::v-deep p {
+  :deep(p) {
     margin: 0.5rem 0;
     text-indent: 2rem;
   }
 
-  ::v-deep u {
+  :deep(u) {
     color: v-bind("color");
     text-decoration: underline;
+  }
+
+  :deep(ol) {
+    margin: 0.5rem 0;
+    text-indent: 2rem;
+    counter-reset: list;
+
+    li {
+      margin: 0.5rem 0;
+      counter-increment: list;
+
+      &::before {
+        content: counter(list) ".";
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  :deep(ul) {
+    margin: 0.5rem 0;
+    text-indent: 2rem;
+
+    li {
+      margin: 0.5rem 0;
+
+      &::before {
+        content: "•";
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
 </style>
