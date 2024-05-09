@@ -20,10 +20,18 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@catppuccin/highlightjs": "^0.1.4",
+    "@catppuccin/palette": "^1.1.1",
     "@mdx-js/rollup": "^3.0.1",
     "@mdx-js/vue": "^3.0.1",
     "@vicons/carbon": "^0.12.0",
     "@vicons/fa": "^0.12.0",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/nuxt": "^10.9.0",
+    "rehype-highlight": "^7.0.0",
+    "rehype-katex": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
     "sass": "^1.76.0"
   }
 }

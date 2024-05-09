@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import mdx from '@mdx-js/rollup'
+import mdx from '@mdx-js/rollup';
+import remarkgfm from 'remark-gfm';
+import remarkmath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeHighlight from 'rehype-highlight';
 // import mdx from 'vite-plugin-mdx'
 
 export default defineNuxtConfig({
@@ -10,16 +14,30 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxtjs/color-mode",
     "@nuxtjs/fontaine",
-    "@nuxtjs/i18n"
+    "@nuxtjs/i18n",
+    "@vueuse/nuxt",
   ],
   css: [
     '~/assets/styles/main.css'
   ],
   vite: {
+    // css: {
+    //   modules: {
+    //
+    //   }
+    // },
     plugins: [
       mdx({
         providerImportSource: '@mdx-js/vue',
         jsxImportSource: 'vue',
+        remarkPlugins: [
+          remarkgfm,
+          remarkmath,
+        ],
+        rehypePlugins:[
+          [rehypeHighlight],
+          [rehypeKatex, {output: 'mathml'}],
+        ]
       })
     ],
   },
