@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import H1 from '~/components/md/h1.vue';
 import about from '~/content/about.mdx';
 import aboutZh from '~/content/about.zh.mdx';
 // import md from '~/components/common/md.vue';

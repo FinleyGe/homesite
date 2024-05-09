@@ -21,11 +21,6 @@ export default defineNuxtConfig({
     '~/assets/styles/main.css'
   ],
   vite: {
-    // css: {
-    //   modules: {
-    //
-    //   }
-    // },
     plugins: [
       mdx({
         providerImportSource: '@mdx-js/vue',
@@ -34,9 +29,9 @@ export default defineNuxtConfig({
           remarkgfm,
           remarkmath,
         ],
-        rehypePlugins:[
+        rehypePlugins: [
           [rehypeHighlight],
-          [rehypeKatex, {output: 'mathml'}],
+          [rehypeKatex, { output: 'mathml' }],
         ]
       })
     ],
@@ -45,5 +40,8 @@ export default defineNuxtConfig({
     locales: ['en', 'zh'],
     defaultLocale: 'en',
     vueI18n: 'i18n.config.ts',
-  }
+  },
+  routeRules: {
+    '/api/**': {proxy: "http://localhost:3001"},
+  },
 });

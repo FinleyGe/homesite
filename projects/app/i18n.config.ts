@@ -14,12 +14,20 @@ export default defineI18nConfig(() => ({
         playground: "Playground",
         post: "Post",
       },
+      blog: {
+        list: "Blog List",
+      },
     },
     zh: {
       lang: "zh",
       head: {
         title: "Finley 的主页",
-      }
+      },
+      common: {
+        blog: "博客",
+        playground: "玩具盒",
+        post: "琐碎",
+      },
     },
   }
 }));
