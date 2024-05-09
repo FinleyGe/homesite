@@ -23,19 +23,19 @@ function toggleLocale() {
   <div class="flex flex-row justify-between w-full">
 
     <LogoTitle @click="router.push('/')" />
-    <!-- <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-2" v-if="isLargeScreen"> -->
-    <!--   <ColorfulButton color="pink" router-link="blog"> -->
-    <!--     {{ $t('common.blog') }} -->
-    <!--   </ColorfulButton> -->
-    <!---->
-    <!--   <ColorfulButton color="blue" router-link="post"> -->
-    <!--     {{ $t('common.post') }} -->
-    <!--   </ColorfulButton> -->
-    <!---->
-    <!--   <ColorfulButton color="gray" router-link="playground"> -->
-    <!--     {{ $t('common.playground') }} -->
-    <!--   </ColorfulButton> -->
-    <!-- </div> -->
+    <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-2" v-if="isLargeScreen">
+      <ColorfulButton color="pink" router-link="blog">
+        {{ $t('common.blog') }}
+      </ColorfulButton>
+
+      <ColorfulButton color="blue" router-link="post">
+        {{ $t('common.post') }}
+      </ColorfulButton>
+
+      <ColorfulButton color="gray" router-link="playground">
+        {{ $t('common.playground') }}
+      </ColorfulButton>
+    </div>
 
     <div class="flex flex-row w-min mx-2">
       <ColorScheme placeholder="...">
