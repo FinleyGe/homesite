@@ -6,10 +6,6 @@ import LogoTitle from './LogoTitle.vue';
 import { Sun, Moon } from '@vicons/carbon';
 const colorMode = useColorMode();
 
-defineProps<{
-  hideTitle: boolean;
-}>();
-
 const router = useRouter();
 
 function toggleTheme() {
@@ -27,27 +23,29 @@ function toggleLocale() {
   <div class="flex flex-row justify-between w-full">
 
     <LogoTitle @click="router.push('/')" />
-    <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-2" v-if="isLargeScreen">
-      <ColorfulButton color="pink" router-link="blog">
-        {{ $t('common.blog') }}
-      </ColorfulButton>
-
-      <ColorfulButton color="blue" router-link="post">
-        {{ $t('common.post') }}
-      </ColorfulButton>
-
-      <ColorfulButton color="gray" router-link="playground">
-        {{ $t('common.playground') }}
-      </ColorfulButton>
-    </div>
+    <!-- <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-2" v-if="isLargeScreen"> -->
+    <!--   <ColorfulButton color="pink" router-link="blog"> -->
+    <!--     {{ $t('common.blog') }} -->
+    <!--   </ColorfulButton> -->
+    <!---->
+    <!--   <ColorfulButton color="blue" router-link="post"> -->
+    <!--     {{ $t('common.post') }} -->
+    <!--   </ColorfulButton> -->
+    <!---->
+    <!--   <ColorfulButton color="gray" router-link="playground"> -->
+    <!--     {{ $t('common.playground') }} -->
+    <!--   </ColorfulButton> -->
+    <!-- </div> -->
 
     <div class="flex flex-row w-min mx-2">
-      <Button @click="toggleTheme">
-        <template #icon>
-          <Sun v-if="colorMode.value == 'dark'" />
-          <Moon v-else />
-        </template>
-      </Button>
+      <ColorScheme placeholder="...">
+        <Button @click="toggleTheme">
+          <template #icon>
+            <Sun v-if="colorMode.value == 'dark'" />
+            <Moon v-else />
+          </template>
+        </Button>
+      </ColorScheme>
 
       <Button @click="toggleLocale">
         {{ $t('lang') }}
