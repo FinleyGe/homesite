@@ -1,5 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { UserService } from './user.service';
+import { compareHash } from 'src/utils/crypto';
+import { Response } from 'express';
 
 export interface RegisterRequest {
   email: string;
@@ -22,19 +24,30 @@ export class UserController {
   }
 
   @Post()
-  async createUser(@Body() user: RegisterRequest) {
-    return await this.userService.createUser(user);
+  async createUser(@Body() user: RegisterRequest, @Res() res: Response) {
+    if (await this.userService.isUserExist()) {
+      res.status(400).send('User already exist');
+    }
+    if (await this.userService.createUser(user)) {
+      res.status(201).send('User created');
+    }
   }
 
   @Post('login')
-  async login(@Body() user: LoginRequest) {
-    const u = await this.userService.user(user);
+  async login(@Body() user: LoginRequest, @Res() res: Response) {
+    const u = await this.userService.user({
+      email: user.email,
+    });
+    console.log(u);
     if (!u) {
-      return { message: 'User not found' };
+      res.status(400).send('User not found');
     }
-    if (u.password !== user.password) {
-      return { message: 'Password is incorrect' };
+    if (compareHash(user.password, u.password) === false) {
+      res.status(400).send('Password not match');
     }
-    return { message: 'Login success' };
+    const accessToken = await this.userService.generateToken(u);
+    res.status(200).send({
+      accessToken,
+    });
   }
 }

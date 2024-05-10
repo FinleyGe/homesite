@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+import { JwtService } from '@nestjs/jwt';
 import { User, Prisma } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { generateHash } from 'src/utils/crypto';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private jwt: JwtService) { }
 
   async user(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
@@ -15,8 +17,12 @@ export class UserService {
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
+    const hashedPassword = generateHash(data.password);
     return this.prisma.user.create({
-      data,
+      data: {
+        ...data,
+        password: hashedPassword,
+      },
     });
   }
 
@@ -34,5 +40,9 @@ export class UserService {
   async isUserExist(): Promise<boolean> {
     const user = await this.prisma.user.findFirst();
     return !!user;
+  }
+
+  async generateToken(user: User) {
+    return await this.jwt.signAsync({ id: user.id });
   }
 }
