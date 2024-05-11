@@ -1,9 +1,18 @@
 <script setup lang="ts">
-
+const count = ref<number>(0)
+const router = useRouter()
+watch(count, () => {
+  if (count.value >= 4) {
+    count.value = 0
+    router.push('/admin')
+  }
+})
 </script>
 <template>
   <div class="flex flex-col items-center">
+    <span @click="count++">
     FinleyGe © 2022 - {{ new Date().getFullYear() }}
+    </span>
     <br>
     <a
       href="https://beian.miit.gov.cn/"

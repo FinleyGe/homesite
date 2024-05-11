@@ -9,6 +9,7 @@ useHead({
 
 <template>
   <div class="bg-gray-50 dark:bg-gray-800 dark:text-white h-svh flex flex-col">
+    <ColorScheme>
     <header class="h-10">
       <ToolBar />
     </header>
@@ -18,5 +19,6 @@ useHead({
     <footer class="h-12">
       <CopyrightFooter />
     </footer>
+    </ColorScheme>
   </div>
 </template>

@@ -2,7 +2,7 @@
 
 </script>
 <template>
-  <span class="title hover:cursor-pointer m-2">
+  <span class="title hover:cursor-pointer m-2 text-nowrap">
     Finley Ge
   </span>
 </template>

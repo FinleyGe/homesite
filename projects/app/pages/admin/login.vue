@@ -6,9 +6,10 @@ import useStore from '~/stores';
 const email = ref<string>('')
 const password = ref<string>('')
 const store = useStore()
+const router = useRouter()
 
 function handleLogin() {
-  const { data, error } = useFetch<{
+  const { error } = useFetch<{
     accessToken: string;
   }>(
     '/api/user/login', {
@@ -16,14 +17,23 @@ function handleLogin() {
     body: {
       email: email.value,
       password: password.value
-    }
+    },
+      onResponse: (data) => {
+        store.token = data.response._data?.accessToken;
+        if (error.value) {
+          toast("Error" + error.value, { type: 'error' });
+        } else {
+          toast("Success", { type: 'success' });
+          router.push('/admin')
+        }
+      }
   });
-  store.token = data.value!.accessToken;
-  if (error.value) {
-    toast("Error" + error.value, { type: 'error' });
-  } else {
-    toast("Success", { type: 'success' });
-  }
+  // store.token = data.value!.accessToken;
+  // if (error.value) {
+  //   toast("Error" + error.value, { type: 'error' });
+  // } else {
+  //   toast("Success", { type: 'success' });
+  // }
 }
 
 </script>

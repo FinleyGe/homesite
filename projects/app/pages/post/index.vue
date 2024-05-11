@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { toast } from 'vue3-toastify';
 import Button from '~/components/common/Button.vue';
 
 const postList = ref<any[]>([])
 
-const handleGetPostList = () => {
-  useFetch('/api/post/latest', {
+const {execute: handleGetPostList} = useFetch('/api/post/latest', {
     method: 'GET',
     onResponse: (response) => {
       if (!response.error) {
@@ -14,7 +14,10 @@ const handleGetPostList = () => {
       }
     }
   });
-}
+
+onNuxtReady(() => {
+  handleGetPostList();
+});
 
 </script>
 <template>
@@ -25,7 +28,3 @@ const handleGetPostList = () => {
     </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>
