@@ -45,4 +45,13 @@ export class UserService {
   async generateToken(user: User) {
     return await this.jwt.signAsync({ id: user.id });
   }
+
+  async validateUser(token: string): Promise<User> {
+    const payload = this.jwt.verify(token);
+    return this.prisma.user.findUnique({
+      where: {
+        id: payload.id,
+      },
+    });
+  }
 }

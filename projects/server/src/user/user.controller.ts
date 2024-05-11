@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { compareHash } from 'src/utils/crypto';
 import { Response } from 'express';
+import { UserGuard } from './user.guard';
 
 export interface RegisterRequest {
   email: string;
@@ -16,11 +17,18 @@ export interface LoginRequest {
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get()
   async isUserExist() {
     return await this.userService.isUserExist();
+  }
+
+  @Get('test')
+  @UseGuards(UserGuard)
+  async test(@Body() user: any) {
+    console.log(user);
+    return 'test';
   }
 
   @Post()
@@ -38,7 +46,6 @@ export class UserController {
     const u = await this.userService.user({
       email: user.email,
     });
-    console.log(u);
     if (!u) {
       res.status(400).send('User not found');
     }
