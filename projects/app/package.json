@@ -11,19 +11,22 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^0.3.10",
+    "@nuxt/ui": "^2.16.0",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/i18n": "^8.3.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue3-toastify": "^0.2.1"
   },
   "devDependencies": {
     "@catppuccin/highlightjs": "^0.1.4",
     "@catppuccin/palette": "^1.1.1",
     "@mdx-js/rollup": "^3.0.1",
     "@mdx-js/vue": "^3.0.1",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@vicons/carbon": "^0.12.0",
     "@vicons/fa": "^0.12.0",
     "@vueuse/core": "^10.9.0",

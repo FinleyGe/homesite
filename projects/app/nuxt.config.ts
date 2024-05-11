@@ -16,6 +16,8 @@ export default defineNuxtConfig({
     "@nuxtjs/fontaine",
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
+    "@pinia/nuxt",
+    '@pinia-plugin-persistedstate/nuxt'
   ],
   css: [
     '~/assets/styles/main.css'
@@ -42,6 +44,9 @@ export default defineNuxtConfig({
     vueI18n: 'i18n.config.ts',
   },
   routeRules: {
-    '/api/**': {proxy: "http://localhost:3001"},
+    // '/api/': {proxy: process.env.API_URL},
+    '/api/**': {
+      proxy: "http://localhost:3002/**"
+    }
   },
 });
