@@ -44,9 +44,12 @@ export default defineNuxtConfig({
     vueI18n: 'i18n.config.ts',
   },
   routeRules: {
+    '/admin/**': {
+      // ssr: false
+    },
     // '/api/': {proxy: process.env.API_URL},
     '/api/**': {
-      proxy: "http://localhost:3002/**"
+      proxy: `${process.env.API_URL}/**`
     }
   },
 });

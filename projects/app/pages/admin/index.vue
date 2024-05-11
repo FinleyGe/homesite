@@ -15,7 +15,14 @@ definePageMeta({
 });
 
 </script>
+
 <template>
+  <div>
+    <h1>Admin</h1>
+    <div class="flex flex-row">
+      <nuxt-link to="/admin/post">Posts</nuxt-link>
+      </div>
+  </div>
 </template>
 
 <style scoped></style>
