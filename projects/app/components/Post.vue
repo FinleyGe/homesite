@@ -8,7 +8,7 @@ import * as runtime from 'vue/jsx-runtime'
 
 const props = defineProps<{
   content: string,
-  time: Date,
+  time?: Date,
   lang?: string,
 }>();
 
@@ -25,6 +25,8 @@ defineExpose({
   update
 })
 
+update()
+
 </script>
 <template>
   <div class="m-2 bg-gray-100 dark:bg-gray-700 p-4 rounded-md my-4">
@@ -32,7 +34,7 @@ defineExpose({
       <Content />
     </MDXProvider>
     <span class="text-xs text-gray-500 dark:text-gray-400">
-    {{ time.toLocaleString() }}
+    {{ time?.toLocaleString() }}
     </span>
     <span class="text-xs text-gray-500 dark:text-gray-400">
     {{ lang }}

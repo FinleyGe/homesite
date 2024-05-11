@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NotificationProvider from '~/components/common/NotificationProvider.vue'
+import 'vue3-toastify/dist/index.css';
 const { t } = useI18n();
 useHead({
   title: t('head.title'),
@@ -18,6 +18,5 @@ useHead({
     <footer class="h-12">
       <CopyrightFooter />
     </footer>
-    <NotificationProvider />
   </div>
 </template>

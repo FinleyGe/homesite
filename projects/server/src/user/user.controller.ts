@@ -17,7 +17,7 @@ export interface LoginRequest {
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Get()
   async isUserExist() {

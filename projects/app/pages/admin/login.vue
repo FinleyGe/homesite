@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Button from '~/components/common/Button.vue'
 import {toast} from 'vue3-toastify'
-import 'vue3-toastify/dist/index.css';
 import useStore from '~/stores';
 
 const email = ref<string>('')

@@ -6,7 +6,10 @@ import { generateHash } from 'src/utils/crypto';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService, private jwt: JwtService) { }
+  constructor(
+    private prisma: PrismaService,
+    private jwt: JwtService,
+  ) {}
 
   async user(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
@@ -43,11 +46,11 @@ export class UserService {
   }
 
   async generateToken(user: User) {
-    return await this.jwt.signAsync({ id: user.id });
+    return await this.jwt.signAsync(user, { secret: process.env.JWT_SECRET });
   }
 
   async validateUser(token: string): Promise<User> {
-    const payload = this.jwt.verify(token);
+    const payload = this.jwt.verify(token, { secret: process.env.JWT_SECRET });
     return this.prisma.user.findUnique({
       where: {
         id: payload.id,
