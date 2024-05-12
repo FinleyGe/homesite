@@ -6,7 +6,13 @@ steps:
   - name: base-build
     image: node:20-slim
     commands:
+      - pwd
       - npm config set registry http://mirrors.cloud.tencent.com/npm/
       - corepack enable
       - corepack use pnpm
       - pnpm i
+  - name: app
+    image: node:20-slim
+    detach: true
+    commands:
+      - node projects/app/.output/server/index.mjs
