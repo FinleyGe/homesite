@@ -6,6 +6,7 @@ steps:
   - name: base-build
     image: node:20-slim
     commands:
+      - npm config set registry http://mirrors.cloud.tencent.com/npm/
       - corepack enable
       - corepack use pnpm
       - pnpm i
