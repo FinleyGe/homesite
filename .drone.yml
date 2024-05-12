@@ -3,9 +3,11 @@ type: docker
 name: homesite
 
 steps:
-  - name: app-build
-    image: node
+  - name: base-build
+    image: node:20-slim
     commands:
+      - corepack enable
+      - corepack use pnpm
+      - pnpm i
       - cd projects/app
-      - npm install
-      - npm run build
+      - pnpm run build
