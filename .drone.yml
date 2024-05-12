@@ -15,4 +15,13 @@ steps:
     image: node:20-slim
     detach: true
     commands:
+      - cd projects/app
+      - pnpm run build
       - node projects/app/.output/server/index.mjs
+  - name: server
+    image: node:20-slim
+    detach: true
+    commands:
+      - cd projects/server
+      - pnpm run build
+      - pnpm run start
