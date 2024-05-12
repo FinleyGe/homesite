@@ -1,9 +1,10 @@
 kind: pipeline
+type: docker
 name: homesite
 
 steps:
   - name: app-build
-    image: node:alpine
+    image: node
     commands:
       - cd projects/app
       - npm install
