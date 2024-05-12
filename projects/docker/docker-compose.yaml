@@ -6,10 +6,16 @@ services:
         POSTGRES_USER: root
         POSTGRES_PASSWORD: root
         PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - 5432:5432
     volumes:
       - homesite:/var/lib/postgresql/data
+    networks:
+      - homesite
+  app:
+    image: homesite-app
+    networks:
+      - homesite
 
 volumes:
+  homesite:
+networks:
   homesite:
