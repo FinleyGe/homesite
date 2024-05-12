@@ -12,3 +12,5 @@ steps:
       - pnpm i
       - cd projects/app
       - pnpm run build
+  - name: app-build-docker
+    image: plugins/docker
