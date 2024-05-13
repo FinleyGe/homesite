@@ -2,6 +2,7 @@
 import { MDXProvider } from '@mdx-js/vue'
 import Post from '~/components/Post.vue';
 import md from '~/components/md';
+import Md from '~/components/md/Md.vue';
 import blogs from '~/content/blog/blogs'
 import bloglist from '~/content/blog/index'
 const router = useRouter()

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import about from '~/content/about.mdx';
 import aboutZh from '~/content/about.zh.mdx';
-// import md from '~/components/common/md.vue';
 import { MDXProvider } from '@mdx-js/vue';
 import md from '~/components/md'
 const { locale } = useI18n();
@@ -12,8 +11,5 @@ const { locale } = useI18n();
       <about v-if="locale == 'en'" />
       <aboutZh v-else />
     </MDXProvider>
-    <!-- <colorful-button color="pink"> -->
-    <!--   Click me -->
-    <!-- </colorful-button> -->
   </div>
 </template>

@@ -2,6 +2,8 @@
 import mdx from '@mdx-js/rollup';
 import remarkgfm from 'remark-gfm';
 import remarkmath from 'remark-math';
+import remarkFrontmatter from 'remark-frontmatter';
+import remartMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
 // import mdx from 'vite-plugin-mdx'
@@ -30,6 +32,8 @@ export default defineNuxtConfig({
         remarkPlugins: [
           remarkgfm,
           remarkmath,
+          remarkFrontmatter,
+          remartMdxFrontmatter,
         ],
         rehypePlugins: [
           [rehypeHighlight],

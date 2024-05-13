@@ -13,7 +13,6 @@ const props = defineProps<{
 }>();
 
 type MDXContent = Awaited<ReturnType<typeof run>>['default']
-// const div = h('div', 'Loading...')
 const Content = ref<MDXContent>()
 
 async function update() {
@@ -41,7 +40,3 @@ update()
     </span>
   </div>
 </template>
-
-<style scoped>
-
-</style>
