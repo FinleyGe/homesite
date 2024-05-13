@@ -43,13 +43,18 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     vueI18n: 'i18n.config.ts',
   },
+  nitro: {
+    prerender: {
+      routes: ['/'],
+    }
+  },
   routeRules: {
     '/admin/**': {
       // ssr: false
     },
-    // '/api/': {proxy: process.env.API_URL},
     '/api/**': {
-      proxy: `${process.env.API_URL}/**`
+      // proxy: `${process.env.API_URL}/**`
+      proxy: "https://www.f1nley.xyz/api/**"
     }
   },
 });
