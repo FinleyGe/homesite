@@ -50,7 +50,7 @@ function toggleLocale() {
         </Button>
 
       <Button @click="toggleLocale">
-        {{ $t('lang') }}
+        {{ locale === 'en' ? '中' : 'EN' }}
       </Button>
 
     </div>

@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import { MDXProvider } from '@mdx-js/vue'
-import Post from '~/components/Post.vue';
-import md from '~/components/md';
-import Md from '~/components/md/Md.vue';
-import blogs from '~/content/blog/blogs'
-import bloglist from '~/content/blog/index'
+import md from 'mdx-components/md';
+import bloglist from 'blog/index';
 const router = useRouter()
+const { locale } = useI18n();
 
-const title = ref<string>(router.currentRoute.value.params.title as string);
-const titles = bloglist.map(
-  (item) => item.title
-);
+const link = ref<string>(router.currentRoute.value.params.title as string);
 
-if(!titles.includes(title.value)) {
+if (!bloglist.find((item) => item.link === link.value)) {
   router.push('/404');
 }
 
-const Content = blogs[router.currentRoute.value.params.title];
+const blog = bloglist!.find((item) => item.link === link.value)!;
+
+let loc = locale.value;
+if (!blog.content[loc]) {
+  loc = blog.lang[0];
+}
+
+const Content = (bloglist!.find((item) => item.link === link.value))!.content[loc]
 
 </script>
 <template>

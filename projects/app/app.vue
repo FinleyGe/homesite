@@ -9,6 +9,7 @@ useHead({
 
 <template>
   <div class="bg-gray-50 dark:bg-gray-800 dark:text-white h-svh flex flex-col">
+      <!-- <HoverComment comment="asdsad"> asdadas</HoverComment> -->
     <ColorScheme>
     <header class="h-10">
       <ToolBar />

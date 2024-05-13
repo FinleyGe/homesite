@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import BlogList from '~/content/blog';
-const { t } = useI18n();
+import BlogList from 'blog';
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
 useHead({
   title: t('blog.list'),
 });
@@ -13,18 +14,24 @@ useHead({
     </h1>
     <div class="flex flex-col">
       <div 
-        v-for="blog in BlogList" 
+        v-for="blog in BlogList.sort((a, b) => new Date(b.date) - new Date(a.date))" 
         :key="blog.link"
         class="mt-4 bg-pink-200 dark:bg-pink-800 p-4 rounded-lg shadow-md"
       >
         <NuxtLink
-          :to="`/blog/${blog.link}`"
+          :to="localePath(`/blog/${blog.link}`)"
         >
         <span class="font-bold text-lg">
-          {{ blog.title }}
+          {{ blog.title[locale] }}
         </span>
+        <p class="mt-1">
+          {{ blog.description[locale] }}
+        </p>
         <div class="text-sm">
-          {{ blog.date}}
+          {{ blog.date }}
+        <span class="text-sm mx-1" v-for="tag in blog.lang" :key="tag">
+          {{ $t(`lang.${tag}`) }}
+        </span>
         </div>
       </NuxtLink>
       </div>

@@ -1,11 +1,12 @@
-import { Head } from "#build/components";
-
 export default defineI18nConfig(() => ({
   legacy: false,
   locale: 'en',
   messages: {
     en: {
-      lang: "en",
+      lang: {
+        en: "English",
+        zh: "Chinese",
+      },
       head: {
         title: "Finley's Homesite",
       },
@@ -19,7 +20,10 @@ export default defineI18nConfig(() => ({
       },
     },
     zh: {
-      lang: "zh",
+      lang: {
+        en: "英文",
+        zh: "中文",
+      },
       head: {
         title: "Finley 的主页",
       },
@@ -28,6 +32,9 @@ export default defineI18nConfig(() => ({
         playground: "玩具盒",
         post: "琐碎",
       },
+      blog: {
+        list: "博客列表",
+      }
     },
   }
 }));

@@ -40,6 +40,8 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "remark-mdx-frontmatter": "^4.0.0",
-    "sass": "^1.76.0"
+    "sass": "^1.76.0",
+    "blog": "workspace:*",
+    "mdx-components": "workspace:*"
   }
 }
