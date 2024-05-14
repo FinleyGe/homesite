@@ -13,7 +13,7 @@ steps:
   - name: build-app
     image: node:20-slim
     commands:
-      - cd projetcs/app
+      - cd /drone/src/projetcs/app
       - pnpm run build
   - name: docker
     image: plugin/docker
@@ -24,3 +24,36 @@ steps:
         from_secret: docker_password
       registry: https://home.f1nley.xyz:5000
       repo: homesite-app
+---
+kind: pipeline
+type: docker
+name: homesite-server
+
+steps:
+  - name: build
+    image: node:20-slim
+    commands:
+      - npm config set registry http://mirrors.cloud.tencent.com/npm/
+      - corepack enable
+      - corepack use pnpm
+      - pnpm i
+  - name: build-server
+    image: node:20-slim
+    env:
+      DATABASE_URL:
+        from_secret: DATABASE_URL
+      JWT_SECRET:
+        from_secret: JWT_SECRET
+    commands:
+      - pwd
+      - cd /drone/src/projetcs/server
+      - pnpm run build
+  - name: docker
+    image: plugin/docker
+    setting:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      registry: https://home.f1nley.xyz:5000
+      repo: homesite-server
