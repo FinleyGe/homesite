@@ -4,7 +4,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PostService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private prismaService: PrismaService) { }
 
   async create(data: Prisma.PostCreateInput) {
     return this.prismaService.post.create({
@@ -41,4 +41,5 @@ export class PostService {
   async findAll() {
     return this.prismaService.post.findMany();
   }
+
 }

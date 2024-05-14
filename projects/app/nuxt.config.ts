@@ -57,8 +57,8 @@ export default defineNuxtConfig({
       // ssr: false
     },
     '/api/**': {
-      // proxy: `${process.env.API_URL}/**`
-      proxy: "https://www.f1nley.xyz/api/**"
+      proxy: `${process.env.API_URL}/**`
+      // proxy: "https://www.f1nley.xyz/api/**"
     }
   },
 });

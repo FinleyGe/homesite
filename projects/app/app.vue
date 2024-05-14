@@ -8,13 +8,12 @@ useHead({
 </script>
 
 <template>
-  <div class="bg-gray-50 dark:bg-gray-800 dark:text-white h-svh flex flex-col">
-      <!-- <HoverComment comment="asdsad"> asdadas</HoverComment> -->
+  <div class="bg-gray-50 dark:bg-gray-800 dark:text-white min-h-svh flex flex-col">
     <ColorScheme>
     <header class="h-10">
       <ToolBar />
     </header>
-    <main class="h-full mx-2 px-2">
+    <main class="min-h-full mx-2 px-2 flex-grow">
       <NuxtPage />
     </main>
     <footer class="h-12">

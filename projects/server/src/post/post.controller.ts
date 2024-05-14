@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { UserGuard } from 'src/user/user.guard';
+import { FediService } from './fedi.service';
 type CreateRequest = {
   content: string;
   language: string;
@@ -17,7 +18,7 @@ type CreateRequest = {
 
 @Controller('post')
 export class PostController {
-  constructor(private readonly postService: PostService) {}
+  constructor(private readonly postService: PostService, private readonly fediService: FediService) {}
 
   @Post()
   @UseGuards(UserGuard)
@@ -44,6 +45,11 @@ export class PostController {
     return this.postService.findAll();
   }
 
+  @Get('fedi')
+  async fedi() {
+    return await this.fediService.getPosts();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.postService.findOne(id);
@@ -54,4 +60,5 @@ export class PostController {
   remove(@Param('id') id: string) {
     return this.postService.delete(id);
   }
+
 }

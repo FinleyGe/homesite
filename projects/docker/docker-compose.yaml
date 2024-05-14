@@ -10,10 +10,8 @@ services:
       - homesite:/var/lib/postgresql/data
     networks:
       - homesite
-  app:
-    image: homesite-app
-    networks:
-      - homesite
+    ports:
+      - "5432:5432"
 
 volumes:
   homesite:
