@@ -23,7 +23,6 @@ export class PostController {
   @Post()
   @UseGuards(UserGuard)
   create(@Body() createRequest: CreateRequest, @Req() request: any) {
-    console.log(request.user);
     return this.postService.create({
       content: createRequest.content,
       language: createRequest.language,

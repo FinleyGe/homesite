@@ -52,13 +52,5 @@ export default defineNuxtConfig({
       routes: ['/'],
     }
   },
-  routeRules: {
-    '/admin/**': {
-      // ssr: false
-    },
-    '/api/**': {
-      proxy: `${process.env.API_URL}/**`
-      // proxy: "https://www.f1nley.xyz/api/**"
-    }
-  },
+  routeRules: {},
 });
