@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build:docker": "nuxt build && docker build -t homesite-app ."
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.0.1",
