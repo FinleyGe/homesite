@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Post as PostType } from '@prisma/client';
 import { toast } from 'vue3-toastify';
 import Post from '~/components/Post.vue';
 import Button from '~/components/common/Button.vue';
@@ -9,7 +10,8 @@ const isPreview = ref<boolean>(false);
 const post = ref<InstanceType<typeof Post> | null>(null);
 const lang = ref<string>('en');
 
-const postList = ref<any[]>([]);
+const postList = ref<PostType[]>([]);
+
 const store = useStore();
 
 function handleDeletePost(id: string) {
@@ -23,6 +25,7 @@ function handleDeletePost(id: string) {
     toast("Error" + error.value, { type: 'error' });
   } else {
     toast("Success", { type: 'success' });
+    handleGetPostList();
   }
 }
 
@@ -35,7 +38,6 @@ const handleGetPostList = () => {
     },
     onResponse: (response) => {
       if (!response.error) {
-        // console.log(response.response._data);
         postList.value = response.response._data;
 
       } else {
@@ -58,6 +60,7 @@ const handleSubmit = () => {
     onResponse: (response) => {
       if (!response.error) {
         toast("Success", { type: 'success' });
+        handleGetPostList();
       } else {
         toast("Error", { type: 'error' });
       }

@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
     email: string;
     password: string;
   }>(event);
+
   const user = await client.user.findFirst({
     where: {
       email: body.email,

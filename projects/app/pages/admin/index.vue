@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from '~/components/common/Button.vue';
 import useStore from '~/stores';
 
 useHead({
@@ -17,11 +18,11 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <h1>Admin</h1>
+  <div class="max-w-5xl mx-auto">
     <div class="flex flex-row">
-      <nuxt-link to="/admin/post">Posts</nuxt-link>
-      </div>
+      <Button @click="() => $router.push('/admin/login')">Login</Button>
+      <Button @click="() => $router.push('/admin/post')">Post</Button>
+    </div>
   </div>
 </template>
 

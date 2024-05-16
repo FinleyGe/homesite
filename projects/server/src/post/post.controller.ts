@@ -59,5 +59,4 @@ export class PostController {
   remove(@Param('id') id: string) {
     return this.postService.delete(id);
   }
-
 }
