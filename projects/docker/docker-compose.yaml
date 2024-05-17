@@ -1,5 +1,5 @@
 services:
-  postgres:
+  pg:
     image: postgres
     restart: unless-stopped
     environment:

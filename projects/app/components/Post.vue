@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { MDXProvider, useMDXComponents } from '@mdx-js/vue';
-import md from '~/components/md';
+import md from 'mdx-components/md';
 import type { run } from '@mdx-js/mdx';
 import {evaluate} from '@mdx-js/mdx'
 import * as runtime from 'vue/jsx-runtime'

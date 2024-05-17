@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
@@ -26,7 +26,7 @@ model User {
 }
 
 model Post {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   content   String
   language  String?
   author    User     @relation(fields: [authorId], references: [id])
@@ -35,8 +35,9 @@ model Post {
   updatedAt DateTime @updatedAt
 }
 
+// this model is deprecated
 model Article {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
   content   String
   language  String?
@@ -44,4 +45,20 @@ model Article {
   authorId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model TodoList {
+  id        String   @id @default(cuid())
+  content   String
+  endTime   String?
+  done      Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tomato {
+  id String @id @default(cuid())
+  type String
+  focusOn String?
+  createdAt DateTime @default(now())
 }

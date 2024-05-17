@@ -15,22 +15,22 @@ const {execute: handleGetPostList} = useFetch('/api/post/latest', {
     }
   });
 
-const {execute: handleGetFediPostList} = useFetch('/api/post/fedi', {
-  method: 'GET',
-  onResponse: (response) => {
-    if (!response.error) {
-      for (const post of response.response._data) {
-        postList.value.push(post);
-      }
-    } else {
-      toast("Error", { type: 'error' });
-    }
-  }
-});
+// const {execute: handleGetFediPostList} = useFetch('/api/post/fedi', {
+//   method: 'GET',
+//   onResponse: (response) => {
+//     if (!response.error) {
+//       for (const post of response.response._data) {
+//         postList.value.push(post);
+//       }
+//     } else {
+//       toast("Error", { type: 'error' });
+//     }
+//   }
+// });
 
 onNuxtReady(() => {
   handleGetPostList();
-  handleGetFediPostList();
+  // handleGetFediPostList();
 });
 
 </script>
