@@ -71,6 +71,11 @@ function handleCleanFinished() {
   });
 }
 
+const TodoList = ref<TodoList[]>([]);
+onNuxtReady(async () => {
+  const res = await fetch('/api/todolist');
+  TodoList.value = await res.json();
+});
 </script>
 <template>
   <div class="max-w-5xl mx-auto">
@@ -126,7 +131,6 @@ function handleCleanFinished() {
       <Button class="w-full mt-2" @click="handleAddTodo"> Add </Button>
       <Button class="w-full mt-2" @click="handleGetTodoList"> Refresh </Button>
     </div>
-    
     <div class="flex flex-col">
       <Item v-for="todo in todolist" :key="todo.id" :todo="todo" @update="handleGetTodoList()"/>
     </div>
