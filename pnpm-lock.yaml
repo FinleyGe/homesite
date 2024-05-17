@@ -232,12 +232,6 @@ importers:
         specifier: ^5.1.3
         version: 5.4.5
 
-  projects/test:
-    dependencies:
-      megalodon:
-        specifier: ^10.0.1
-        version: 10.0.1
-
 packages:
 
   '@alloc/quick-lru@5.2.0':
