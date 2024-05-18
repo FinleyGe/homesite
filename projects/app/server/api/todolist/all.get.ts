@@ -9,8 +9,9 @@ export default defineEventHandler({
       orderBy: [
         {
           done: 'asc'
-        },
-        {
+        }, {
+          priority: 'asc',
+        }, {
           createdAt: 'desc'
         },
       ]

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "TodoList" ADD COLUMN     "priority" INTEGER NOT NULL DEFAULT 0,
+ALTER COLUMN "done" SET DEFAULT false;

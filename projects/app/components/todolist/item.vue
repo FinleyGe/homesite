@@ -12,6 +12,7 @@ const emits = defineEmits<{
 }>();
 
 const isEdit = ref<boolean>(false);
+const priority = ref<number>(props.todo.priority);
 
 async function handleUpdateTodo() {
   await useFetchwithToken('/api/todolist/' + props.todo.id, {
@@ -35,6 +36,7 @@ async function handleEdit() {
     method: 'put',
     body: {
       content: props.todo.content,
+      priority: Number(priority.value),
     },
   });
   isEdit.value = false;
@@ -44,25 +46,51 @@ async function handleEdit() {
 </script>
 <template>
   <div class="flex flex-row my-2 items-center gap-2">
-    <input type="checkbox" class="size-6 flex-grow-0" :checked="props.todo.done"
+    <input
+type="checkbox" class="size-6 flex-grow-0" :checked="props.todo.done"
     @change="handleUpdateTodo"
-    />
-    <button @click="handleDeleteTodo"
-      class="bg-red-500 text-white size-6 p-1 rounded-xl flex-grow-0">
+    >
+    <button
+class="bg-red-500 text-white size-6 p-1 rounded-xl flex-grow-0"
+      @click="handleDeleteTodo">
       <TrashCan />
     </button>
-    <button @click="isEdit = true"
-      class="bg-blue-500 text-white size-6 p-1 rounded-xl flex-grow-0">
+    <button
+class="bg-blue-500 text-white size-6 p-1 rounded-xl flex-grow-0"
+      @click="isEdit = true">
       <Pen />
     </button>
-    <span class="text-xl flex-grow-1" v-if="!isEdit">{{ props.todo.content }}</span>
+    <span
+      v-if="!isEdit"
+class="text-sm px-2 py-1 rounded-xl flex-grow-0"
+        :class="{
+          'bg-red-500 text-white': props.todo.priority === 0,
+          'bg-yellow-500': props.todo.priority === 1,
+          'bg-green-500': props.todo.priority === 2,
+          'bg-blue-500 text-white': props.todo.priority === 3,
+          }"
+    >p{{props.todo.priority}}</span>
+    <span v-else>
+      <select v-model.number="priority" class="flex-grow-0">
+        <option :value="0">p0</option>
+        <option :value="1">p1</option>
+        <option :value="2">p2</option>
+        <option :value="3">p3</option>
+      </select>
+    </span>
+    <span v-if="!isEdit" class="text-xl flex-grow-1"
+        :class="{'text-decoration-line: line-through text-gray-500': props.todo.done,}"
+    >{{ props.todo.content }}</span>
     <div v-else>
-    <input type="text" v-model="props.todo.content" class="flex-grow-1" />
-    <button @click="handleEdit"
-      class="bg-green-500 text-white size-6 p-1 rounded-xl flex-grow-0">
+      <input v-model="props.todo.content" type="text" class="flex-grow-1" >
+    <button
+class="bg-green-500 text-white size-6 p-1 rounded-xl flex-grow-0"
+      @click="handleEdit">
         <Checkmark />
     </button>
       </div>
-    <span v-if="props.todo.endTime">{{ props.todo.endTime }}</span>
+    <span v-if="props.todo.endTime" class="text-sm">
+      {{ new Date(props.todo.endTime).toLocaleString() }}
+    </span>
   </div>
 </template>

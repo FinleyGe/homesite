@@ -10,6 +10,6 @@ const props = defineProps<{
       @click="$router.push(link)"
   >
     <span class="text-xl"> {{ props.name }} </span>
-    <span> {{ props.description }} </span>
+    <span class="text-sm"> {{ props.description }} </span>
   </div>
 </template>

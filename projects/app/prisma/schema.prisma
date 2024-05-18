@@ -51,14 +51,15 @@ model TodoList {
   id        String   @id @default(cuid())
   content   String
   endTime   String?
-  done      Boolean
+  done      Boolean  @default(false)
+  priority  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Tomato {
-  id String @id @default(cuid())
-  type String
-  focusOn String?
+  id        String   @id @default(cuid())
+  type      String
+  focusOn   String?
   createdAt DateTime @default(now())
 }

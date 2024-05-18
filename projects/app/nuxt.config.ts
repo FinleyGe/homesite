@@ -19,10 +19,17 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "@pinia/nuxt",
-    '@pinia-plugin-persistedstate/nuxt'
+    '@pinia-plugin-persistedstate/nuxt',
+    'nuxt-primevue',
   ],
+  primevue: {
+    options: {
+      unstyled: true,
+    }
+  },
   css: [
-    '~/assets/styles/main.css'
+    '~/assets/styles/main.css',
+    // 'primevue/resources/themes/saga-blue/theme.css',
   ],
   vite: {
     plugins: [

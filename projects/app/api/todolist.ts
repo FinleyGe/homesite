@@ -1,4 +1,4 @@
-import { TodoList } from "@prisma/client"
+import type { TodoList } from "@prisma/client"
 import useStore from "~/stores"
 
 export function GetAll() {
