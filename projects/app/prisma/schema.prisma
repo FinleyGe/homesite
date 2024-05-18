@@ -59,7 +59,6 @@ model TodoList {
 
 model Tomato {
   id        String   @id @default(cuid())
-  type      String
   focusOn   String?
   createdAt DateTime @default(now())
 }

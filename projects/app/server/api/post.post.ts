@@ -8,7 +8,6 @@ export default defineEventHandler({
     auth,
   ],
   handler: async (event) => {
-    console.log(event.context.user);
     const body = await readBody<{
       content: string,
       language: string,
