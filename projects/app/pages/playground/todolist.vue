@@ -5,8 +5,8 @@ import { GetAll } from '~/api/todolist';
 import { useFetchwithToken } from '~/api/utils';
 import Item from '~/components/todolist/item.vue';
 
-
 const addTodo = ref<string>('');
+const endtime = ref<string>('');
 
 const {
   execute: handleGetTodoList,
@@ -49,10 +49,14 @@ onNuxtReady(() => {
       placeholder="Add a todo, press enter to submit"
       @keyup.enter="handleAddTodo()"
     >
+    <div>
+      End Time:
+      <input type="datetime-local" v-model="endtime"/>
+    </div>
     <div class="flex flex-row">
-  <Button @click="handleAddTodo" class="w-full mt-2"> Add </Button>
-    <Button @click="handleGetTodoList" class="w-full mt-2"> Refresh </Button>
-      </div>
+      <Button class="w-full mt-2" @click="handleAddTodo"> Add </Button>
+      <Button class="w-full mt-2" @click="handleGetTodoList"> Refresh </Button>
+    </div>
     
     <div class="flex flex-col">
       <Item v-for="todo in todolist" :key="todo.id" :todo="todo" @update="handleGetTodoList()"/>

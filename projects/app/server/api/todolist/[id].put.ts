@@ -6,8 +6,10 @@ export default defineEventHandler({
   onRequest: [auth],
   handler: async (event) => {
     const { id } = getRouterParams(event);
-    const { done } = await readBody<{
+    const { done, content, endTime } = await readBody<{
       done: boolean;
+      content?: string;
+      endTime?: string;
     }>(event);
     return prisma.todoList.update({
       where: {
@@ -15,6 +17,8 @@ export default defineEventHandler({
       },
       data: {
         done,
+        content,
+        endTime,
       }
     })
   }
