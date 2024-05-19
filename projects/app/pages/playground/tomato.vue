@@ -21,6 +21,7 @@ function setTimer(time: number, callback: ()=>void) {
     timer.value--;
     if (timer.value <= 0) {
       callback();
+      interval.value && clearInterval(interval.value);
     }
   }, 1000);
 }
