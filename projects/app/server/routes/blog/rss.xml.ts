@@ -3,8 +3,8 @@ import blogs from 'blog'
 
 export default defineEventHandler(() => {
  var feed = new rss({
-    feed_url: 'https://www.f1nley.xyz/blog.xml',
-    site_url: 'https://www.f1nley.xyz.blog',
+    feed_url: 'https://www.f1nley.xyz/blog/rss.xml',
+    site_url: 'https://www.f1nley.xyz/blog',
     title: 'RSS of Finley Blog',
   });
 
