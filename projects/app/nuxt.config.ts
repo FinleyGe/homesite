@@ -54,10 +54,11 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     vueI18n: 'i18n.config.ts',
   },
-  nitro: {
-    prerender: {
-      routes: ['/'],
-    }
+  routeRules: {
+    '/': {
+      prerender: true,
+    },
+    '/blog': {swr: true, isr: true, prerender: true},
+    '/blog/**': {swr: true, isr: true, prerender: true},
   },
-  routeRules: {},
 });
