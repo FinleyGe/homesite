@@ -54,6 +54,23 @@ onNuxtReady(() => {
   handleGetTodoList();
 });
 
+function handleCleanFinished() {
+  todolist.value?.forEach(async (todo) => {
+    if (todo.done) {
+      await useFetchwithToken(`/api/todolist/${todo.id}`, {
+        method: 'DELETE',
+        onResponse: (response) => {
+          if (!response.error) {
+            handleGetTodoList();
+          } else {
+            toast("Error", { type: 'error' });
+          }
+        }
+      })
+    }
+  });
+}
+
 </script>
 <template>
   <div class="max-w-5xl mx-auto">
@@ -113,6 +130,8 @@ onNuxtReady(() => {
     <div class="flex flex-col">
       <Item v-for="todo in todolist" :key="todo.id" :todo="todo" @update="handleGetTodoList()"/>
     </div>
+
+    <Button @click="handleCleanFinished"> Clean Finished </Button>
   </div>
 </template>
 
