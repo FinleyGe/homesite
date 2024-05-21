@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TodoList } from '@prisma/client';
 import { Checkmark, Pen, TrashCan } from '@vicons/carbon';
-import { useFetchwithToken } from '~/api/utils';
+import { useFetchWithToken } from '~/api/utils';
 
 const props = defineProps<{
   todo: TodoList;
@@ -15,7 +15,7 @@ const isEdit = ref<boolean>(false);
 const priority = ref<number>(props.todo.priority);
 
 async function handleUpdateTodo() {
-  await useFetchwithToken('/api/todolist/' + props.todo.id, {
+  await useFetchWithToken('/api/todolist/' + props.todo.id, {
     method: 'put',
     body: {
       done: !props.todo.done,
@@ -25,14 +25,14 @@ async function handleUpdateTodo() {
 }
 
 async function handleDeleteTodo() {
-  await useFetchwithToken('/api/todolist/' + props.todo.id, {
+  await useFetchWithToken('/api/todolist/' + props.todo.id, {
     method: 'delete',
   });
   emits('update');
 }
 
 async function handleEdit() {
-  await useFetchwithToken('/api/todolist/' + props.todo.id, {
+  await useFetchWithToken('/api/todolist/' + props.todo.id, {
     method: 'put',
     body: {
       content: props.todo.content,

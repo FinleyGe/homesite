@@ -1,7 +1,7 @@
 import type { UseFetchOptions } from "#app"
 import useStore from "~/stores"
 
-export function useFetchwithToken<T>(url: string, options?: UseFetchOptions<T>) {
+export function useFetchWithToken<T>(url: string, options?: UseFetchOptions<T>) {
   const store = useStore()
   return useFetch(url, {
     ...options,

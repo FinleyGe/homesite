@@ -2,7 +2,7 @@
 import { toast } from 'vue3-toastify';
 import Button from '~/components/common/Button.vue';
 import { GetAll } from '~/api/todolist';
-import { useFetchwithToken } from '~/api/utils';
+import { useFetchWithToken } from '~/api/utils';
 import Item from '~/components/todolist/item.vue';
 import Calendar from 'primevue/calendar';
 
@@ -32,7 +32,7 @@ async function handleAddTodo() {
   if (!addTodo.value) {
     return;
   }
-  await useFetchwithToken('/api/todolist/add', {
+  await useFetchWithToken('/api/todolist/add', {
     method: 'POST',
     body: {
         content: addTodo.value,
@@ -57,7 +57,7 @@ onNuxtReady(() => {
 function handleCleanFinished() {
   todolist.value?.forEach(async (todo) => {
     if (todo.done) {
-      await useFetchwithToken(`/api/todolist/${todo.id}`, {
+      await useFetchWithToken(`/api/todolist/${todo.id}`, {
         method: 'DELETE',
         onResponse: (response) => {
           if (!response.error) {
