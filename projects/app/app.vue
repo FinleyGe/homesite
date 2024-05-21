@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import 'vue3-toastify/dist/index.css';
+
 const { t } = useI18n();
 useHead({
   title: t('head.title'),
@@ -9,7 +10,7 @@ useHead({
 
 <template>
   <div class="bg-gray-50 dark:bg-gray-800 dark:text-white min-h-svh flex flex-col">
-    <ColorScheme>
+    <!-- <ColorScheme > -->
       <header class="h-10">
         <ToolBar />
       </header>
@@ -19,6 +20,6 @@ useHead({
       <footer class="h-12">
         <CopyrightFooter />
       </footer>
-    </ColorScheme>
+    <!-- </ColorScheme> -->
   </div>
 </template>

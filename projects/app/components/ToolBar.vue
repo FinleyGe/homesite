@@ -9,14 +9,9 @@ const localePath = useLocalePath();
 const router = useRouter();
 
 function toggleTheme() {
-  colorMode.forced = true;
-  colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark';
-  definePageMeta({
-    colorMode: colorMode.value,
-  });
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
 }
 const { locale, setLocale } = useI18n();
-const isLargeScreen = useMediaQuery('(min-width: 1024px)');
 
 function toggleLocale() {
   setLocale(locale.value === 'en' ? 'zh' : 'en');

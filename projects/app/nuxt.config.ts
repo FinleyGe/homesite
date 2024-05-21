@@ -3,7 +3,7 @@ import mdx from '@mdx-js/rollup';
 import remarkgfm from 'remark-gfm';
 import remarkmath from 'remark-math';
 import remarkFrontmatter from 'remark-frontmatter';
-import remartMdxFrontmatter from 'remark-mdx-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
 // import mdx from 'vite-plugin-mdx'
@@ -22,6 +22,9 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-primevue',
   ],
+  colorMode: {
+    classSuffix: '',
+  },
   primevue: {
     options: {
       unstyled: true,
@@ -40,7 +43,7 @@ export default defineNuxtConfig({
           remarkgfm,
           remarkmath,
           remarkFrontmatter,
-          remartMdxFrontmatter,
+          remarkMdxFrontmatter,
         ],
         rehypePlugins: [
           [rehypeHighlight],
@@ -58,7 +61,7 @@ export default defineNuxtConfig({
     '/': {
       prerender: true,
     },
-    '/blog': {swr: true, isr: true, prerender: true},
-    '/blog/**': {swr: true, isr: true, prerender: true},
+    '/blog': { swr: true, isr: true, prerender: true },
+    '/blog/**': { swr: true, isr: true, prerender: true },
   },
 });
