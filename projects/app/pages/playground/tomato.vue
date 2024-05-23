@@ -79,6 +79,9 @@ function handleNotification() {
 
 async function stopTimer() {
   clearInterval(interval.value!);
+  if (timer.value < 0) {
+    return;
+  }
   timer.value = 0;
   const { error } = await useFetchWithToken<Tomato>('/api/tomato/cancel', {
     method: 'POST',

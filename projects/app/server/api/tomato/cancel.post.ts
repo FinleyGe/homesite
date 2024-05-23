@@ -8,13 +8,16 @@ export default defineEventHandler({
     auth,
   ],
   handler: async (event) => {
-    const {id} =  await readBody<{
+    const { id } = await readBody<{
       id: string,
     }>(event);
 
     return prisma.tomato.delete({
       where: {
-        id
+        id,
+        createdAt: {
+          gte: new Date(new Date().getTime() - 1000 * 25 * 60), // 25 minutes
+        }
       }
     })
   }
