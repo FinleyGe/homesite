@@ -49,22 +49,22 @@ export default defineNuxtConfig({
     mount: process.env.UPLOAD_PATH!
   },
   nitro: {
-    serverAssets: [
-      {
-        dir: process.env.UPLOAD_PATH!,
-        baseName: 'img',
+    storage: {
+      img: {
+        driver: 'fs',
+        base: process.env.UPLOAD_PATH!,
       }
-    ],
-  },
-  routeRules: {
-    '/': {
-      prerender: true,
     },
-    'blog/**': {
-      isr: true
-    },
-    'blog': {
-      isr: true
+    routeRules: {
+      '/': {
+        prerender: true,
+      },
+      'blog/**': {
+        isr: true
+      },
+      'blog': {
+        isr: true
+      }
     }
-  }
+  },
 });

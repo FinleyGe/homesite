@@ -3,6 +3,6 @@ export default defineEventHandler(async (event) => {
   if (!filename) {
     return new Response('Filename is required', { status: 400 })
   }
-  const img = await useStorage('assets:img').getItemRaw(filename)
+  const img = await useStorage('img').getItemRaw(filename)
   return img
 })
