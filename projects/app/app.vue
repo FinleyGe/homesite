@@ -10,16 +10,16 @@ useHead({
 
 <template>
   <div class="bg-gray-50 dark:bg-gray-800 dark:text-white min-h-svh flex flex-col">
-    <!-- <ColorScheme > -->
-      <header class="h-10">
+    <header class="h-10">
+      <ColorScheme>
         <ToolBar />
-      </header>
-      <main class="min-h-full mx-2 px-2 flex-grow">
-        <NuxtPage />
-      </main>
-      <footer class="h-12">
-        <CopyrightFooter />
-      </footer>
-    <!-- </ColorScheme> -->
+      </ColorScheme>
+    </header>
+    <main class="min-h-full mx-2 px-2 flex-grow">
+      <NuxtPage />
+    </main>
+    <footer class="h-12">
+      <CopyrightFooter />
+    </footer>
   </div>
 </template>

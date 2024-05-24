@@ -57,7 +57,6 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     vueI18n: 'i18n.config.ts',
   },
-  routeRules: {},
   fileStorage: {
     mount: process.env.UPLOAD_PATH!
   },
