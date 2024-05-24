@@ -6,7 +6,6 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
-// import mdx from 'vite-plugin-mdx'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -21,6 +20,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-primevue',
+    'nuxt-file-storage',
   ],
   colorMode: {
     classSuffix: '',
@@ -61,7 +61,21 @@ export default defineNuxtConfig({
     '/': {
       prerender: true,
     },
+    '/img': {
+      static: true,
+    },
     '/blog': { swr: true, isr: true, prerender: true },
     '/blog/**': { swr: true, isr: true, prerender: true },
   },
+  fileStorage: {
+    mount: process.env.UPLOAD_PATH!
+  },
+  nitro: {
+    serverAssets: [
+      {
+        dir: process.env.UPLOAD_PATH!,
+        baseName: 'img',
+      }
+    ]
+  }
 });

@@ -22,6 +22,7 @@ definePageMeta({
     <div class="flex flex-row">
       <Button @click="() => $router.push('/admin/login')">Login</Button>
       <Button @click="() => $router.push('/admin/post')">Post</Button>
+      <Button @click="() => $router.push('/admin/upload')">Upload</Button>
     </div>
   </div>
 </template>
