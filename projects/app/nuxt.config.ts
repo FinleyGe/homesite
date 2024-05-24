@@ -57,16 +57,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     vueI18n: 'i18n.config.ts',
   },
-  routeRules: {
-    '/': {
-      prerender: true,
-    },
-    '/img': {
-      static: true,
-    },
-    '/blog': { swr: true, isr: true, prerender: true },
-    '/blog/**': { swr: true, isr: true, prerender: true },
-  },
+  routeRules: {},
   fileStorage: {
     mount: process.env.UPLOAD_PATH!
   },
@@ -76,6 +67,6 @@ export default defineNuxtConfig({
         dir: process.env.UPLOAD_PATH!,
         baseName: 'img',
       }
-    ]
+    ],
   }
 });
