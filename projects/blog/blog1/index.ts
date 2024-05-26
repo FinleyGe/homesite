@@ -1,5 +1,5 @@
-import zh from './blog1.zh.mdx?raw'
-import en from './blog1.mdx?raw'
+import zh from './blog1.zh.mdx'
+import en from './blog1.mdx'
 import { Blog } from '../type'
 
 export default <Blog>{

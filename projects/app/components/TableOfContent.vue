@@ -17,7 +17,7 @@ defineProps<{
   <div>
     <ul>
       <li v-for="item in toc" :key="item.value" :class="'depth-' + item.depth">
-        <a class="hover:underline cursor-pointer" :href="'#' + item?.attributes?.id ?? ''">{{ item.value }}</a>
+        <a class="hover:underline cursor-pointer" :href="'#' + item?.attributes?.id">{{ item.value }}</a>
         <TableOfContent v-if="item.children" :toc="item.children" />
       </li>
     </ul>

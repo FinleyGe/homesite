@@ -1,13 +1,4 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-// import mdx from '@mdx-js/rollup';
-// import remarkgfm from 'remark-gfm';
-// import remarkmath from 'remark-math';
-// import remarkFrontmatter from 'remark-frontmatter';
-// import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-// import rehypeKatex from 'rehype-katex';
-// import rehypeHighlight from 'rehype-highlight';
-// import mdx from './mdx';
-import string from 'vite-plugin-string';
+import { string } from 'rollup-plugin-string';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -38,20 +29,9 @@ export default defineNuxtConfig({
   ],
   vite: {
     plugins: [
-      // mdx({
-      //   providerImportSource: '@mdx-js/vue',
-      //   jsxImportSource: 'vue',
-      //   remarkPlugins: [
-      //     remarkgfm,
-      //     remarkmath,
-      //     remarkFrontmatter,
-      //     remarkMdxFrontmatter,
-      //   ],
-      //   rehypePlugins: [
-      //     [rehypeHighlight],
-      //     [rehypeKatex, { output: 'mathml' }],
-      //   ]
-      // })
+      string({
+        include: '/**/*.mdx',
+      }),
     ],
   },
   i18n: {

@@ -1,4 +1,4 @@
-import zh from './zh.mdx?raw'
+import zh from './zh.mdx'
 import { Blog } from '../type'
 
 export default <Blog>{
