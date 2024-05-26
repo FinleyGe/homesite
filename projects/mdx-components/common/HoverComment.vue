@@ -16,6 +16,3 @@ defineProps<{
     </span>
   </span>
 </template>
-
-<style scoped lang="scss">
-</style>

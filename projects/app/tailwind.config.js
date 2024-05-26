@@ -1,3 +1,8 @@
 module.exports = {
-  darkMode: 'class'
+  darkMode: 'class',
+  content: [
+    './pages/**/*.vue',
+    './node_modules/mdx-components/**/*.vue',
+    './components/**/*.vue',
+  ]
 }

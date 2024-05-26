@@ -21,10 +21,14 @@
     "@prisma/client": "5.13.0",
     "h3-formidable": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mdx-components": "workspace:*",
     "monorepo": "github:mdx-js/mdx",
     "nuxt": "^3.11.2",
     "nuxt-file-storage": "^0.2.2",
     "primevue": "^3.52.0",
+    "rehype-pretty-code": "^0.13.2",
+    "remark-heading-id": "^1.0.1",
+    "remark-mdx-toc": "^0.3.1",
     "rss": "^1.2.2",
     "vfile": "^6.0.1",
     "vue": "^3.4.27",
@@ -44,7 +48,6 @@
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
     "blog": "workspace:*",
-    "mdx-components": "workspace:*",
     "nuxt-primevue": "^0.3.1",
     "prisma": "^5.14.0",
     "rehype-highlight": "^7.0.0",
@@ -53,6 +56,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "remark-mdx-frontmatter": "^4.0.0",
-    "sass": "^1.77.2"
+    "sass": "^1.77.2",
+    "vite-plugin-string": "^1.2.3"
   }
 }

@@ -1,12 +1,9 @@
 <script setup lang="ts">
-const colorMode = useColorMode();
 </script>
 <template>
-  <ColorScheme placeholder="Loading...">
-    <code :class="$colorMode.value">
-      <slot></slot>
-    </code>
-  </ColorScheme>
+  <code :class="$colorMode.value" class="dark:bg-gray-900 light:bg-gray-300">
+    <slot></slot>
+  </code>
 </template>
 
 <style scoped lang="scss">
@@ -18,22 +15,40 @@ const colorMode = useColorMode();
 }
 
 code {
+  margin-inline: 0.25rem;
   font-family: 'Fira Code', monospace;
 
   :deep(*) {
     font-family: 'Fira Code', monospace;
   }
+
+  counter-set: line;
+
+  :deep([data-line])::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 2em;
+    /* Adjust as needed to suit your design */
+    text-align: right;
+    margin-right: 0.5em;
+    /* Adjust as needed to suit your design */
+    color: #999;
+    /* Adjust the color as needed */
+  }
+}
+
+code {
+  :deep(span) {
+    color: var(--shiki-light);
+  }
+}
+
+code.dark {
+  :deep(span) {
+    color: var(--shiki-dark);
+  }
 }
 </style>
 
-<style lang="scss">
-@use "@catppuccin/highlightjs/sass/theme";
-
-.light {
-  @include theme.highlights("latte", "hex");
-}
-
-.dark {
-  @include theme.highlights("mocha", "hex");
-}
-</style>
+<style lang="scss"></style>

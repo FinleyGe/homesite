@@ -2,7 +2,7 @@
 
 </script>
 <template>
-  <a class="text-pink-300 dark:text-pink-300">
+  <a class="text-pink-300 dark:text-pink-300 no-underline hover:underline italic">
     <slot />
   </a>
 </template>

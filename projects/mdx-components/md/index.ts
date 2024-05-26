@@ -7,6 +7,8 @@ import span from "./span.vue";
 import p from "./p.vue";
 import code from "./code.vue";
 import a from "./a.vue";
+import Blockquote from "./blockquote.vue";
+// import pre from "./pre.vue";
 
 export default {
   'h1': H1,
@@ -18,4 +20,6 @@ export default {
   'p': p,
   'code': code,
   'a': a,
+  // 'pre': pre,
+  'blockquote': Blockquote
 }

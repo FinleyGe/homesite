@@ -9,7 +9,7 @@ export type Blog = {
   link: string;
   lang: string[];
   content: {
-    [key: string]: any;
+    [key: string]: string;
   };
   description: {
     [key: string]: string;

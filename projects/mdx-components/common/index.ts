@@ -4,6 +4,6 @@ export {
   HoverComment
 }
 
-export default [
-  HoverComment
-]
+export default {
+  'HoverComment': HoverComment,
+}

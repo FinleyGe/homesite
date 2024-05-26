@@ -1,0 +1,69 @@
+## 主要技术
+
+这个个人主页项目使用的技术栈主要是 **Nuxt**。
+
+Nuxt 作为一个全栈框架，既能够构建 SSR 的项目, 也能作为 CSR，也能作为 SSG。
+
+实际上 Nuxt 的默认渲染模式为 Universal Rendering. 按照官方的说法，
+Universal Rendering 实际上是 SSR + CSR。
+
+### Nuxt 插件
+
+目前用到的 Nuxt 插件如下:
+
+- @nuxtjs/tailwindcss: Tailwind 集成
+- @nuxt/eslint
+- @nuxtjs/color-mode: 提供黑暗模式和明亮模式功能（给 body 标签添加一个 class）
+- @nuxtjs/fontaine：字体相关
+- @nuxtjs/i18n: 国际化
+- @vueuse/nuxt: vueuse 的 nuxt 插件
+- @pinia/nuxt: pinia 状态管理
+- @pinia-plugin-persistedstate/nuxt: pinia 的持久化
+- nuxt-primevue: primevue 组建库
+- nuxt-file-storage: 提供文件存储服务（上传下载）
+
+### MDX
+
+[MDX](https://mdxjs.com/) 能够在 markdown 中使用 JSX 组件，只要支持 JSX 的框架理论上都可以
+使用 MDX.
+
+nuxt 有一个 mdx 的[集成插件](https://mdx.nuxtjs.org/)，但是只支持 Nuxt2。而且这个插件也无法满足我的需求。
+我必须手动 compile mdx 文档，拿到 解析后的 `.jsx` 文档。从文档中解析一些东西。从而实现目录等功能。
+
+MDX 使用 `compile` 函数将 `mdx` 格式的文档转换成 `.jsx` 格式。然后通过 `run` 函数将这个 `.jsx` 渲染。
+
+上述步骤可以通过一个函数 `evaluate` 实现。在这个函数中可以同时写入 `compile` 和 `run` 两个函数的 `option`。
+
+以下是我进行 mdx 渲染的相关代码：
+
+```ts
+import * as runtime from 'vue/jsx-runtime'
+// vue 提供的 jsx runtime, 必须引入
+
+import {
+    MDXProvider, // 提供组件注入的能力
+    useMDXComponents, // 使用 MDX 组件
+} from '@mdx-js/vue';
+
+type MDXContent = Awaited<ReturnType<typeof run>>['default']
+const Content = ref<MDXContent>();
+const content = ref<string>('# hello world');
+
+const mdx = await evaluate(
+  content.value,
+  {
+    ...runtime, useMDXComponents,
+    remarkPlugins: [
+        // my remark plugins...
+    ],
+    rehypePlugins: [
+        // my rehype Plugins...
+    ]
+  }
+);
+Content.value = mdx.default;
+```
+
+### Tailwind CSS
+
+本站使用 Tailwind CSS。这个东西是真的好用啊。而且 Nuxt 可以直接使用 Tailwind 的插件。

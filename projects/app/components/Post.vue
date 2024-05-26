@@ -3,7 +3,7 @@
 import { MDXProvider, useMDXComponents } from '@mdx-js/vue';
 import md from 'mdx-components/md';
 import type { run } from '@mdx-js/mdx';
-import {evaluate} from '@mdx-js/mdx'
+import { evaluate } from '@mdx-js/mdx'
 import * as runtime from 'vue/jsx-runtime'
 
 const props = defineProps<{
@@ -33,10 +33,10 @@ update()
       <Content />
     </MDXProvider>
     <span class="text-xs text-gray-500 dark:text-gray-400">
-    {{ time?.toLocaleString() }}
+      {{ time?.toLocaleString() }}
     </span>
     <span class="text-xs text-gray-500 dark:text-gray-400">
-    {{ lang }}
+      {{ lang }}
     </span>
   </div>
 </template>

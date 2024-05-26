@@ -1,7 +1,11 @@
 <script setup lang="ts">
+
 </script>
 <template>
-  <h1 class="text-2xl py-1 text-pink-400 dark:text-pink-100">
+
+  <pre class="mt-4">
     <slot></slot>
-  </h1>
+  </pre>
 </template>
+
+<style scoped></style>
