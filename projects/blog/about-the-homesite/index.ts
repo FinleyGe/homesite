@@ -7,7 +7,7 @@ export default <Blog>{
     'en': '关于主页项目的技术点',
   },
   link: 'about-the-homesite',
-  date: '2024-05-25',
+  date: '2024-05-27',
   lang: ['zh'],
   content: {
     'zh': zh,

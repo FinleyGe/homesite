@@ -37,17 +37,26 @@ code {
     color: #999;
     /* Adjust the color as needed */
   }
+
 }
 
 code {
   :deep(span) {
     color: var(--shiki-light);
   }
+
+  :deep([data-highlighted-line]) {
+    @apply bg-pink-100;
+  }
 }
 
 code.dark {
   :deep(span) {
     color: var(--shiki-dark);
+  }
+
+  :deep([data-highlighted-line]) {
+    @apply bg-pink-800;
   }
 }
 </style>

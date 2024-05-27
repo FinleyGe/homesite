@@ -48,4 +48,8 @@ defineProps<{
 .depth-3 {
   margin-left: 1rem;
 }
+
+.depth-4 {
+  margin-left: 1.5rem;
+}
 </style>

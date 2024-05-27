@@ -8,12 +8,15 @@ import p from "./p.vue";
 import code from "./code.vue";
 import a from "./a.vue";
 import Blockquote from "./blockquote.vue";
+import Mark from "./mark.vue";
+import H4 from "./h4.vue";
 // import pre from "./pre.vue";
 
 export default {
   'h1': H1,
   'h2': H2,
   'h3': H3,
+  'h4': H4,
   'ol': Ol,
   'ul': Ul,
   'span': span,
@@ -21,5 +24,6 @@ export default {
   'code': code,
   'a': a,
   // 'pre': pre,
-  'blockquote': Blockquote
+  'blockquote': Blockquote,
+  'mark': Mark,
 }
