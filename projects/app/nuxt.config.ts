@@ -21,6 +21,12 @@ export default defineNuxtConfig({
   primevue: {
     options: {
       unstyled: true,
+    },
+    components: {
+      include: ['Calendar'],
+    },
+    directives: {
+      exclude: ['*'],
     }
   },
   css: [
@@ -49,5 +55,16 @@ export default defineNuxtConfig({
         baseName: 'img',
       }
     ],
+  },
+  routeRules: {
+    '/': {
+      prerender: true,
+    },
+    'blog/**': {
+      isr: true
+    },
+    'blog': {
+      isr: true
+    }
   }
 });
