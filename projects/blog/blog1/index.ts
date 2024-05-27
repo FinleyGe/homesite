@@ -17,5 +17,6 @@ export default <Blog>{
   description: {
     'en': 'This is the first blog',
     'zh': '这是第一篇博客'
-  }
+  },
+  tag: ['blog'],
 };

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 </script>
 <template>
-  <code :class="$colorMode.value" class="dark:bg-gray-900 light:bg-gray-300">
+  <code :class="$colorMode.value" class="dark:bg-gray-900 light:bg-gray-300 p-1 m-1">
     <slot></slot>
   </code>
 </template>

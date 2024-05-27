@@ -2,6 +2,7 @@ declare module '*.mdx';
 declare module '*/**.md';
 
 export type Blog = {
+  draft?: boolean;
   title: {
     [key: string]: string;
   },
@@ -13,5 +14,6 @@ export type Blog = {
   };
   description: {
     [key: string]: string;
-  }
+  };
+  tag?: string[];
 }
