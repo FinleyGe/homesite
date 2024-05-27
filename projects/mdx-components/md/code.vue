@@ -23,6 +23,7 @@ code {
   }
 
   counter-set: line;
+  overflow: scroll;
 
   :deep([data-line])::before {
     counter-increment: line;
