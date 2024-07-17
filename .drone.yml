@@ -5,10 +5,51 @@ name: homesite
 steps:
   - name: build
     image: node:20-slim
+    volumes:
+      - name: service-root
+        path: /app/build
+      - name: pnpm-cache
+        path: /drone/src/.pnpm-store
     commands:
       - npm config set registry http://mirrors.cloud.tencent.com/npm/
       - corepack enable
       - corepack use pnpm
+      - pnpm config set store-dir /drone/src/.pnpm-store
       - pnpm i
       - cd projects/app
       - pnpm run build
+      - cp .output /app/build
+    environment:
+      DATABASE_URL:
+        from_secret: DATABASE_URL
+      JWT_SECRET:
+        from_secret: JWT_SECRET
+      UPLOAD_PATH: "/var/opt/uploads/"
+  - name: deploy
+    image: drillster/drone-rsync
+    settings:
+      hosts: ["101.34.27.200"]
+      user: ubuntu
+      key:
+        from_secret: ubuntu_key
+      source: /app/build
+      target: /www/homesite
+      script:
+        - echo "Rsync ok"
+        # - systemctl restart homesite.service
+    volumes:
+      - name: service-root
+        path: /app/build
+      
+
+volumes:
+  - name: service-root
+    host:
+      path: /root/service
+  - name: pnpm-cache
+    host:
+      path: /root/.pnpm
+
+trigger:
+  branch:
+  - main
