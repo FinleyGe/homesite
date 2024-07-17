@@ -1,5 +1,5 @@
 declare module '*.mdx';
-declare module '*/**.md';
+declare module '*/**.mdx';
 
 export type Blog = {
   draft?: boolean;
