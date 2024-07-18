@@ -18,9 +18,9 @@ jobs:
           version: 9
       - name: Build
         run: |
-          echo $UPLOAD_PATH
           cd ./src/projects/app
           pnpm i
+          pnpm prisma generate
           pnpm run build
       - name: Deploy
         uses: easingthemes/ssh-deploy@main
