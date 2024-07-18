@@ -4,13 +4,15 @@ import aboutTheHomesite from './about-the-homesite'
 import dingtalkInterview1 from './dingtalk-interview-1'
 import setupAudioDriverOnPixelbook from './setup-audio-driver-on-pixelbook';
 import fromObsidianToNotion from './from-obsidian-to-notion';
+import giteaCiCd from './gitea-ci-cd';
 
 export default <Blog[]>[
   blog1,
   aboutTheHomesite,
   dingtalkInterview1,
   setupAudioDriverOnPixelbook,
-  fromObsidianToNotion
+  fromObsidianToNotion,
+  giteaCiCd
 ];
 
 export const Tags = {

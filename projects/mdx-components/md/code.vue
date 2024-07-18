@@ -17,13 +17,12 @@
 code {
   margin-inline: 0.25rem;
   font-family: 'Fira Code', monospace;
+  counter-set: line;
+  overflow: scroll;
 
   :deep(*) {
     font-family: 'Fira Code', monospace;
   }
-
-  counter-set: line;
-  overflow: scroll;
 
   :deep([data-line])::before {
     counter-increment: line;
@@ -60,5 +59,3 @@ code.dark {
   }
 }
 </style>
-
-<style lang="scss"></style>

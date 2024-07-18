@@ -3,6 +3,7 @@ import { string } from 'rollup-plugin-string';
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
+
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
@@ -15,9 +16,11 @@ export default defineNuxtConfig({
     'nuxt-primevue',
     'nuxt-file-storage',
   ],
+
   colorMode: {
     classSuffix: '',
   },
+
   primevue: {
     options: {
       unstyled: true,
@@ -29,10 +32,12 @@ export default defineNuxtConfig({
       exclude: ['*'],
     }
   },
+
   css: [
     '~/assets/styles/main.css',
     // 'primevue/resources/themes/saga-blue/theme.css',
   ],
+
   vite: {
     plugins: [
       string({
@@ -40,14 +45,17 @@ export default defineNuxtConfig({
       }),
     ],
   },
+
   i18n: {
     locales: ['en', 'zh'],
     defaultLocale: 'en',
     vueI18n: 'i18n.config.ts',
   },
+
   fileStorage: {
     mount: process.env.UPLOAD_PATH!
   },
+
   nitro: {
     storage: {
       img: {
@@ -67,4 +75,6 @@ export default defineNuxtConfig({
       }
     }
   },
+
+  compatibilityDate: '2024-07-18',
 });
