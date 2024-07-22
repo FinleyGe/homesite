@@ -1,12 +1,11 @@
-import type { UseFetchOptions } from "#app"
-import useStore from "~/stores"
+import type { UseFetchOptions } from "nuxt/app";
 
-export function useFetchWithToken<T>(url: string, options?: UseFetchOptions<T>) {
-  const store = useStore()
+export function useFetchWithToken<T>(
+  url: string | (() => string),
+  options: Omit<UseFetchOptions<T>, 'default'> & { default?: () => T | Ref<T> },
+) {
   return useFetch(url, {
     ...options,
-    headers: {
-      'Authorization': 'Bearer ' + store.token
-    }
+    $fetch: useNuxtApp().$api,
   })
 }
