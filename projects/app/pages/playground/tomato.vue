@@ -137,17 +137,21 @@ async function getToday() {
   <div class="max-w-5xl mx-auto flex flex-col">
     <div class="flex flex-col items-center">
       <h1 class="text-2xl font-bold cursor-pointer" @click="getNowTomato">Tomato</h1>
-      <input v-model="focusOn" class="border border-gray-300 p-2 rounded-md" placeholder="Focus on">
-      <p class="text-4xl font-bold gap-2 flex flex-row">
+      <input 
+        v-model="focusOn" class="border border-gray-300 p-2 rounded-md dark:text-gray-50 dark:bg-gray-600
+        text-2xl text-center max-w-80 w-full mt-4" placeholder="Focus on">
+      <p class="text-4xl font-bold gap-2 flex flex-row m-4">
         <span>{{ Math.floor(timer / 60) < 10 ? '0' + Math.floor(timer / 60) : Math.floor(timer / 60) }} </span>
             :
             <span>{{ timer % 60 < 10 ? '0' + timer % 60 : timer % 60 }}</span>
       </p>
-      <Button @click="startTomato">Tomato</Button>
-      <Button v-if="timer" @click="stopTimer">Stop</Button>
-      <Button @click="handleShortBreak">Short Break</Button>
-      <Button @click="handleLongBreak">Long Break</Button>
+
+      <Button @click="startTomato">{{ !timer ? 'Start' : 'Restart' }} A Tomato 🍅</Button>
+      <Button v-if="timer" @click="stopTimer">Stop 🛑</Button>
+      <Button @click="handleShortBreak">Short Break (5 mins)</Button>
+      <Button @click="handleLongBreak">Long Break (20 mins)</Button>
       <Button @click="getToday">Status</Button>
+
       <audio ref="audio" src="/clock.mp3" />
 
       <div v-if="tomatoes.length > 0" class="flex flex-col">
