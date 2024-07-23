@@ -61,4 +61,5 @@ model Tomato {
   id        String   @id @default(cuid())
   focusOn   String?
   createdAt DateTime @default(now())
+  score     Int      @default(0)
 }
