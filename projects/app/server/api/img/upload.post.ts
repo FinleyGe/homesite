@@ -1,22 +1,9 @@
 export default defineEventHandler({
   onRequest: [auth],
   handler: async (event) => {
-    const { file } = await readBody<{ file: File }>(event);
-    const { ext } = parseDataUrl(file.content);
-    const filename = `${Date.now()}`;
+    const { file } = await readBody<{ file: Parameters<typeof storeFileLocally>[0] }>(event);
+    const filename = await storeFileLocally(file, 8);
 
-    await storeFileLocally(
-      file.content,
-      filename,
-    );
-
-    return {
-      filename: `${filename}.${ext}`
-    }
+    return { filename }
   },
 })
-
-interface File {
-  name: string
-  content: string
-}
