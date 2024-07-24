@@ -5,6 +5,7 @@ import dingtalkInterview1 from './dingtalk-interview-1'
 import setupAudioDriverOnPixelbook from './setup-audio-driver-on-pixelbook';
 import fromObsidianToNotion from './from-obsidian-to-notion';
 import giteaCiCd from './gitea-ci-cd';
+import treeSitterQuery from './tree-sitter-query';
 
 export default <Blog[]>[
   blog1,
@@ -12,7 +13,8 @@ export default <Blog[]>[
   dingtalkInterview1,
   setupAudioDriverOnPixelbook,
   fromObsidianToNotion,
-  giteaCiCd
+  giteaCiCd,
+  treeSitterQuery,
 ];
 
 export const Tags = {
@@ -31,5 +33,9 @@ export const Tags = {
   workflow: {
     en: "workflow",
     zh: "工作流"
-  }
+  },
+  devtools: {
+    en: "devtools",
+    zh: "开发工具"
+  },
 }
