@@ -6,6 +6,7 @@ import setupAudioDriverOnPixelbook from './setup-audio-driver-on-pixelbook';
 import fromObsidianToNotion from './from-obsidian-to-notion';
 import giteaCiCd from './gitea-ci-cd';
 import treeSitterQuery from './tree-sitter-query';
+import fastgptArticleAnalysis from './fastgpt-english-article-analyse';
 
 export default <Blog[]>[
   blog1,
@@ -15,6 +16,7 @@ export default <Blog[]>[
   fromObsidianToNotion,
   giteaCiCd,
   treeSitterQuery,
+  fastgptArticleAnalysis,
 ];
 
 export const Tags = {
@@ -37,5 +39,9 @@ export const Tags = {
   devtools: {
     en: "devtools",
     zh: "开发工具"
+  },
+  fastgpt: {
+    en: "FastGPT",
+    zh: "FastGPT"
   },
 }

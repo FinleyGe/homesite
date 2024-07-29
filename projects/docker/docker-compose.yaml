@@ -11,7 +11,7 @@ services:
     networks:
       - homesite
     ports:
-      - "5432:5432"
+      - "15432:5432"
 
 volumes:
   homesite:
