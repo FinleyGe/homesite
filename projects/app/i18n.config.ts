@@ -18,6 +18,7 @@ export default defineI18nConfig(() => ({
       blog: {
         list: "Blog List",
       },
+      LinkExchange: 'Link Exchange'
     },
     zh: {
       lang: {
@@ -34,7 +35,8 @@ export default defineI18nConfig(() => ({
       },
       blog: {
         list: "博客列表",
-      }
+      },
+      LinkExchange: '友情链接'
     },
   }
 }));

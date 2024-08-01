@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import Button from '~/components/common/Button.vue';
 import ColorfulButton from '~/components/common/ColorfulButton.vue';
-
 import LogoTitle from './LogoTitle.vue';
 import { Sun, Moon } from '@vicons/carbon';
+
 const colorMode = useColorMode();
 const localePath = useLocalePath();
 const router = useRouter();
 
+const emits = defineEmits(['handleToggleTheme']);
+
 function toggleTheme() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+  emits('handleToggleTheme');
 }
+
 const { locale, setLocale } = useI18n();
 
 function toggleLocale() {

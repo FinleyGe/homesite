@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     'nuxt-file-storage',
   ],
 
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    }
+  },
   colorMode: {
     classSuffix: '',
   },
