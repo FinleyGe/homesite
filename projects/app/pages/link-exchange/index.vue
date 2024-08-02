@@ -50,9 +50,9 @@ function handleAskForLinkExchange() {
       </ClientOnly>
     </div>
 
-    <div class="flex flex-row gap-2 max-w-3xl">
+    <div class="flex flex-row flex-wrap gap-2 max-w-3xl">Link Exchange
       <div v-for="link in linkList" :key="link.link"
-        class="flex flex-row items-center px-4 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-xl hover:transition-all">
+        class="items-center px-4 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-xl hover:transition-all">
         <a :href="link.link" target="_blank" class="text-pink-500 dark:text-pink-200">{{ link.name }}</a>
       </div>
     </div>
