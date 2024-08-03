@@ -9,7 +9,7 @@ type Props = {
 const props = defineProps<Props>();
 const router = useRouter();
 
-async function handleClick(){
+async function handleClick() {
   if (props.onclick) {
     props.onclick();
   } else if (props.routerLink) {
@@ -21,50 +21,39 @@ async function handleClick(){
 
 </script>
 <template>
-  <button
-    @click="handleClick"
-  >
-    <span class="content text-black dark:text-gray-100">
-      <slot />
-    </span>
+  <span class="content text-black dark:text-gray-100" @click="handleClick">
+    <slot />
     <span class="bar" />
-  </button>
+  </span>
 </template>
 
 <style scoped lang="scss">
-button {
-  border: none;
-  padding-inline: 6px;
+.content {
+  font-size: 1rem;
+  z-index: 2;
   background-color: transparent;
   position: relative;
-  .content {
-    font-size: 1rem;
-    z-index: 2;
-    background-color: transparent;
-    position: relative;
+  cursor: pointer;
 
-    &:hover {
-      cursor: pointer;
+  &:hover {
 
-      & ~ .bar {
-        height: 16px;
-        transition: height 0.2s ease-in-out;
-      }
+    & .bar {
+      height: 16px;
+      transition: height 0.1s ease-in;
     }
   }
 
   .bar {
     position: absolute;
-    bottom: 4px;
-    left: 0;
-    height: 8px;
-    width: 100%;
+    bottom: 2px;
+    left: -2px;
+    height: 6px;
+    width: calc(100% + 4px);
     background-color: v-bind("color");
-    opacity: 0.5;
-    z-index: 1;
-    transition: height 0.2s ease-in-out;
+    opacity: 0.4;
+    z-index: 3;
+    // transition: height 0.1s ease-in-out;
     border-radius: 4px;
   }
 }
-
 </style>

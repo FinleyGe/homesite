@@ -8,11 +8,8 @@ const colorMode = useColorMode();
 const localePath = useLocalePath();
 const router = useRouter();
 
-const emits = defineEmits(['handleToggleTheme']);
-
 function toggleTheme() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
-  emits('handleToggleTheme');
 }
 
 const { locale, setLocale } = useI18n();
@@ -24,8 +21,9 @@ function toggleLocale() {
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full">
+  <div class="flex flex-row justify-between w-full items-center">
     <LogoTitle @click="router.push(localePath('/'))" />
+
     <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-2 overflow-scroll">
       <ColorfulButton color="pink" :router-link="localePath('blog')">
         {{ $t('common.blog') }}
@@ -40,15 +38,15 @@ function toggleLocale() {
       </ColorfulButton>
     </div>
 
-    <div class="flex flex-row w-min mx-2">
-        <Button @click="toggleTheme">
-          <template #icon>
-            <Sun v-if="colorMode.value == 'dark'" />
-            <Moon v-else />
-          </template>
-        </Button>
+    <div class="flex flex-row mx-2">
+      <Button circle @click="toggleTheme">
+        <template #icon>
+          <Sun v-if="colorMode.value == 'dark'" />
+          <Moon v-else />
+        </template>
+      </Button>
 
-      <Button @click="toggleLocale">
+      <Button circle @click="toggleLocale">
         {{ locale === 'en' ? '中' : 'EN' }}
       </Button>
 
