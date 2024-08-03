@@ -74,10 +74,10 @@ Content.value = mdx.default
       <p class="text-gray-500">{{ blog.date }}</p>
     </div>
     <div class="p-4">
-      <TableOfContent :toc="mdx.toc" />
+      <TableOfContent :toc="mdx.toc as any" />
     </div>
     <MDXProvider
-:components="{
+    :components="{
       ...md,
       ...common,
     }">

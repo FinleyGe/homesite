@@ -21,10 +21,10 @@ function toggleLocale() {
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full items-center">
+  <div class="flex flex-row justify-between w-full items-center px-8">
     <LogoTitle @click="router.push(localePath('/'))" />
 
-    <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-2 overflow-scroll">
+    <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-scroll">
       <ColorfulButton color="pink" :router-link="localePath('blog')">
         {{ $t('common.blog') }}
       </ColorfulButton>
@@ -38,7 +38,7 @@ function toggleLocale() {
       </ColorfulButton>
     </div>
 
-    <div class="flex flex-row mx-2">
+    <div class="flex flex-row mx-2 gap-x-1">
       <Button circle @click="toggleTheme">
         <template #icon>
           <Sun v-if="colorMode.value == 'dark'" />
