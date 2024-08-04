@@ -21,7 +21,7 @@ function toggleLocale() {
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full items-center px-8">
+  <div class="flex flex-row justify-between w-full items-center">
     <LogoTitle @click="router.push(localePath('/'))" />
 
     <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-scroll">
