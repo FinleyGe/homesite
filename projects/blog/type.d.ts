@@ -1,6 +1,8 @@
 declare module '*.mdx';
 declare module '*/**.mdx';
 
+import { Tags } from './index'
+
 export type Blog = {
   draft?: boolean;
   title: {
@@ -8,12 +10,12 @@ export type Blog = {
   },
   date: string;
   link: string;
-  lang: string[];
+  lang: ['zh' | 'en'];
   content: {
     [key: string]: string;
   };
   description: {
     [key: string]: string;
   };
-  tag?: string[];
+  tag?: Array<keyof typeof Tags>;
 }

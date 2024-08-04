@@ -7,6 +7,8 @@ import fromObsidianToNotion from './from-obsidian-to-notion';
 import giteaCiCd from './gitea-ci-cd';
 import treeSitterQuery from './tree-sitter-query';
 import fastgptArticleAnalysis from './fastgpt-english-article-analyse';
+import n1Armbian from './n1-armbian-docker-openwrt-bypass-route';
+import dockerNetworkModel from './docker-network-model';
 
 export default <Blog[]>[
   blog1,
@@ -17,6 +19,8 @@ export default <Blog[]>[
   giteaCiCd,
   treeSitterQuery,
   fastgptArticleAnalysis,
+  n1Armbian,
+  dockerNetworkModel,
 ];
 
 export const Tags = {
@@ -32,10 +36,6 @@ export const Tags = {
     en: 'Blog',
     zh: '博客',
   },
-  workflow: {
-    en: "workflow",
-    zh: "工作流"
-  },
   devtools: {
     en: "devtools",
     zh: "开发工具"
@@ -43,5 +43,13 @@ export const Tags = {
   fastgpt: {
     en: "FastGPT",
     zh: "FastGPT"
+  },
+  docker: {
+    en: "Docker",
+    zh: "Docker"
+  },
+  migration: {
+    en: "Migrated Blog",
+    zh: "迁移博客"
   },
 }

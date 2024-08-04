@@ -1,7 +1,8 @@
 <script setup lang="ts">
 </script>
 <template>
-  <code :class="$colorMode.value" class="dark:bg-gray-900 light:bg-gray-300 p-1 m-1">
+  <code :class="$colorMode.value"
+    class="dark:bg-gray-900 light:bg-gray-100 p-1 m-1">
     <slot></slot>
   </code>
 </template>
@@ -45,7 +46,7 @@ code {
   }
 
   :deep([data-highlighted-line]) {
-    @apply bg-pink-100;
+    @apply bg-pink-50;
   }
 }
 

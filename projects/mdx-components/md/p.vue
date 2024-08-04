@@ -2,13 +2,12 @@
 
 </script>
 <template>
-  <p>
+  <p class="mt-4">
     <slot></slot>
   </p>
 </template>
 
 <style scoped lang="scss">
-
 p {
   :deep(strong) {
     @apply text-pink-700 dark:text-pink-300;

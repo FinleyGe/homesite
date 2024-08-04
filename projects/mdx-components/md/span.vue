@@ -8,7 +8,4 @@
 </template>
 
 <style scoped lang="scss">
-// span {
-//   &.katex-display {}
-// }
 </style>
