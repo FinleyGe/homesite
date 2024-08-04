@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify';
+import { Restart } from '@vicons/carbon';
 import Button from '~/components/common/Button.vue';
 
 const postList = ref<any[]>([])
 
-const {execute: handleGetPostList} = useFetch('/api/post/latest', {
-    method: 'GET',
-    onResponse: (response) => {
-      if (!response.error) {
-        postList.value = response.response._data;
-      } else {
-        toast("Error", { type: 'error' });
-      }
+const { execute: handleGetPostList } = useFetch('/api/post/latest', {
+  method: 'GET',
+  onResponse: (response) => {
+    if (!response.error) {
+      postList.value = response.response._data;
+    } else {
+      toast("Error", { type: 'error' });
     }
-  });
+  }
+});
 
 // const {execute: handleGetFediPostList} = useFetch('/api/post/fedi', {
 //   method: 'GET',
@@ -36,9 +37,14 @@ onNuxtReady(() => {
 </script>
 <template>
   <div class="max-w-4xl mx-auto">
-    <Button @click="handleGetPostList"> Fetch Posts </Button>
+    <Button circle @click="handleGetPostList">
+      Refresh
+      <template #icon>
+        <Restart />
+      </template>
+    </Button>
     <div v-for="post in postList" :key="post.id" class="flex flex-row">
-      <Post :content="post.content" :time="new Date(post.createdAt || post.created_at)" class="flex-grow"/>
+      <Post :content="post.content" :time="new Date(post.createdAt || post.created_at)" class="flex-grow" />
     </div>
-    </div>
+  </div>
 </template>

@@ -20,20 +20,22 @@ const i18n = useI18n({
   }
 });
 
+type Tag = keyof typeof Tags;
+
 const { t } = i18n;
 const locale = i18n.locale.value as 'en' | 'zh';
 
 const localePath = useLocalePath();
 const router = useRouter();
 
-const queryTag = ref<string | null>(null);
+const queryTag = ref<Tag | null>(null);
 const querySearch = ref<string | null>(null);
 const queryArchive = ref<string | null>(null);
 
 const option = ref<'tag' | 'search' | 'archive' | null>(null);
 
 router.beforeEach((to) => {
-  queryTag.value = to.query.tag as string;
+  queryTag.value = to.query.tag as Tag;
   querySearch.value = to.query.search as string;
   queryArchive.value = to.query.archive as string;
 });
@@ -78,12 +80,12 @@ const openFeed = () => {
 </script>
 <template>
   <div class="max-w-5xl mx-auto">
-    <div class="flex flex-row items-center gap-x-4">
+    <div class="flex flex-row items-center gap-x-4 flex-wrap">
       <h1 class="font-bold text-2xl cursor-pointer" @click="() => $router.push(localePath('/blog'))">
         {{ t('blog.list') }}
       </h1>
 
-      <div class="flex flex-row">
+      <div class="flex flex-row flex-wrap">
         <Button circle @click="openFeed">
           {{ t('Feed') }}
           <template #icon>
