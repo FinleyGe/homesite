@@ -24,7 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "mdx-components": "workspace:*",
     "monorepo": "github:mdx-js/mdx",
-    "nuxt": "^3.12.3",
+    "nuxt": "^3.12.4",
     "nuxt-file-storage": "^0.2.7",
     "primevue": "^3.53.0",
     "rehype-pretty-code": "^0.13.2",
