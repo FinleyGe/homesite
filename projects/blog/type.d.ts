@@ -1,6 +1,3 @@
-declare module '*.mdx';
-declare module '*/**.mdx';
-
 import { Tags } from './index'
 
 export type Blog = {
@@ -10,7 +7,7 @@ export type Blog = {
   },
   date: string;
   link: string;
-  lang: ['zh' | 'en'];
+  lang: Array<'en' | 'zh'>;
   content: {
     [key: string]: string;
   };

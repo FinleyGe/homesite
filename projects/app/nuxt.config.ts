@@ -1,3 +1,4 @@
+//@ts-expect-error: rollup-plugin-string is not typed
 import { string } from 'rollup-plugin-string';
 
 export default defineNuxtConfig({

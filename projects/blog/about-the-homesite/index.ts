@@ -1,5 +1,5 @@
 import zh from './zh.mdx'
-import { Blog } from '../type'
+import type { Blog } from '../type'
 
 export default <Blog>{
   title: {

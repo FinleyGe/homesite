@@ -1,6 +1,6 @@
 import zh from './blog1.zh.mdx'
 import en from './blog1.mdx'
-import { Blog } from '../type'
+import type { Blog } from '../type'
 
 export default <Blog>{
   title: {

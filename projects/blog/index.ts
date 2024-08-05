@@ -1,4 +1,4 @@
-import { Blog } from './type';
+import type { Blog } from './type';
 import blog1 from './blog1'
 import aboutTheHomesite from './about-the-homesite'
 import dingtalkInterview1 from './dingtalk-interview-1'

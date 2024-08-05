@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JWTPayload } from '../type';
+import type { JWTPayload } from '../type';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
