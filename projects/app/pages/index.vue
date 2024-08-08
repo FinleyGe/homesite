@@ -4,11 +4,11 @@ import md from 'mdx-components/md';
 import type { run } from '@mdx-js/mdx';
 import { evaluate } from '@mdx-js/mdx'
 import * as runtime from 'vue/jsx-runtime'
-import about from '~/content/about.mdx?raw'
-import aboutZh from '~/content/about.zh.mdx?raw'
 import HoverComment from 'mdx-components/common/HoverComment.vue';
 import Avatar from '~/components/Avatar.vue';
 import ColorfulButton from '~/components/common/ColorfulButton.vue';
+import about from '~/content/about.mdx?raw'
+import aboutZh from '~/content/about.zh.mdx?raw'
 
 type MDXContent = Awaited<ReturnType<typeof run>>['default']
 const Content = ref<MDXContent>();

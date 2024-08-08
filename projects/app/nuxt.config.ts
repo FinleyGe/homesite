@@ -42,7 +42,6 @@ export default defineNuxtConfig({
 
   css: [
     '~/assets/styles/main.css',
-    // 'primevue/resources/themes/saga-blue/theme.css',
   ],
 
   vite: {

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { TodoList } from '@prisma/client';
 import { Checkmark, Pen, TrashCan } from '@vicons/carbon';
-import { useFetchWithToken } from '~/api/utils';
+const editContent = ref<string>('');
 
 const props = defineProps<{
-  todo: TodoList;
+  todo: TodoList
 }>();
 
 const emits = defineEmits<{
@@ -12,42 +12,50 @@ const emits = defineEmits<{
 }>();
 
 const isEdit = ref<boolean>(false);
+
+watch(isEdit, (item) => {
+  if (item) {
+    editContent.value = props.todo.content
+    return;
+  }
+  editContent.value = ''
+})
+
 const priority = ref<number>(props.todo.priority);
 
-async function handleUpdateTodo() {
-  await useFetchWithToken('/api/todolist/' + props.todo.id, {
-    method: 'put',
-    body: {
-      done: !props.todo.done,
-    },
-  });
-  emits('update');
-}
+const { execute: handleUpdateTodo } = useFetch('/api/todolist/' + props.todo.id, {
+  body: {
+    done: !props.todo.done,
+  },
+  onResponse: () => emits('update'),
+  immediate: false,
+  watch: false,
+});
 
-async function handleDeleteTodo() {
-  await useFetchWithToken('/api/todolist/' + props.todo.id, {
-    method: 'delete',
-  });
-  emits('update');
-}
+const { execute: handleDeleteTodo } = useFetch('/api/todolist/' + props.todo.id, {
+  method: 'delete',
+  onResponse: () => emits('update'),
+  immediate: false,
+  watch: false,
+});
 
-async function handleEdit() {
-  await useFetchWithToken('/api/todolist/' + props.todo.id, {
-    method: 'put',
-    body: {
-      content: props.todo.content,
-      priority: Number(priority.value),
-    },
-  });
-  isEdit.value = false;
-  emits('update');
-}
+const { execute: handleEdit } = useFetch('/api/todolist/' + props.todo.id, {
+  method: 'put',
+  body: {
+    content: props.todo.content,
+    priority: Number(priority.value),
+  },
+  onResponse: () => {
+    isEdit.value = false;
+    emits('update');
+  },
+});
 
 </script>
 <template>
   <div class="flex flex-row my-2 items-center gap-2">
-    <input type="checkbox" class="size-6 flex-grow-0" :checked="props.todo.done" @change="handleUpdateTodo">
-    <button class="bg-red-500 text-white size-6 p-1 rounded-xl flex-grow-0" @click="handleDeleteTodo">
+    <input type="checkbox" class="size-6 flex-grow-0" :checked="props.todo.done" @change="() => handleUpdateTodo">
+    <button class="bg-red-500 text-white size-6 p-1 rounded-xl flex-grow-0" @click="() => handleDeleteTodo">
       <TrashCan />
     </button>
     <button class="bg-blue-500 text-white size-6 p-1 rounded-xl flex-grow-0" @click="isEdit = true">
@@ -72,7 +80,7 @@ v-if="!isEdit" class="text-sm px-2 py-1 rounded-xl flex-grow-0" :class="{
 v-if="!isEdit" class="text-xl flex-grow-1"
       :class="{ 'text-decoration-line: line-through text-gray-500': props.todo.done, }">{{ props.todo.content }}</span>
     <div v-else>
-      <input v-model="props.todo.content" type="text" class="flex-grow-1 dark:bg-gray-600">
+      <input v-model="editContent" type="text" class="flex-grow-1 dark:bg-gray-600">
       <button class="bg-green-500 text-white size-6 p-1 rounded-xl flex-grow-0" @click="handleEdit">
         <Checkmark />
       </button>

@@ -10,6 +10,7 @@ export default defineEventHandler({
       endTime?: string,
       priority?: number,
     }>(event);
+
     return prisma.todoList.create({
       data: {
         content,
