@@ -11,8 +11,6 @@ export default () => $fetch.create({
   },
   onRequestError({ error }) {
     console.error(error);
-    toast("Error: " + error.message, {
-      type: 'error'
-    })
+    toast.error("Error: " + error.message)
   }
 })

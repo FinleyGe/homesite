@@ -1,31 +1,31 @@
 <script setup lang="ts">
 import { Delete, Download, Restart } from '@vicons/carbon';
-import { useFetchWithToken } from '~/api/utils';
 import Button from '~/components/common/Button.vue';
 const { handleFileInput, files } = useFileStorage();
 const filename = ref<string | null>(null);
 
 const submit = async () => {
-  const { data } = await useFetchWithToken<{
+  const { data } = await useFetch<{
     filename: string;
   }>('/api/img/upload', {
     method: 'POST',
     body: {
       file: files.value[0]
-    }
+    },
+    $fetch: useApi()
   });
 
-  filename.value = data.value.filename;
+  filename.value = data.value?.filename ?? null;
   await getFiles();
 }
 
-const { data: filekeys, refresh: getFiles } = await useFetchWithToken<string[]>('/api/img/list', {
+const { data: filekeys, refresh: getFiles } = await useFetch<string[]>('/api/img/list', {
   method: 'GET'
 });
 
 const handleDelete = async (filename: string) => {
   confirm('Are you sure you want to delete this file?')
-    && await useFetchWithToken(
+    && await useFetch(
       '/api/img/delete',
       { method: 'DELETE', query: { filename } }
     )
@@ -41,10 +41,10 @@ const handleDelete = async (filename: string) => {
     <span v-if="filename">{{ 'https://www.f1nley.xyz/api/img/' + filename }}</span>
     <div>
       Files
-      <button class="w-4" @click="getFiles">
+      <button class="w-4" @click="getFiles()">
         <Restart />
       </button>
-      <span v-if="filekeys.length < 1"> Empty </span>
+      <span v-if="filekeys && filekeys?.length < 1"> Empty </span>
       <ul>
         <li v-for="file in filekeys" :key="file" class="flex items-center max-w-80">
 

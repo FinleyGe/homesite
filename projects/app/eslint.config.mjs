@@ -5,10 +5,13 @@ export default withNuxt(
   // Your custom configs here
   {
     rules: {
-      indent: [
-        'error',
-        2
-      ]
+      "vue/html-indent": ["error", 2, {
+        "attribute": 1,
+        "baseIndent": 1,
+        "closeBracket": 0,
+        "alignAttributesVertically": true,
+        "ignores": []
+      }]
     }
   }
 )
