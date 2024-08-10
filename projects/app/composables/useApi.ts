@@ -4,6 +4,10 @@ import useStore from "~/stores";
 export default () => $fetch.create({
   async onRequest({ options }) {
     const store = useStore();
+    if (!store.token) {
+      const router = useRouter();
+      router.push("/admin/login");
+    }
     options.headers = {
       ...options.headers,
       Authorization: `Bearer ${store.token}`
