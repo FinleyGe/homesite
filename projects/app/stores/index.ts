@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 
 const useStore = defineStore('store', () => {
-  const token = ref<string | null>(null);
-  const expireAt = ref<Date | null>(null);
+  const token = ref<string | undefined>();
+  const expireAt = ref<Date | undefined>();
   return {
     token,
     expireAt,

@@ -1,44 +1,51 @@
 <script setup lang="ts">
 import { Delete, Download, Restart } from '@vicons/carbon';
+import { toast } from 'vue3-toastify';
 import Button from '~/components/common/Button.vue';
 const { handleFileInput, files } = useFileStorage();
-const filename = ref<string | null>(null);
 
-const submit = async () => {
-  const { data } = await useFetch<{
-    filename: string;
-  }>('/api/img/upload', {
-    method: 'POST',
-    body: {
-      file: files.value[0]
-    },
-    $fetch: useApi()
-  });
-
-  filename.value = data.value?.filename ?? null;
-  await getFiles();
-}
+const { execute: submit, data: uploadFilename } = useFetch('/api/img/upload', {
+  method: 'POST',
+  body: {
+    file: files.value[0]
+  },
+  $fetch: useApi(),
+  onResponse: () => { getFiles(); },
+  watch: false,
+  immediate: false,
+});
 
 const { data: filekeys, refresh: getFiles } = await useFetch<string[]>('/api/img/list', {
-  method: 'GET'
+  method: 'GET',
+  $fetch: useApi()
+});
+
+const deleteFilename = ref<string>('');
+
+useFetch('/api/img/delete', {
+  method: 'DELETE',
+  query: {
+    filename: deleteFilename
+  },
+  $fetch: useApi(),
+  watch: [deleteFilename],
+  onResponse: () => { getFiles(); toast.success('File deleted!'); },
 });
 
 const handleDelete = async (filename: string) => {
-  confirm('Are you sure you want to delete this file?')
-    && await useFetch(
-      '/api/img/delete',
-      { method: 'DELETE', query: { filename } }
-    )
-  await getFiles();
+  if (confirm('Are you sure you want to delete this file?')) {
+    deleteFilename.value = filename;
+  }
 }
 
 </script>
 <template>
   <div>
-    <h1>Upload</h1>
+    <h1> Upload </h1>
     <input type="file" capture @input="handleFileInput">
     <Button @click="() => { submit(); }">Upload</Button>
-    <span v-if="filename">{{ 'https://www.f1nley.xyz/api/img/' + filename }}</span>
+    {{ uploadFilename }}
+    <span v-if="uploadFilename?.filename">{{ 'https://www.f1nley.xyz/api/img/' + uploadFilename.filename }}</span>
     <div>
       Files
       <button class="w-4" @click="getFiles()">

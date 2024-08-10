@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { compareHash } from "~/server/utils/crypto";
 import jwt from 'jsonwebtoken';
+import { addDays } from 'date-fns'
 const client = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
@@ -25,7 +26,8 @@ export default defineEventHandler(async (event) => {
         {
           expiresIn: '7d'
         }
-      )
+      ),
+      expireAt: addDays(Date.now(), 7)
     })
   }
   event.respondWith(new Response("Invalid password", { status: 401 }));
