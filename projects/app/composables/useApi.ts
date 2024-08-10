@@ -6,6 +6,7 @@ export default () => $fetch.create({
     const store = useStore();
     if (!store.token) {
       const router = useRouter();
+      toast.warn("Please login first")
       router.push("/admin/login");
     }
     options.headers = {
