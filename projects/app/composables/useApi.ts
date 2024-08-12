@@ -1,8 +1,13 @@
 import { toast } from "vue3-toastify";
 import useStore from "~/stores";
 
-export default () => $fetch.create({
+type Props = {
+  auth?: boolean
+} | undefined;
+
+export default (props: Props = { auth: true }) => $fetch.create({
   async onRequest({ options }) {
+    if (!props?.auth) return;
     const store = useStore();
     if (!store.token) {
       const router = useRouter();
