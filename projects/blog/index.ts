@@ -56,4 +56,8 @@ export const Tags = {
     en: "Migrated Blog",
     zh: "迁移博客"
   },
+  frontend: {
+    en: "Frontend",
+    zh: "前端"
+  },
 }
