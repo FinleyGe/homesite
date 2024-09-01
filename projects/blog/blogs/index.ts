@@ -9,6 +9,7 @@ import fastgptArticleAnalysis from './fastgpt-english-article-analyse';
 import n1Armbian from './n1-armbian-docker-openwrt-bypass-route';
 import dockerNetworkModel from './docker-network-model';
 import queryChineseInCode from './query-chinese-in-code';
+import niri from './niri';
 
 export const blogs = [
   blog1,
@@ -22,4 +23,5 @@ export const blogs = [
   n1Armbian,
   dockerNetworkModel,
   queryChineseInCode,
+  niri
 ];
