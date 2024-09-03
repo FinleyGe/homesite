@@ -21,7 +21,7 @@ async function handleClick() {
 
 </script>
 <template>
-  <span class="content text-black dark:text-gray-100" @click="handleClick">
+  <span class="content text-black dark:text-gray-100 text-nowrap" @click="handleClick">
     <slot />
     <span class="bar" />
   </span>
@@ -29,7 +29,6 @@ async function handleClick() {
 
 <style scoped lang="scss">
 .content {
-  font-size: 1rem;
   z-index: 2;
   background-color: transparent;
   position: relative;
