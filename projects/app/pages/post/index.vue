@@ -3,7 +3,9 @@ import { Restart } from '@vicons/carbon';
 import Button from '~/components/common/Button.vue';
 
 const { data: postList, refresh } = useFetch('/api/post/latest', {
-  $fetch: useApi()
+  $fetch: useApi({
+    auth: false
+  })
 });
 </script>
 

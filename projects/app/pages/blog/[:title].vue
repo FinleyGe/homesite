@@ -12,6 +12,7 @@ import remarkgfm from 'remark-gfm';
 import remarkmath from 'remark-math';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+// @ts-expect-error: no types
 import remarkHeadingId from 'remark-heading-id';
 import { remarkMdxToc } from 'remark-mdx-toc';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -28,10 +29,14 @@ if (!bloglist.find((item) => item.link === link.value)) {
 
 const blog = bloglist!.find((item) => item.link === link.value)!;
 
-let loc = locale.value;
-if (!blog.content[loc]) {
-  loc = blog.lang[0];
-}
+const loc = (() => {
+  const loc = locale.value;
+  if (!blog.content[loc]) {
+    return blog.lang[0];
+  }
+  return loc;
+})();
+
 type MDXContent = Awaited<ReturnType<typeof run>>['default']
 const Content = ref<MDXContent>();
 const content = ref(blog.content[loc]);
@@ -49,6 +54,7 @@ const mdx = await evaluate(
         defaults: true,
         uniqueDefaults: true,
       }],
+      // @ts-expect-error: no types
       remarkMdxToc,
     ],
     rehypePlugins: [
@@ -76,8 +82,7 @@ Content.value = mdx.default
     <div class="p-4">
       <TableOfContent :toc="mdx.toc as any" />
     </div>
-    <MDXProvider
-    :components="{
+    <MDXProvider :components="{
       ...md,
       ...common,
     }">
