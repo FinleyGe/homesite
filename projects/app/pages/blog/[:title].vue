@@ -82,10 +82,11 @@ Content.value = mdx.default
     <div class="p-4">
       <TableOfContent :toc="mdx.toc as any" />
     </div>
-    <MDXProvider :components="{
-      ...md,
-      ...common,
-    }">
+    <MDXProvider
+      :components="{
+        ...md,
+        ...common,
+      }">
       <Content />
     </MDXProvider>
   </div>

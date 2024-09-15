@@ -21,10 +21,10 @@ async function handleClick() {
 
 </script>
 <template>
-  <span class="content text-black dark:text-gray-100 text-nowrap" @click="handleClick">
+  <a class="content text-black dark:text-gray-100 text-nowrap" @click="handleClick">
     <slot />
     <span class="bar" />
-  </span>
+  </a>
 </template>
 
 <style scoped lang="scss">
@@ -51,7 +51,6 @@ async function handleClick() {
     background-color: v-bind("color");
     opacity: 0.4;
     z-index: 3;
-    // transition: height 0.1s ease-in-out;
     border-radius: 4px;
   }
 }
