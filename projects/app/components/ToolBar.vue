@@ -7,6 +7,7 @@ import { Sun, Moon } from '@vicons/carbon';
 const colorMode = useColorMode();
 const localePath = useLocalePath();
 const router = useRouter();
+const { t } = useI18n();
 
 function toggleTheme() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
@@ -26,15 +27,15 @@ function toggleLocale() {
 
     <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-scroll">
       <ColorfulButton color="pink" :router-link="localePath('blog')">
-        {{ $t('common.blog') }}
+        {{ t('common.blog') }}
       </ColorfulButton>
 
       <ColorfulButton color="blue" :router-link="localePath('post')">
-        {{ $t('common.post') }}
+        {{ t('common.post') }}
       </ColorfulButton>
 
       <ColorfulButton color="gray" :router-link="localePath('playground')">
-        {{ $t('common.playground') }}
+        {{ t('common.playground') }}
       </ColorfulButton>
     </div>
 

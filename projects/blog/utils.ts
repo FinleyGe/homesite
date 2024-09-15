@@ -1,6 +1,5 @@
-import { useMDXComponents } from '@mdx-js/vue';
-import { evaluate } from '@mdx-js/mdx'
-import * as runtime from 'vue/jsx-runtime'
+// import { useMDXComponents } from '@mdx-js/vue';
+import { compile } from '@mdx-js/mdx'
 import remarkgfm from 'remark-gfm';
 import remarkmath from 'remark-math';
 import remarkFrontmatter from 'remark-frontmatter';
@@ -10,15 +9,16 @@ import remarkHeadingId from 'remark-heading-id';
 import { remarkMdxToc } from 'remark-mdx-toc';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeKatex from 'rehype-katex';
-import { Blog } from './type';
-import { readdir, readdirSync, readFileSync } from 'fs';
+import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
+import { Blog } from './type';
 
 export async function parse(content: string) {
-  const mdx = await evaluate(
+  const mdx = String(await compile(
     content,
     {
-      ...runtime, useMDXComponents,
+      outputFormat: 'function-body',
+      // useMDXComponents,
       remarkPlugins: [
         remarkgfm,
         remarkmath,
@@ -42,32 +42,29 @@ export async function parse(content: string) {
         [rehypeKatex, { output: 'mathml' }],
       ]
     }
-  );
+  ));
 
-  return mdx.default
+  return mdx;
 }
 
 export async function getBlogs() {
-  const blogs = []
+  const blogs = [] as Blog[];
   const blogDir = "./blogs/"
-  for await (const blog of readdirSync(blogDir)) {
-    const blogPath = join(__dirname, blogDir, blog)
-    const a = await import(blogPath)
-    if (!a.default || a.default.draft) {
+  for await (const item of readdirSync(blogDir)) {
+    const blogPath = join(__dirname, blogDir, item)
+    if (blogPath.includes('template')) {
       continue
     }
-    blogs.push(a.default)
-  }
-
-  blogs.forEach(async (blog) => {
-    const content = blog?.content
-    if (content) {
-      blog.content.en = await parse(content.en as string)
-      blog.content.zh = await parse(content.zh as string)
+    const blog = (await import(blogPath)).default as Blog
+    if (!blog || blog.draft) {
+      continue
     }
-  })
-
+    const en = await parse(readFileSync(blog.content.en, 'utf-8'))
+    const zh = await parse(readFileSync(blog.content.zh, 'utf-8'))
+    writeFileSync(join(blogPath, 'en.jsx'), en.toString())
+    writeFileSync(join(blogPath, 'zh.jsx'), zh.toString())
+    blog.path = item
+    blogs.push(blog)
+  }
   return blogs
 }
-
-console.log(await getBlogs())

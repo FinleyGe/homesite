@@ -20,7 +20,7 @@ useHead({
       </ColorScheme>
     </header>
     <main class="min-h-full mx-2 px-2 flex-grow">
-      <NuxtPage />
+        <NuxtPage />
     </main>
     <footer class="h-12">
       <CopyrightFooter />

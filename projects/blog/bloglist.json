@@ -1,0 +1,294 @@
+[
+  {
+    "title": {
+      "zh": "关于主页项目的技术点",
+      "en": "About the main technical points of the homepage project"
+    },
+    "link": "about-the-homesite",
+    "date": "2024-05-27",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx",
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx"
+    },
+    "description": {
+      "en": "The main technical points of the homepage project are introduced in detail, including the use of Next.js, the use of MDX, the use of Tailwind and so on",
+      "zh": "主要介绍了主页项目的技术点，包括使用 Next.js，使用 MDX，使用 Tailwind 等等"
+    },
+    "tag": [
+      "blog"
+    ],
+    "path": "about-the-homesite"
+  },
+  {
+    "title": {
+      "en": "Bazel simple intro",
+      "zh": "Bazel 简略介绍"
+    },
+    "link": "bazel-simple-intro",
+    "date": "2023-05-05",
+    "lang": [
+      "en",
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx"
+    },
+    "description": {
+      "zh": "为了完成 Cpp 的的课程设计，需要一个好用的构建工具。接触了 Google 的 Bazel 后，决定学习一下。",
+      "en": "To complete the course design of Cpp, a good build tool is needed. After I encountered Google's Bazel, I decided to learn it."
+    },
+    "tag": [
+      "migration"
+    ],
+    "path": "bazel-simple-intro"
+  },
+  {
+    "title": {
+      "en": "The first blog",
+      "zh": "第一篇博客"
+    },
+    "link": "blog1",
+    "date": "2024-05-13",
+    "lang": [
+      "en",
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/blog1/blog1.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/blog1/blog1.zh.mdx"
+    },
+    "description": {
+      "en": "This is the first blog",
+      "zh": "这是第一篇博客"
+    },
+    "tag": [
+      "blog"
+    ],
+    "path": "blog1"
+  },
+  {
+    "title": {
+      "en": "The first interview for DingTalk",
+      "zh": "钉钉一面"
+    },
+    "link": "dingtalk-interview-1",
+    "date": "2024-05-27",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx"
+    },
+    "description": {
+      "en": "I had my first interview for Dingtalk on 2024-05-27, this is a summary of the interview",
+      "zh": "在2024-05-27我参加了钉钉的第一次面试，这是面试总结"
+    },
+    "tag": [
+      "interview",
+      "dingtalk"
+    ],
+    "path": "dingtalk-interview-1"
+  },
+  {
+    "title": {
+      "en": "Docker Network Model",
+      "zh": "Docker 网络模型"
+    },
+    "link": "docker-network-model",
+    "date": "2024-03-17",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx"
+    },
+    "description": {
+      "en": "Docker Network Model Analysis",
+      "zh": "Docker 网络模型解析"
+    },
+    "tag": [
+      "docker",
+      "migration"
+    ],
+    "path": "docker-network-model"
+  },
+  {
+    "title": {
+      "en": "FastGPT: Building an English Essay Correction Robot",
+      "zh": "FastGPT: 搭建一个英语作文纠错机器人"
+    },
+    "link": "fastgpt-english-essay-correction-robot",
+    "date": "2024-07-28",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx"
+    },
+    "description": {
+      "en": "This Blog introduces how to use FastGPT to build an English essay correction robot via a workflow.",
+      "zh": "本文通过搭建一个英语作文纠错机器人，介绍一下如何使用FastGPT的工作流"
+    },
+    "tag": [
+      "fastgpt"
+    ],
+    "path": "fastgpt-english-article-analyse"
+  },
+  {
+    "title": {
+      "en": "From Obsidian to Notion",
+      "zh": "从 Obsidian 到 Notion"
+    },
+    "link": "from-obsidian-to-notion",
+    "date": "2024-07-01",
+    "lang": [
+      "en"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx"
+    },
+    "description": {
+      "en": "Why I migrate from Obsidian to Notion, and the future",
+      "zh": "为什么从 Obsidian 迁移到 Notion, 以及未来"
+    },
+    "path": "from-obsidian-to-notion"
+  },
+  {
+    "title": {
+      "en": "Use Gitea to build up a personal git server and CI/CD",
+      "zh": "使用 Gitea 搭建私有 Git 服务器和 CI/CD"
+    },
+    "link": "gitea-ci-cd",
+    "date": "2024-07-18",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx"
+    },
+    "description": {
+      "zh": "为了编辑博客时不需要在本地进行编译，也为了方便部署，使用 Gitea 搭建私有的 Git 服务器和 CI/CD。这样就可以专注于博客内容",
+      "en": "As for editing blog without compiling locally and deploying conveniently, I use Gitea to build up a personal git server and CI/CD. In this way, I can focus on the content of the blog."
+    },
+    "path": "gitea-ci-cd"
+  },
+  {
+    "title": {
+      "zh": "n1盒子安装docker，docker中安装openwrt，openwrt配置旁路由",
+      "en": "Install docker on n1 box, install openwrt in docker, and configure bypass route in openwrt"
+    },
+    "link": "n1-armbian-docker-openwrt-bypass-route",
+    "date": "2024-02-27",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx"
+    },
+    "description": {
+      "zh": "去年买了个n1盒子，这篇文章记录了如何在n1盒子上安装docker，然后在docker中安装openwrt，最后在openwrt中配置旁路由。",
+      "en": "I bought an n1 box last year. This article records how to install docker on the n1 box, then install openwrt in docker, and finally configure the bypass route in openwrt."
+    },
+    "tag": [
+      "docker",
+      "migration"
+    ],
+    "path": "n1-armbian-docker-openwrt-bypass-route"
+  },
+  {
+    "title": {
+      "en": "I18n: Query Chinese in Code",
+      "zh": "I18n: 从代码中查询中文"
+    },
+    "link": "i18n-query-chinese-in-code",
+    "date": "2024-08-26",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx"
+    },
+    "description": {
+      "en": "This article shows how to query Chinese in code.",
+      "zh": "本文展示了如何在代码中查询中文。"
+    },
+    "tag": [
+      "frontend"
+    ],
+    "path": "query-chinese-in-code"
+  },
+  {
+    "title": {
+      "en": "Setup audio driver on Pixelbook",
+      "zh": "在 PixelBook 安装声卡驱动"
+    },
+    "link": "setup-audio-driver-on-pixelbook",
+    "date": "2024-07-16",
+    "lang": [
+      "en"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx"
+    },
+    "description": {
+      "en": "Setup audio driver on Pixelbook running any linux distribute",
+      "zh": ""
+    },
+    "path": "setup-audio-driver-on-pixelbook"
+  },
+  {
+    "title": {
+      "en": "Custom Symbol for aerial.nvim with Tree-sitter Query",
+      "zh": "使用 Tree-sitter Query 为 aerial.nvim 添加自定义 symbol"
+    },
+    "link": "tree-sitter-query-custom-symbol-for-aerial-nvim",
+    "date": "2024-07-24",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx"
+    },
+    "description": {
+      "zh": "在使用 aerial.nvim 的时候发现某些 symbol 没有被识别。需要自定义 symbol。本文将简要介绍如何使用 Tree-sitter 的 Query 为 aerial 提供自定义的 Symbol",
+      "en": "When using aerial.nvim, I found that some symbols were not recognized. Custom symbols are needed. This article will briefly introduce how to use Tree-sitter Query to provide custom symbols for aerial"
+    },
+    "tag": [
+      "devtools"
+    ],
+    "path": "tree-sitter-query"
+  },
+  {
+    "title": {
+      "en": "Niri, A scrollable-tiling Wayland compositor.",
+      "zh": "Niri，一个可滚动平铺的 Wayland 组合器。"
+    },
+    "link": "niri",
+    "date": "2024-09-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx"
+    },
+    "description": {
+      "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
+      "zh": "这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。"
+    },
+    "path": "niri"
+  }
+]

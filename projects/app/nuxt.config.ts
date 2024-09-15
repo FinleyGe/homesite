@@ -74,11 +74,11 @@ export default defineNuxtConfig({
         prerender: true,
       },
       'blog/**': {
-        isr: true
+        swr: true,
       },
       'blog': {
-        isr: true
-      }
+        swr: true,
+      },
     }
   },
 

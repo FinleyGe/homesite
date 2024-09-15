@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { Rss, Hashtag, Search, Archive } from '@vicons/carbon';
-import BlogList, { Tags } from 'blog';
+import { Tags } from 'blog';
+import BlogList from 'blog/bloglist.json';
 import Button from '~/components/common/Button.vue';
+type Tag = keyof typeof Tags;
 
-const i18n = useI18n({
+const { t, locale } = useI18n({
   messages: {
     zh: {
       Feed: '订阅',
@@ -19,11 +21,6 @@ const i18n = useI18n({
     },
   }
 });
-
-type Tag = keyof typeof Tags;
-
-const { t } = i18n;
-const locale = i18n.locale.value as 'en' | 'zh';
 
 const localePath = useLocalePath();
 const router = useRouter();
@@ -41,7 +38,7 @@ router.beforeEach((to) => {
 });
 
 const months = Array.from(new Set(BlogList.map((item) => item.date.slice(0, 7))
-  .sort((a, b) => new Date(b) - new Date(a))
+  .sort((a, b) => Number(new Date(b)) - Number(new Date(a)))
   .map((item) => item.slice(0, 7))));
 
 watchEffect(() => {
@@ -52,6 +49,8 @@ watchEffect(() => {
   } else if (queryArchive.value) {
     option.value = 'archive';
   }
+}, {
+  flush: 'post',
 });
 
 const BlogListFiltered = computed(() => {
@@ -60,7 +59,7 @@ const BlogListFiltered = computed(() => {
       return item.tag?.includes(queryTag.value);
     }
     if (querySearch.value) {
-      return item.title[locale].toLowerCase().includes(querySearch.value.toLowerCase());
+      return item.title[locale.value].toLowerCase().includes(querySearch.value.toLowerCase());
     }
     if (queryArchive.value) {
       return item.date.includes(queryArchive.value);
@@ -81,7 +80,7 @@ const openFeed = () => {
 <template>
   <div class="max-w-5xl mx-auto">
     <div class="flex flex-row items-center gap-x-4 flex-wrap">
-      <h1 class="font-bold text-2xl cursor-pointer" @click="() => $router.push(localePath('/blog'))">
+      <h1 class="font-bold text-2xl cursor-pointer" @click="() => router.push(localePath('/blog'))">
         {{ t('blog.list') }}
       </h1>
 
@@ -121,7 +120,7 @@ const openFeed = () => {
     <div v-if="option === 'tag'" class="flex flex-row flex-wrap gap-2 mt-4">
       <span v-for="tag in Object.keys(Tags)" :key="tag"
         class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
-        @click="() => $router.push(localePath(`/blog?tag=${tag}`))">
+        @click="() => router.push(localePath(`/blog?tag=${tag}`))">
         {{ (Tags[tag as keyof typeof Tags] as any)[locale] }}
       </span>
     </div>
@@ -134,14 +133,14 @@ const openFeed = () => {
       <div class="flex flex-row flex-wrap gap-2">
         <span v-for="month in months" :key="month"
           class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
-          @click="() => $router.push(localePath(`/blog?archive=${month}`))">
+          @click="() => router.push(localePath(`/blog?archive=${month}`))">
           {{ month }}
         </span>
       </div>
     </div>
 
     <div class="flex flex-col">
-      <div v-for="blog in BlogListFiltered.sort((a, b) => new Date(b.date) - new Date(a.date)).filter((item) => {
+      <div v-for="blog in BlogListFiltered.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date))).filter((item) => {
         return !queryTag ? true : item?.tag?.includes(queryTag);
       })" :key="blog.link" class="mt-4 bg-pink-200 dark:bg-pink-800 p-4 rounded-lg shadow-md">
         <NuxtLink :to="localePath(`/blog/${blog.link}`)">
@@ -155,14 +154,14 @@ const openFeed = () => {
         <div class="text-sm text-right">
           {{ blog.date }}
           <span v-for="tag in blog.lang" :key="tag" class="text-sm mx-1">
-            {{ $t(`lang.${tag}`) }}
+            {{ t(`lang.${tag}`) }}
           </span>
         </div>
         <div class="text-sm mt-2">
           <span v-for="tag in blog.tag" :key="tag"
             class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
-            @click="() => $router.push(localePath(`/blog?tag=${tag}`))">
-            #{{ Tags[tag][locale] }}
+            @click="() => router.push(localePath(`/blog?tag=${tag}`))">
+            #{{ Tags[tag as Tag][locale] }}
           </span>
         </div>
       </div>

@@ -8,3 +8,6 @@ export default {
   md,
   common
 };
+
+export * as md from './md';
+export * as common from './common';

@@ -20,7 +20,7 @@ jobs:
         run: |
           cd ./src/projects/app
           pnpm i
-          pnpm prisma generate
+          cd ../..
           pnpm run build
       - name: Deploy
         uses: easingthemes/ssh-deploy@main

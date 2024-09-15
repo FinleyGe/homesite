@@ -15,4 +15,5 @@ export type Blog = {
     [key: string]: string;
   };
   tag?: Array<keyof typeof Tags>;
+  path: string;
 }
