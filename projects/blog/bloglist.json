@@ -30,7 +30,6 @@
     "link": "bazel-simple-intro",
     "date": "2023-05-05",
     "lang": [
-      "en",
       "zh"
     ],
     "content": {
@@ -42,7 +41,9 @@
       "en": "To complete the course design of Cpp, a good build tool is needed. After I encountered Google's Bazel, I decided to learn it."
     },
     "tag": [
-      "migration"
+      "migration",
+      "projectManagement",
+      "code"
     ],
     "path": "bazel-simple-intro"
   },
@@ -179,6 +180,10 @@
       "zh": "为了编辑博客时不需要在本地进行编译，也为了方便部署，使用 Gitea 搭建私有的 Git 服务器和 CI/CD。这样就可以专注于博客内容",
       "en": "As for editing blog without compiling locally and deploying conveniently, I use Gitea to build up a personal git server and CI/CD. In this way, I can focus on the content of the blog."
     },
+    "tag": [
+      "linux",
+      "projectManagement"
+    ],
     "path": "gitea-ci-cd"
   },
   {
@@ -246,6 +251,9 @@
       "en": "Setup audio driver on Pixelbook running any linux distribute",
       "zh": ""
     },
+    "tag": [
+      "linux"
+    ],
     "path": "setup-audio-driver-on-pixelbook"
   },
   {
@@ -289,6 +297,129 @@
       "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
       "zh": "这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。"
     },
+    "tag": [
+      "linux"
+    ],
     "path": "niri"
+  },
+  {
+    "title": {
+      "en": "Before leaving Germany",
+      "zh": "写在离开德国之前"
+    },
+    "link": "before-leaving-germany",
+    "date": "2023-09-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
+    },
+    "description": {
+      "zh": "本文写在即将离开亚琛，对我，半个也到一个月在德国“准生活”的一个回顾。",
+      "en": "This is a reflection of my short stay in Germany before leaving."
+    },
+    "tag": [
+      "migration"
+    ],
+    "path": "before-leaving-germany"
+  },
+  {
+    "title": {
+      "zh": "线程、进程、协程",
+      "en": "Threads, Processes, Coroutines"
+    },
+    "link": "thread-process-coroutine",
+    "date": "2023-06-29",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx"
+    },
+    "description": {
+      "zh": "程序的并发实现方式，常见的无非如题所述的三种：线程、进程和协程。本文将总结三者的区别，以及在 python 和 golang 等语言中的实际应用。",
+      "en": "The concurrency implementation of the program, the commonly mentioned three: threads, processes, and coroutines. This article summarizes the differences between them and the actual application in python and golang."
+    },
+    "tag": [
+      "backend",
+      "code",
+      "migration"
+    ],
+    "path": "concurrency"
+  },
+  {
+    "title": {
+      "en": "Why Golang",
+      "zh": "为什么 Golang"
+    },
+    "link": "why-golang",
+    "date": "2024-01-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx"
+    },
+    "description": {
+      "zh": "本文是为了 《编译原理》期末大作业而准备的。本文将讨论 Golang  的特点",
+      "en": "This is a preparation for the final project of the 《Compilation Principles》. This article will discuss the features of Golang."
+    },
+    "tag": [
+      "Golang",
+      "backend"
+    ],
+    "path": "golang"
+  },
+  {
+    "title": {
+      "en": "Compile Principle (I): Lexical Analysis",
+      "zh": "编译原理（一）：词法分析"
+    },
+    "link": "compile-lexical-analysis",
+    "date": "2024-01-16",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "compilePrinciple",
+      "migration"
+    ],
+    "path": "compile-lexical-analysis"
+  },
+  {
+    "title": {
+      "en": "Compile Principle (II): Syntax Analysis",
+      "zh": "编译原理（二）：语法分析"
+    },
+    "link": "",
+    "date": "2024-01-17",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "migration",
+      "compilePrinciple"
+    ],
+    "path": "compile-grammer-analysis"
   }
 ]

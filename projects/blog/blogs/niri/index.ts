@@ -17,5 +17,6 @@ export default <Blog>{
   description: {
     'en': 'This is a blog about Niri, a scrollable-tiling Wayland compositor.',
     'zh': '这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。'
-  }
+  },
+  tag: ['linux']
 };

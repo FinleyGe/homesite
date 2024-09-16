@@ -17,5 +17,6 @@ export default <Blog>{
   description: {
     'en': 'Setup audio driver on Pixelbook running any linux distribute',
     'zh': ''
-  }
+  },
+  tag: ['linux']
 };

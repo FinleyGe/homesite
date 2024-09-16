@@ -12,12 +12,14 @@ const { t, locale } = useI18n({
       Tags: '标签',
       Search: '搜索',
       Archive: '归档',
+      count: '博客数量',
     },
     en: {
       Feed: 'Feed',
       Tags: 'Tags',
       Search: 'Search',
       Archive: 'Archive',
+      count: 'The number of blogs',
     },
   }
 });
@@ -138,6 +140,10 @@ const openFeed = () => {
         </span>
       </div>
     </div>
+
+    <span class="text-md mt-4">
+      {{ t('count') }} : {{ BlogListFiltered.length }}
+    </span>
 
     <div class="flex flex-col">
       <div v-for="blog in BlogListFiltered.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date))).filter((item) => {

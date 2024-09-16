@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "pnpm -F=blog run build && pnpm -F=app run build"
+    "build": "pnpm -F=blog run build && pnpm -F=app run build",
+    "build:blog": "pnpm -F=blog run build"
   },
   "keywords": [],
   "author": "",

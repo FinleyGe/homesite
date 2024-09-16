@@ -33,4 +33,28 @@ export const Tags = {
     en: "Frontend",
     zh: "前端"
   },
+  backend: {
+    en: "Backend",
+    zh: "后端"
+  },
+  code: {
+    en: "Code",
+    zh: "代码"
+  },
+  Golang: {
+    en: "Golang",
+    zh: "Golang"
+  },
+  projectManagement: {
+    en: "Project Management",
+    zh: "项目管理"
+  },
+  linux: {
+    en: "Linux",
+    zh: "Linux"
+  },
+  compilePrinciple: {
+    en: "Compile Principle",
+    zh: "编译原理"
+  },
 }
