@@ -7,7 +7,7 @@ export default <Blog>{
     'en': 'Compile Principle (II): Syntax Analysis',
     'zh': '编译原理（二）：语法分析'
   },
-  link: '',
+  link: 'compile-grammer-analysis',
   date: '2024-01-17',
   lang: ['zh'],
   content: {
