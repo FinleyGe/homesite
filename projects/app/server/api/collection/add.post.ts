@@ -6,12 +6,15 @@ export default defineEventHandler({
     auth
   ],
   handler: async (event) => {
-    const { id } = getQuery<{
-      id: string
+    const { content, from } = await readBody<{
+      content: string
+      from: string
     }>(event);
-    return await prisma.collective.delete({
-      where: {
-        id
+
+    return await prisma.collection.create({
+      data: {
+        content,
+        from,
       }
     })
   }

@@ -10,37 +10,37 @@ const body = ref({
 const page = ref(1);
 
 
-const { data: collectives, refresh: refreshCollectives } = useFetch('/api/collective/list', {
+const { data: collections, refresh: refreshCollections } = useFetch('/api/collection/list', {
   params: {
     page,
   },
   lazy: true,
 });
 
-const { execute: addCollective } = useFetch(
-  '/api/collective/add', {
+const { execute: addCollection } = useFetch(
+  '/api/collection/add', {
   method: 'POST',
   body,
   immediate: false,
   watch: false,
   $fetch: useApi(),
   onResponse: () => {
-    refreshCollectives();
+    refreshCollections();
   }
 });
 
-const deleteCollective = ref({
+const deleteCollection = ref({
   id: '',
 });
 
 useFetch(
-  '/api/collective/delete', {
+  '/api/collection/delete', {
   method: 'DELETE',
-  params: deleteCollective,
+  params: deleteCollection,
   immediate: false,
   $fetch: useApi(),
   onResponse: () => {
-    refreshCollectives();
+    refreshCollections();
   }
 });
 
@@ -52,20 +52,20 @@ useFetch(
       <input v-model="body.from" type="text" placeholder="From">
     </div>
     <div class="flex flex-row gap-2">
-      <CommonButton circle @click="addCollective()">
+      <CommonButton circle @click="addCollection()">
         <template #icon>
           <Plus />
         </template>
       </CommonButton>
-      <CommonButton circle @click="refreshCollectives()">
+      <CommonButton circle @click="refreshCollections()">
         <template #icon>
           <Restart />
         </template>
       </CommonButton>
     </div>
     <div class="flex flex-col">
-      <div v-for="item in collectives" :key="item.id" class="flex flex-row items-center gap-2 p-2">
-        <CommonButton circle @click="deleteCollective.id = item.id">
+      <div v-for="item in collections" :key="item.id" class="flex flex-row items-center gap-2 p-2">
+        <CommonButton circle @click="deleteCollection.id = item.id">
           <template #icon>
             <TrashCan />
           </template>

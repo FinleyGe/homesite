@@ -21,11 +21,11 @@ definePageMeta({
 
 <template>
   <div class="max-w-5xl mx-auto">
-    <div class="flex flex-row">
+    <div class="flex flex-row gap-2">
       <Button @click="() => router.push('/admin/login')">Login</Button>
       <Button @click="() => router.push('/admin/post')">Post</Button>
       <Button @click="() => router.push('/admin/upload')">Upload</Button>
-      <Button @click="() => router.push('/admin/collective')">Collective</Button>
+      <Button @click="() => router.push('/admin/collection')">Collection</Button>
     </div>
   </div>
 </template>

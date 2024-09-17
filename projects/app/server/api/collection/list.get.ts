@@ -9,7 +9,7 @@ export default defineEventHandler({
     const page = typeof query.page === 'string' ? parseInt(query.page) : query.page || 1;
     const limit = typeof query.limit === 'string' ? parseInt(query.limit) : query.limit || 10;
 
-    return await prisma.collective.findMany({
+    return await prisma.collection.findMany({
       orderBy: {
         createdAt: 'desc'
       },

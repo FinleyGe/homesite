@@ -9,16 +9,16 @@ const { t } = useI18n({
       Tomato: 'Tomato',
       'Todo List Description': 'Todo List (Admin only)',
       'Tomato Description': 'Tomato Clock (Admin only)',
-      Collective: 'Collective',
-      CollectiveDescription: 'Collective',
+      Collection: 'Collection',
+      CollectionDesc: 'Collection',
     },
     zh: {
       TodoList: '待办列表',
       Tomato: '番茄钟',
       'Todo List Description': '待办列表（只有管理员可以访问）',
       'Tomato Description': '番茄钟（只有管理员可以访问）',
-      Collective: '收集',
-      CollectiveDescription: '收集',
+      Collection: '拾金',
+      CollectionDesc: '拾金',
     }
   }
 });
@@ -35,8 +35,8 @@ const { t } = useI18n({
         :name="t('Tomato')" :description="t('Tomato Description')"
         :link="localePath('/playground/tomato')" />
       <PlaygroundItem
-        :name="t('Collective')" :description="t('CollectiveDescription')"
-        :link="localePath('/playground/collective')" />
+        :name="t('Collection')" :description="t('CollectionDesc')"
+        :link="localePath('/playground/collection')" />
     </div>
   </div>
 

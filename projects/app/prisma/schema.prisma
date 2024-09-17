@@ -59,14 +59,15 @@ model Tag {
 
   TodoList TodoList[]
   Tomato       Tomato[]
-  Collective Collective[]
+  Collection Collection[]
 }
 
-model Collective {
+model Collection {
   id        String   @id @default(cuid())
   content   String
   from      String?
   tags      Tag[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+	@@map("Collective")
 }

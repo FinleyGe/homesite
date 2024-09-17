@@ -1,0 +1,35 @@
+<script setup lang="ts">
+import type { Collection } from '@prisma/client';
+
+const { item } = defineProps<{
+  item: Collection;
+}>();
+
+const { t } = useI18n({
+  messages: {
+    'en': {
+      collectedAt: 'Collected at',
+    },
+    'zh': {
+      collectedAt: '拾于'
+    }
+  }
+})
+
+</script>
+<template>
+  <div>
+    <div class="flex flex-row items-center justify-between gap-4 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+      <div class="text-lg">
+        {{ item.content }}
+      </div>
+      <div class="text-sm italic text-right">
+        ---- {{ item.from }}
+      </div>
+    </div>
+    <div class="text-sm italic text-right">
+      {{ t('collectedAt') }}
+      {{ new Date(item.createdAt).toLocaleDateString() }}
+    </div>
+  </div>
+</template>
