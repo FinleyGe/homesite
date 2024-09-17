@@ -27,7 +27,7 @@ const { t } = useI18n({
 <template>
   <div class="max-w-5xl mx-auto">
     <h1 class="text-2xl"> {{ t('common.playground') }} </h1>
-    <div class="flex flex-row mt-4 gap-4">
+    <div class="flex flex-row mt-4 gap-4 flex-wrap">
       <PlaygroundItem
         :name="t('TodoList')" :description="t('Todo List Description')"
         :link="localePath('/playground/todolist')" />

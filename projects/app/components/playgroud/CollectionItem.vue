@@ -18,14 +18,14 @@ const { t } = useI18n({
 
 </script>
 <template>
-  <div>
-    <div class="flex flex-row items-center justify-between gap-4 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+  <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+    <div class="flex flex-row items-center justify-between mb-4">
       <div class="text-lg">
         {{ item.content }}
       </div>
-      <div class="text-sm italic text-right">
-        ---- {{ item.from }}
-      </div>
+    </div>
+    <div class="text-sm italic text-right">
+      ---- {{ item.from }}
     </div>
     <div class="text-sm italic text-right">
       {{ t('collectedAt') }}
