@@ -15,30 +15,17 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  email     String    @unique
+  id        String   @id @default(cuid())
+  email     String   @unique
   name      String?
   password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   Post      Post[]
-  Article   Article[]
 }
 
 model Post {
   id        String   @id @default(cuid())
-  content   String
-  language  String?
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// this model is deprecated
-model Article {
-  id        String   @id @default(cuid())
-  title     String
   content   String
   language  String?
   author    User     @relation(fields: [authorId], references: [id])
@@ -55,6 +42,7 @@ model TodoList {
   priority  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  tags      Tag[]
 }
 
 model Tomato {
@@ -62,4 +50,23 @@ model Tomato {
   focusOn   String?
   createdAt DateTime @default(now())
   score     Int      @default(0)
+  tags      Tag[]
+}
+
+model Tag {
+  id   String @id @default(cuid())
+  name String
+
+  TodoList TodoList[]
+  Tomato       Tomato[]
+  Collective Collective[]
+}
+
+model Collective {
+  id        String   @id @default(cuid())
+  content   String
+  from      String?
+  tags      Tag[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

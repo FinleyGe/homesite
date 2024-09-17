@@ -2,6 +2,8 @@
 import Button from '~/components/common/Button.vue';
 import useStore from '~/stores';
 
+const router = useRouter();
+
 useHead({
   title: 'Admin',
 })
@@ -20,9 +22,10 @@ definePageMeta({
 <template>
   <div class="max-w-5xl mx-auto">
     <div class="flex flex-row">
-      <Button @click="() => $router.push('/admin/login')">Login</Button>
-      <Button @click="() => $router.push('/admin/post')">Post</Button>
-      <Button @click="() => $router.push('/admin/upload')">Upload</Button>
+      <Button @click="() => router.push('/admin/login')">Login</Button>
+      <Button @click="() => router.push('/admin/post')">Post</Button>
+      <Button @click="() => router.push('/admin/upload')">Upload</Button>
+      <Button @click="() => router.push('/admin/collective')">Collective</Button>
     </div>
   </div>
 </template>
