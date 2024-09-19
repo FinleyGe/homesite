@@ -7,11 +7,12 @@ import { Sun, Moon } from '@vicons/carbon';
 const colorMode = useColorMode();
 const localePath = useLocalePath();
 const router = useRouter();
-const { t } = useI18n();
 
 function toggleTheme() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
 }
+
+const { t } = useI18n();
 
 const { locale, setLocale } = useI18n();
 
@@ -22,10 +23,11 @@ function toggleLocale() {
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full items-center">
+  <div class="flex flex-row justify-between items-center py-1 px-2">
     <LogoTitle @click="router.push(localePath('/'))" />
 
-    <div class="flex flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-scroll">
+    <div
+      class="flex flex-1  justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-scroll">
       <ColorfulButton color="pink" :router-link="localePath('blog')">
         {{ t('common.blog') }}
       </ColorfulButton>
@@ -39,7 +41,7 @@ function toggleLocale() {
       </ColorfulButton>
     </div>
 
-    <div class="flex flex-row mx-2 gap-x-1">
+    <div class="flex flex-row">
       <Button circle @click="toggleTheme">
         <template #icon>
           <Sun v-if="colorMode.value == 'dark'" />
@@ -50,7 +52,6 @@ function toggleLocale() {
       <Button circle @click="toggleLocale">
         {{ locale === 'en' ? '中' : 'EN' }}
       </Button>
-
     </div>
   </div>
 </template>

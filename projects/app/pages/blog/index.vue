@@ -87,21 +87,21 @@ const openFeed = () => {
       </h1>
 
       <div class="flex flex-row flex-wrap">
-        <Button circle @click="openFeed">
+        <Button rounded @click="openFeed">
           {{ t('Feed') }}
           <template #icon>
             <Rss />
           </template>
         </Button>
 
-        <Button circle :hold="option === 'tag'" @click="option = option === null ? 'tag' : (queryTag = null, null)">
+        <Button rounded :hold="option === 'tag'" @click="option = option === null ? 'tag' : (queryTag = null, null)">
           {{ t('Tags') }}
           <template #icon>
             <Hashtag />
           </template>
         </Button>
 
-        <Button circle :hold="option === 'search'"
+        <Button rounded :hold="option === 'search'"
           @click="option = option === null ? 'search' : (querySearch = null, null)">
           {{ t('Search') }}
           <template #icon>
@@ -109,7 +109,7 @@ const openFeed = () => {
           </template>
         </Button>
 
-        <Button circle :hold="option === 'archive'"
+        <Button rounded :hold="option === 'archive'"
           @click="option = option === null ? 'archive' : (queryArchive = null, null)">
           {{ t('Archive') }}
           <template #icon>

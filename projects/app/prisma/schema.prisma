@@ -57,9 +57,10 @@ model Tag {
   id   String @id @default(cuid())
   name String
 
-  TodoList TodoList[]
-  Tomato       Tomato[]
+  TodoList   TodoList[]
+  Tomato     Tomato[]
   Collection Collection[]
+  Progress   Progress[]
 }
 
 model Collection {
@@ -69,5 +70,17 @@ model Collection {
   tags      Tag[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-	@@map("Collective")
+
+  @@map("Collective")
+}
+
+model Progress {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  target      Int
+  status      Int      @default(0)
+  tags        Tag[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

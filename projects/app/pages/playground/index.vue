@@ -11,6 +11,7 @@ const { t } = useI18n({
       'Tomato Description': 'Tomato Clock (Admin only)',
       Collection: 'Collection',
       CollectionDesc: 'Collection',
+      Progress: 'Progress',
     },
     zh: {
       TodoList: '待办列表',
@@ -19,6 +20,7 @@ const { t } = useI18n({
       'Tomato Description': '番茄钟（只有管理员可以访问）',
       Collection: '拾金',
       CollectionDesc: '拾金',
+      Progress: '进度',
     }
   }
 });
@@ -37,6 +39,8 @@ const { t } = useI18n({
       <PlaygroundItem
         :name="t('Collection')" :description="t('CollectionDesc')"
         :link="localePath('/playground/collection')" />
+      <PlaygroundItem :name="t('Progress')" :description="t('Progress')" :link="localePath('/playground/progress')" />
+
     </div>
   </div>
 

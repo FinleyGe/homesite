@@ -11,7 +11,7 @@ const { data: postList, refresh } = useFetch('/api/post/latest', {
 
 <template>
   <div class="max-w-4xl mx-auto">
-    <Button circle @click="refresh">
+    <Button rounded @click="refresh">
       Refresh
       <template #icon>
         <Restart />

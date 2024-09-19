@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { TrashCan, Restart } from '@vicons/carbon'
 import { Plus } from '@vicons/fa'
+import CollectionItem from '~/components/playgroud/CollectionItem.vue';
 
 const body = ref({
   content: '',
@@ -48,8 +49,8 @@ useFetch(
 <template>
   <div class="max-w-5xl mx-auto">
     <div class="flex flex-col gap-2">
-      <textarea v-model="body.content" type="text" placeholder="Content" />
-      <input v-model="body.from" type="text" placeholder="From">
+      <CommonInput v-model="body.content" type="textarea" placeholder="Content" />
+      <CommonInput v-model="body.from" placeholder="From" />
     </div>
     <div class="flex flex-row gap-2">
       <CommonButton circle @click="addCollection()">
@@ -71,7 +72,7 @@ useFetch(
           </template>
         </CommonButton>
         <div class="flex-1">
-          <PlaygroudCollectiveItem :item="item" />
+          <CollectionItem :item="item as any" />
         </div>
       </div>
     </div>
