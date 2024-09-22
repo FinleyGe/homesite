@@ -39,7 +39,7 @@ const { t } = useI18n({
       <PlaygroundItem
         :name="t('Collection')" :description="t('CollectionDesc')"
         :link="localePath('/playground/collection')" />
-      <PlaygroundItem :name="t('Progress')" :description="t('Progress')" :link="localePath('/playground/progress')" />
+      <!-- <PlaygroundItem :name="t('Progress')" :description="t('Progress')" :link="localePath('/playground/progress')" /> -->
 
     </div>
   </div>
