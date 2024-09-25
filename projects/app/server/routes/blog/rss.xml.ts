@@ -6,6 +6,21 @@ export default defineEventHandler((event) => {
     feed_url: 'https://www.f1nley.xyz/blog/rss.xml',
     site_url: 'https://www.f1nley.xyz/blog',
     title: 'RSS of Finley Blog',
+    description: 'feedId:61735729769595904+userId:61648799094321152',
+    language: 'zh-CN',
+    pubDate: new Date(),
+    copyright: 'Copyright (c) 2023 - 2024 Finley',
+    webMaster: 'finleyge@qq.com (FinleyGe)',
+    managingEditor: 'finleyge@qq.com (FinleyGe)',
+    // custom_elements: [
+    //   {
+    //     follow_challenge: [{
+    //       feedId: "61735729769595904"
+    //     }, {
+    //       userId: "61648799094321152"
+    //     }]
+    //   }
+    // ]
   });
 
   for (const blog of blogs) {
@@ -19,5 +34,7 @@ export default defineEventHandler((event) => {
   }
 
   setResponseHeader(event, 'Content-Type', 'application/xml');
-  return feed.xml();
+  return feed.xml({
+    indent: true,
+  });
 });
