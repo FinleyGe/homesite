@@ -3,6 +3,7 @@ import { MDXProvider } from '@mdx-js/vue';
 import bloglist from 'blog/bloglist.json';
 import common from 'mdx-components/common';
 import md from 'mdx-components/md';
+import BlogPage from '~/components/blog/BlogPage.server.vue';
 
 const router = useRouter()
 

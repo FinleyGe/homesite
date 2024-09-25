@@ -2,6 +2,10 @@
 import { string } from 'rollup-plugin-string';
 
 export default defineNuxtConfig({
+  experimental: {
+    componentIslands: true,
+  },
+
   devtools: { enabled: true },
   pages: true,
 
@@ -24,6 +28,7 @@ export default defineNuxtConfig({
       mode: 'out-in',
     }
   },
+
   colorMode: {
     classSuffix: '',
   },
