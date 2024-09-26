@@ -4,6 +4,13 @@ const { t } = useI18n();
 
 useHead({
   title: t("head.title"),
+  script: [
+    {
+      src: "/unami.js",
+      "data-website-id": "d7f2d8d0-e6ff-4712-a469-2ad25faf0570",
+      defer: true
+    }
+  ]
 });
 
 </script>
@@ -20,7 +27,7 @@ useHead({
       </ColorScheme>
     </header>
     <main class="min-h-full mx-2 px-2 flex-grow">
-        <NuxtPage />
+      <NuxtPage />
     </main>
     <footer class="h-12">
       <CopyrightFooter />
