@@ -18,15 +18,22 @@ const loc = (() => {
   return loc;
 })() as 'zh' | 'en';
 
-const {
-  data: jsx,
-} = useFetch('/api/blog/jsx', {
-  query: {
-    link: blog.path,
-    loc
-  },
-  server: true
-});
+// const {
+//   data: jsx,
+// } = useFetch('/api/blog/jsx', {
+//   query: {
+//     link: blog.path,
+//     loc
+//   },
+//   server: true
+// });
+
+const { data: jsx } = await useAsyncData('blog',
+  () => $fetch(`/api/blog/jsx?link=${blog.path}&loc=${loc}`),
+  {
+    server: true
+  }
+);
 
 const Content = ref();
 const toc = ref();
