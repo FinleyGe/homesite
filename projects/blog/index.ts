@@ -1,5 +1,3 @@
-// import { blogs } from './blogs';
-// export default blogs;
 export const Tags = {
   dingtalk: {
     en: 'DingTalk',
