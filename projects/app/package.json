@@ -24,7 +24,6 @@
     "h3-formidable": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "mdx-components": "workspace:*",
-    "monorepo": "github:mdx-js/mdx",
     "nuxt": "^3.13.1",
     "nuxt-file-storage": "^0.2.7",
     "primevue": "^3.53.0",

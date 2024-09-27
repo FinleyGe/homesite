@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bun -F=blog run build && bun -F=app run build",
-    "build:blog": "bun -F=blog run build"
+    "build": "bun --filter=blog run build && bun --filter=app run build",
+    "build:blog": "bun -filter=blog run build"
   },
   "keywords": [],
   "author": "",
