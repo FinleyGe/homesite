@@ -10,8 +10,8 @@
       "zh"
     ],
     "content": {
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx",
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx"
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/about-the-homesite/zh.mdx",
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/about-the-homesite/zh.mdx"
     },
     "description": {
       "en": "The main technical points of the homepage project are introduced in detail, including the use of Next.js, the use of MDX, the use of Tailwind and so on",
@@ -33,8 +33,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx"
     },
     "description": {
       "zh": "为了完成 Cpp 的的课程设计，需要一个好用的构建工具。接触了 Google 的 Bazel 后，决定学习一下。",
@@ -59,8 +59,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/blog1/blog1.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/blog1/blog1.zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/blog1/blog1.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/blog1/blog1.zh.mdx"
     },
     "description": {
       "en": "This is the first blog",
@@ -82,8 +82,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx"
     },
     "description": {
       "en": "I had my first interview for Dingtalk on 2024-05-27, this is a summary of the interview",
@@ -106,8 +106,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/docker-network-model/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/docker-network-model/zh.mdx"
     },
     "description": {
       "en": "Docker Network Model Analysis",
@@ -130,8 +130,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx"
     },
     "description": {
       "en": "This Blog introduces how to use FastGPT to build an English essay correction robot via a workflow.",
@@ -153,8 +153,8 @@
       "en"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx"
     },
     "description": {
       "en": "Why I migrate from Obsidian to Notion, and the future",
@@ -173,8 +173,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx"
     },
     "description": {
       "zh": "为了编辑博客时不需要在本地进行编译，也为了方便部署，使用 Gitea 搭建私有的 Git 服务器和 CI/CD。这样就可以专注于博客内容",
@@ -197,8 +197,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx"
     },
     "description": {
       "zh": "去年买了个n1盒子，这篇文章记录了如何在n1盒子上安装docker，然后在docker中安装openwrt，最后在openwrt中配置旁路由。",
@@ -212,29 +212,6 @@
   },
   {
     "title": {
-      "en": "I18n: Query Chinese in Code",
-      "zh": "I18n: 从代码中查询中文"
-    },
-    "link": "i18n-query-chinese-in-code",
-    "date": "2024-08-26",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx"
-    },
-    "description": {
-      "en": "This article shows how to query Chinese in code.",
-      "zh": "本文展示了如何在代码中查询中文。"
-    },
-    "tag": [
-      "frontend"
-    ],
-    "path": "query-chinese-in-code"
-  },
-  {
-    "title": {
       "en": "Setup audio driver on Pixelbook",
       "zh": "在 PixelBook 安装声卡驱动"
     },
@@ -244,8 +221,8 @@
       "en"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx"
     },
     "description": {
       "en": "Setup audio driver on Pixelbook running any linux distribute",
@@ -267,8 +244,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx"
     },
     "description": {
       "zh": "在使用 aerial.nvim 的时候发现某些 symbol 没有被识别。需要自定义 symbol。本文将简要介绍如何使用 Tree-sitter 的 Query 为 aerial 提供自定义的 Symbol",
@@ -281,26 +258,26 @@
   },
   {
     "title": {
-      "en": "Niri, A scrollable-tiling Wayland compositor.",
-      "zh": "Niri，一个可滚动平铺的 Wayland 组合器。"
+      "en": "I18n: Query Chinese in Code",
+      "zh": "I18n: 从代码中查询中文"
     },
-    "link": "niri",
-    "date": "2024-09-01",
+    "link": "i18n-query-chinese-in-code",
+    "date": "2024-08-26",
     "lang": [
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx"
     },
     "description": {
-      "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
-      "zh": "这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。"
+      "en": "This article shows how to query Chinese in code.",
+      "zh": "本文展示了如何在代码中查询中文。"
     },
     "tag": [
-      "linux"
+      "frontend"
     ],
-    "path": "niri"
+    "path": "query-chinese-in-code"
   },
   {
     "title": {
@@ -313,8 +290,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
     },
     "description": {
       "zh": "本文写在即将离开亚琛，对我，半个也到一个月在德国“准生活”的一个回顾。",
@@ -327,6 +304,54 @@
   },
   {
     "title": {
+      "en": "Compile Principle (II): Syntax Analysis",
+      "zh": "编译原理（二）：语法分析"
+    },
+    "link": "compile-grammer-analysis",
+    "date": "2024-01-17",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "migration",
+      "compilePrinciple"
+    ],
+    "path": "compile-grammer-analysis"
+  },
+  {
+    "title": {
+      "en": "Compile Principle (I): Lexical Analysis",
+      "zh": "编译原理（一）：词法分析"
+    },
+    "link": "compile-lexical-analysis",
+    "date": "2024-01-16",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "compilePrinciple",
+      "migration"
+    ],
+    "path": "compile-lexical-analysis"
+  },
+  {
+    "title": {
       "zh": "线程、进程、协程",
       "en": "Threads, Processes, Coroutines"
     },
@@ -336,8 +361,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/concurrency/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/concurrency/zh.mdx"
     },
     "description": {
       "zh": "程序的并发实现方式，常见的无非如题所述的三种：线程、进程和协程。本文将总结三者的区别，以及在 python 和 golang 等语言中的实际应用。",
@@ -361,8 +386,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/golang/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/golang/zh.mdx"
     },
     "description": {
       "zh": "本文是为了 《编译原理》期末大作业而准备的。本文将讨论 Golang  的特点",
@@ -376,51 +401,26 @@
   },
   {
     "title": {
-      "en": "Compile Principle (I): Lexical Analysis",
-      "zh": "编译原理（一）：词法分析"
+      "en": "Niri, A scrollable-tiling Wayland compositor.",
+      "zh": "Niri，一个可滚动平铺的 Wayland 组合器。"
     },
-    "link": "compile-lexical-analysis",
-    "date": "2024-01-16",
+    "link": "niri",
+    "date": "2024-09-01",
     "lang": [
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/niri/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/niri/zh.mdx"
     },
     "description": {
-      "en": "",
-      "zh": ""
+      "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
+      "zh": "这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。"
     },
     "tag": [
-      "compilePrinciple",
-      "migration"
+      "linux"
     ],
-    "path": "compile-lexical-analysis"
-  },
-  {
-    "title": {
-      "en": "Compile Principle (II): Syntax Analysis",
-      "zh": "编译原理（二）：语法分析"
-    },
-    "link": "compile-grammer-analysis",
-    "date": "2024-01-17",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
-    },
-    "description": {
-      "en": "",
-      "zh": ""
-    },
-    "tag": [
-      "migration",
-      "compilePrinciple"
-    ],
-    "path": "compile-grammer-analysis"
+    "path": "niri"
   },
   {
     "draft": false,
@@ -434,8 +434,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/hydration/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/hydration/zh.mdx"
+      "en": "/home/finley/Project/homesite/projects/blog/blogs/hydration/zh.mdx",
+      "zh": "/home/finley/Project/homesite/projects/blog/blogs/hydration/zh.mdx"
     },
     "description": {
       "en": "What is Hydration? This article will start from the prerender problem in the homesite project, to understand the Hydration",

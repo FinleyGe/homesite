@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bun --filter=blog run build && bun --filter=app run build",
     "build:blog": "bun -filter=blog run build"
   },

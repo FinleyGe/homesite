@@ -1,0 +1,35 @@
+## 写一个博客模板生成器
+
+由于需要填写的数据很多，所以需要一个交互式的命令行工具。
+我选择使用
+[inquirer](https://www.npmjs.com/package/inquirer)
+来实现这个功能。
+
+部分代码如下所示：
+
+```ts
+import inquirer from "inquirer";
+async function main() {
+  const answers = await inquirer.prompt([
+    {
+      type: "input",
+      name: "link",
+      message: "link:",
+      required: true,
+    },
+    {
+      type: "checkbox",
+      choices: ["zh", "en"],
+      name: "language",
+      message: "Language:",
+      default: "zh",
+      required: true,
+    },
+  ]);
+  console.log(answers); // { link: 'xxx', language: ['zh', 'en'] }
+}
+
+main();
+```
+
+使用 `inquirer.prompt` 得到的 `answers` 是一个对象，其中包含了所有的输入。

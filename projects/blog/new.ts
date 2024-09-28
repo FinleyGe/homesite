@@ -1,51 +1,52 @@
-import inquirer from 'inquirer';
-import { Tags } from './index';
-import * as fs from 'fs';
-import dayjs from 'dayjs';
+import inquirer from "inquirer";
+import { Tags } from "./index";
+import * as fs from "fs";
+import * as dayjs from "dayjs";
 
 async function main() {
   const answers = await inquirer.prompt([
     {
-      type: 'input',
-      name: 'link',
-      message: 'link:',
+      type: "input",
+      name: "link",
+      message: "link:",
       required: true,
     },
     {
-      type: 'input',
-      name: 'title_zh',
-      message: 'Title(Zh):',
-      required: true,
-    }, {
-      type: 'input',
-      name: 'title_en',
-      message: 'Title(En):',
+      type: "input",
+      name: "title_zh",
+      message: "Title(Zh):",
       required: true,
     },
     {
-      type: 'checkbox',
-      choices: ['zh', 'en'],
-      name: 'language',
-      message: 'Language:',
-      default: 'zh',
+      type: "input",
+      name: "title_en",
+      message: "Title(En):",
       required: true,
     },
     {
-      type: 'input',
-      name: 'description_zh',
-      message: 'Description(Zh):',
+      type: "checkbox",
+      choices: ["zh", "en"],
+      name: "language",
+      message: "Language:",
+      default: "zh",
       required: true,
     },
     {
-      type: 'input',
-      name: 'description_en',
-      message: 'Description(En):',
+      type: "input",
+      name: "description_zh",
+      message: "Description(Zh):",
       required: true,
     },
     {
-      type: 'checkbox',
-      name: 'tags',
-      message: 'Tags:',
+      type: "input",
+      name: "description_en",
+      message: "Description(En):",
+      required: true,
+    },
+    {
+      type: "checkbox",
+      name: "tags",
+      message: "Tags:",
       choices: Object.keys(Tags),
     },
   ]);
@@ -61,7 +62,7 @@ export default <Blog>{
     'zh': '${answers.title_zh}'
   },
   link: '${answers.link}',
-  date: '${dayjs().format('YYYY-MM-DD')}',
+  date: '${dayjs().format("YYYY-MM-DD")}',
   lang: ['${answers.language}'],
   content: {
     'en': en,
@@ -71,15 +72,21 @@ description: {
   'en': '${answers.description_en}',
   'zh': '${answers.description_zh}',
 },
-tag: ${answers.tags ? JSON.stringify(answers.tags) : '[]'}
+tag: ${answers.tags ? JSON.stringify(answers.tags) : "[]"}
 };
-`
-  console.log(indexts);
+`;
   // make dir
   fs.mkdirSync(`./blogs/${answers.link}`);
   fs.writeFileSync(`./blogs/${answers.link}/index.ts`, indexts);
-  fs.writeFileSync(`./blogs/${answers.link}/zh.mdx`, '');
-  fs.writeFileSync(`./blogs/${answers.link}/en.mdx`, '');
+  fs.writeFileSync(`./blogs/${answers.link}/zh.mdx`, "");
+  fs.writeFileSync(`./blogs/${answers.link}/en.mdx`, "");
+
+  console.log("New blog created!");
+  console.log(`Path: ./blogs/${answers.link}/zh.mdx`);
+  console.log(`Run:
+bun preview -p ./blogs/${answers.link} && open ./preview.html
+to preview,
+`);
 }
 
 main();
