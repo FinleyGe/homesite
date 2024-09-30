@@ -1,8 +1,16 @@
+最近重写了博客的的编译流程，可以动态的更新博客。
+但是我在写博客的时候可能并不希望每次都要运行整个首页。
+
+mdx 的编译也并不依赖于首页中的其他组件。因此可以写一个实时预览博客的工具，这样在写博客的时候就可以
+实时地看到编译后的效果了。
+
+在此之前先写一个博客的模板生成器。
+
 ## 写一个博客模板生成器
 
-由于需要填写的数据很多，所以需要一个交互式的命令行工具。
-我选择使用
+这里使用的是 Inquirer 来实现交互式的命令行工具。
 [inquirer](https://www.npmjs.com/package/inquirer)
+
 来实现这个功能。
 
 部分代码如下所示：
@@ -33,3 +41,101 @@ main();
 ```
 
 使用 `inquirer.prompt` 得到的 `answers` 是一个对象，其中包含了所有的输入。
+
+## 将 JSX 转换为 HTML
+
+在前文书提到，
+MDX 可以编译为 jsx, 也就是这里调用的 `parse` 函数。
+
+通过 vue 的 jsx-runtime 将 jsx 转换为 vue 的 render 函数。
+
+再调用 vue/server-renderer 的 `renderToString` 函数将 jsx 转换为 html。
+
+```ts /parse/
+import { parse } from "../utils";
+import { readFileSync, watchFile, writeFileSync } from "fs";
+import { run } from "@mdx-js/mdx";
+import * as jsx from "vue/jsx-runtime";
+import { renderToString } from "vue/server-renderer";
+
+async function generate({ path }: { path: string }) {
+  console.log("generate preview...");
+  try {
+    const content = readFileSync(path, "utf-8");
+    if (!content) {
+      console.log("no content");
+      return;
+    }
+    const blog = await parse(content); // content (mdx) -> blog (jsx)
+    const code = await run(blog, {
+      ...jsx,
+    });
+    const html = await renderToString((code.default as any)());
+    const head = `<head><meta charset="UTF-8"></head>`;
+    writeFileSync("preview.html", `${head}<body>${html}</body>`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+```
+
+### vue/jsx-runtime
+
+vue/jsx-runtime 是 vue monorepo 中的一个包，为 vue 提供 jsx 支持。从源码里面看其实很简单：
+
+```js
+// vue/jsx-runtime/index.js
+const { h, Fragment } = require("vue");
+
+function jsx(type, props, key) {
+  const { children } = props;
+  delete props.children;
+  if (arguments.length > 2) {
+    props.key = key;
+  }
+  return h(type, props, children);
+}
+
+exports.jsx = jsx;
+exports.jsxs = jsx;
+exports.jsxDEV = jsx;
+exports.Fragment = Fragment;
+```
+
+其实就是把 vue 的 渲染函数 `h` 包装了一下。
+
+### vue/server-renderer, renderToString
+
+renderToString 函数是 vue  SSR 的重要函数，它将渲染函数渲染为一个 html 字符串。
+
+
+## 热更新
+
+检测到文件变化后，只需要再次调用上面的 `generate` 函数，写入到 `preview.html` 中即可。
+可以使用 `fs.watchFile` 来监听文件变化。
+
+```ts /watchFile/
+watchFile(options.path, async () => {
+  await generate({ path: options.path });
+});
+```
+
+通过 `live-server` 启动一个服务器，live-server 可以实时监听 `preview.html` 文件变化，并在浏览器中刷新。
+
+执行
+
+```bash
+live-server preview.html
+```
+
+即可启动服务器。
+
+## 问题
+
+暂时这个工具是够用的， 但是没有引入 vue components 的能力，因此无法实现在生产环境中的样式注入。
+所以现在渲染出来的东西还是默认的样式，而且如果有自定义组件会直接报错。
+
+由于引入 vue components 的能力需要引入 rollup 甚至 vite 的依赖（或者将 components 打包到 jsx )，比较繁琐，
+没有实现。
+
+主打一个够用就行。
