@@ -17,7 +17,7 @@ const blog = bloglist!.find((item) => item.link === link.value)!;
 
 </script>
 <template>
-  <div>
+  <div class="mt-4">
     <MDXProvider :components="{
       ...md,
       ...common,
