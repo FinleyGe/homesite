@@ -27,7 +27,7 @@ function toggleLocale() {
     <LogoTitle @click="router.push(localePath('/'))" />
 
     <div
-      class="flex flex-1  justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-scroll">
+      class="flex flex-1  justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-auto">
       <ColorfulButton color="pink" :router-link="localePath('blog')">
         {{ t('common.blog') }}
       </ColorfulButton>

@@ -14,7 +14,6 @@ watch(count, () => {
     <span @click="count++">
       FinleyGe © 2022 - {{ new Date().getFullYear() }}
     </span>
-    <br>
     <a href="https://beian.miit.gov.cn/" target="_blank" class="text-blue-500 dark:text-blue-400">晋ICP备2022008114号-1</a>
   </div>
 </template>
