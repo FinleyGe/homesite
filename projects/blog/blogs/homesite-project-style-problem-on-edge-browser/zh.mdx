@@ -1,0 +1,29 @@
+## 在 Edge 浏览器上的样式问题
+
+发现了有两个奇怪的问题在 Edge 浏览器上，而在 firefox 和 chrome 中没有问题。
+考虑到 Edge 浏览器使用 Chromium 内核，觉得很奇怪。
+
+### 1. 顶部的导航栏的 Scrollbar 一直显示而不会自动隐藏
+
+我原本以为是内部的元素的问题，但是把内部元素全部删除后，发现还是一直显示的。
+
+查询 MDN 发现，overflow 的值为 auto 时，浏览器会自动隐藏滚动条，如果是 scroll，则会一直显示滚动条。
+
+> https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+
+但是这并不符合在firefox/chrome, 中看到的情况。这是为什么呢？
+在 W3School 上查询发现：
+> Note: In OS X Lion (on Mac), scrollbars are hidden by default and only shown when being used (even though "overflow:scroll" is set).
+> 注意：在 OS X Lion (on Mac) 上，滚动条默认隐藏，只有在使用时才会显示（即使 "overflow:scroll" 被设置了）。
+
+或许在 linux 上也是一样的，滚动条被隐藏了，只需要讲 overflow 设置为 auto 即可在 edge 上实现一样的滚动条隐藏的效果。
+
+### 2. 底部的 Footer 中的 br 标签有高度。
+
+我在 footer 中有一个没有实际做用的 br 标签。（可能忘记删掉了）
+
+但是在 firefox 中，这个 br 标签是没有高度的。而在 edge 中，这个标签被赋予了一个 21 的高度，而导致内容溢出。
+
+通过删除 br 标签可以解决这个问题。但是为什么会有一个高度呢？
+
+我在 br 的父节点上添加了行高的限定后（设定行高为 1.5 rem，原本默认是 24px），发现 br 标签的高度消失了。

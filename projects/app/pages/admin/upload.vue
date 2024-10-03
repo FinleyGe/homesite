@@ -1,51 +1,68 @@
 <script setup lang="ts">
-import { Delete, Download, Restart } from '@vicons/carbon';
-import { toast } from 'vue3-toastify';
-import Button from '~/components/common/Button.vue';
+import { Delete, Download, Restart } from "@vicons/carbon";
+import { toast } from "vue3-toastify";
+import Button from "~/components/common/Button.vue";
 const { handleFileInput, files } = useFileStorage();
 
-const { execute: submit, data: uploadFilename } = useFetch('/api/img/upload', {
-  method: 'POST',
+const { execute: submit } = useFetch("/api/img/upload", {
+  method: "POST",
   body: {
-    file: files.value[0]
+    file: computed(() => files.value[0]),
   },
   $fetch: useApi(),
-  onResponse: () => { getFiles(); },
+  onResponse: () => {
+    getFiles();
+  },
   watch: false,
   immediate: false,
 });
 
-const { data: filekeys, refresh: getFiles } = await useFetch<string[]>('/api/img/list', {
-  method: 'GET',
-  $fetch: useApi()
-});
+const { data: filekeys, refresh: getFiles } = await useFetch<string[]>(
+  "/api/img/list",
+  {
+    method: "GET",
+    $fetch: useApi(),
+  }
+);
 
-const deleteFilename = ref<string>('');
+const deleteFilename = ref<string>("");
 
-useFetch('/api/img/delete', {
-  method: 'DELETE',
+useFetch("/api/img/delete", {
+  method: "DELETE",
   query: {
-    filename: deleteFilename
+    filename: deleteFilename,
   },
   $fetch: useApi(),
   watch: [deleteFilename],
-  onResponse: () => { getFiles(); toast.success('File deleted!'); },
+  onResponse: () => {
+    getFiles();
+    toast.success("File deleted!");
+  },
 });
 
 const handleDelete = async (filename: string) => {
-  if (confirm('Are you sure you want to delete this file?')) {
+  if (confirm("Are you sure you want to delete this file?")) {
     deleteFilename.value = filename;
   }
-}
-
+};
 </script>
+
 <template>
   <div>
-    <h1> Upload </h1>
-    <input type="file" capture @input="handleFileInput">
-    <Button @click="() => { submit(); }">Upload</Button>
-    {{ uploadFilename }}
-    <span v-if="uploadFilename?.filename">{{ 'https://www.f1nley.xyz/api/img/' + uploadFilename.filename }}</span>
+    <h1>Upload</h1>
+    <input type="file" capture @input="handleFileInput" />
+    <Button
+      @click="
+        () => {
+          submit();
+        }
+      "
+    >
+      Upload
+    </Button>
+    <span v-if="uploadFilename?.filename">
+      {{ "https://www.f1nley.xyz/api/img/" + uploadFilename.filename }}</span
+    >
     <div>
       Files
       <button class="w-4" @click="getFiles()">
@@ -53,8 +70,11 @@ const handleDelete = async (filename: string) => {
       </button>
       <span v-if="filekeys && filekeys?.length < 1"> Empty </span>
       <ul>
-        <li v-for="file in filekeys" :key="file" class="flex items-center max-w-80">
-
+        <li
+          v-for="file in filekeys"
+          :key="file"
+          class="flex items-center max-w-80"
+        >
           <button class="w-4 mx-1" @click="handleDelete(file)">
             <Delete />
           </button>
@@ -71,5 +91,3 @@ const handleDelete = async (filename: string) => {
     </div>
   </div>
 </template>
-
-<style scoped></style>

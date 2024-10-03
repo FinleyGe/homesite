@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import { Tags } from "./index";
 import * as fs from "fs";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 async function main() {
   const answers = await inquirer.prompt([
