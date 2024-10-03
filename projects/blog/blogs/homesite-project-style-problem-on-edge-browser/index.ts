@@ -3,7 +3,7 @@ import en from "./en.mdx";
 import type { Blog } from "../type";
 
 export default <Blog>{
-  draft: true,
+  draft: false,
   title: {
     en: "Homesite Project's style problem on edge browser",
     zh: "首页项目在 Edge 浏览器上的样式问题",
