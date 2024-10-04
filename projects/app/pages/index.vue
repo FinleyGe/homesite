@@ -4,7 +4,7 @@ import md from 'mdx-components/md';
 import type { run } from '@mdx-js/mdx';
 import { evaluate } from '@mdx-js/mdx'
 import * as runtime from 'vue/jsx-runtime'
-import HoverComment from 'mdx-components/common/HoverComment.vue';
+import HoverComment from 'mdx-components/common/HoverComment';
 import Avatar from '~/components/Avatar.vue';
 import ColorfulButton from '~/components/common/ColorfulButton.vue';
 import about from '~/content/about.mdx?raw'

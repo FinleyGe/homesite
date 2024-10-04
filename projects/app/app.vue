@@ -8,22 +8,18 @@ useHead({
     {
       src: "/unami.js",
       "data-website-id": "d7f2d8d0-e6ff-4712-a469-2ad25faf0570",
-      defer: true
-    }
+      defer: true,
+    },
   ],
   htmlAttrs: {
-    fontSize: "16px",
-  }
+    style: "font-size: 16px;",
+  },
 });
-
 </script>
 
 <template>
   <div
-    class="bg-gradient-to-bl from-sky-50 to-sky-200
-    dark:bg-gradient-to-bl dark:from-indigo-900 dark:to-pink-900 dark:text-white
-    transition-colors duration-200
-    min-h-svh flex flex-col">
+    class="bg-gradient-to-bl from-sky-50 to-sky-200 dark:bg-gradient-to-bl dark:from-indigo-900 dark:to-pink-900 dark:text-white transition-colors duration-200 min-h-svh flex flex-col">
     <header class="h-10">
       <ColorScheme>
         <ToolBar />

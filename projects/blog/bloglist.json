@@ -49,29 +49,6 @@
   },
   {
     "title": {
-      "en": "Before leaving Germany",
-      "zh": "写在离开德国之前"
-    },
-    "link": "before-leaving-germany",
-    "date": "2023-09-01",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
-    },
-    "description": {
-      "zh": "本文写在即将离开亚琛，对我，半个也到一个月在德国“准生活”的一个回顾。",
-      "en": "This is a reflection of my short stay in Germany before leaving."
-    },
-    "tag": [
-      "migration"
-    ],
-    "path": "before-leaving-germany"
-  },
-  {
-    "title": {
       "en": "The first blog",
       "zh": "第一篇博客"
     },
@@ -93,79 +70,6 @@
       "blog"
     ],
     "path": "blog1"
-  },
-  {
-    "title": {
-      "en": "Compile Principle (II): Syntax Analysis",
-      "zh": "编译原理（二）：语法分析"
-    },
-    "link": "compile-grammer-analysis",
-    "date": "2024-01-17",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
-    },
-    "description": {
-      "en": "",
-      "zh": ""
-    },
-    "tag": [
-      "migration",
-      "compilePrinciple"
-    ],
-    "path": "compile-grammer-analysis"
-  },
-  {
-    "title": {
-      "en": "Compile Principle (I): Lexical Analysis",
-      "zh": "编译原理（一）：词法分析"
-    },
-    "link": "compile-lexical-analysis",
-    "date": "2024-01-16",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
-    },
-    "description": {
-      "en": "",
-      "zh": ""
-    },
-    "tag": [
-      "compilePrinciple",
-      "migration"
-    ],
-    "path": "compile-lexical-analysis"
-  },
-  {
-    "title": {
-      "zh": "线程、进程、协程",
-      "en": "Threads, Processes, Coroutines"
-    },
-    "link": "thread-process-coroutine",
-    "date": "2023-06-29",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx"
-    },
-    "description": {
-      "zh": "程序的并发实现方式，常见的无非如题所述的三种：线程、进程和协程。本文将总结三者的区别，以及在 python 和 golang 等语言中的实际应用。",
-      "en": "The concurrency implementation of the program, the commonly mentioned three: threads, processes, and coroutines. This article summarizes the differences between them and the actual application in python and golang."
-    },
-    "tag": [
-      "backend",
-      "code",
-      "migration"
-    ],
-    "path": "concurrency"
   },
   {
     "title": {
@@ -284,30 +188,6 @@
   },
   {
     "title": {
-      "en": "Why Golang",
-      "zh": "为什么 Golang"
-    },
-    "link": "why-golang",
-    "date": "2024-01-01",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx"
-    },
-    "description": {
-      "zh": "本文是为了 《编译原理》期末大作业而准备的。本文将讨论 Golang  的特点",
-      "en": "This is a preparation for the final project of the 《Compilation Principles》. This article will discuss the features of Golang."
-    },
-    "tag": [
-      "Golang",
-      "backend"
-    ],
-    "path": "golang"
-  },
-  {
-    "title": {
       "zh": "n1盒子安装docker，docker中安装openwrt，openwrt配置旁路由",
       "en": "Install docker on n1 box, install openwrt in docker, and configure bypass route in openwrt"
     },
@@ -329,29 +209,6 @@
       "migration"
     ],
     "path": "n1-armbian-docker-openwrt-bypass-route"
-  },
-  {
-    "title": {
-      "en": "Niri, A scrollable-tiling Wayland compositor.",
-      "zh": "Niri，一个可滚动平铺的 Wayland 组合器。"
-    },
-    "link": "niri",
-    "date": "2024-09-01",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx"
-    },
-    "description": {
-      "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
-      "zh": "这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。"
-    },
-    "tag": [
-      "linux"
-    ],
-    "path": "niri"
   },
   {
     "title": {
@@ -421,6 +278,149 @@
       "devtools"
     ],
     "path": "tree-sitter-query"
+  },
+  {
+    "title": {
+      "en": "Niri, A scrollable-tiling Wayland compositor.",
+      "zh": "Niri，一个可滚动平铺的 Wayland 组合器。"
+    },
+    "link": "niri",
+    "date": "2024-09-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx"
+    },
+    "description": {
+      "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
+      "zh": "这是一篇关于 Niri 的博客，一个可滚动平铺的 Wayland 组合器。"
+    },
+    "tag": [
+      "linux"
+    ],
+    "path": "niri"
+  },
+  {
+    "title": {
+      "en": "Before leaving Germany",
+      "zh": "写在离开德国之前"
+    },
+    "link": "before-leaving-germany",
+    "date": "2023-09-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
+    },
+    "description": {
+      "zh": "本文写在即将离开亚琛，对我，半个也到一个月在德国“准生活”的一个回顾。",
+      "en": "This is a reflection of my short stay in Germany before leaving."
+    },
+    "tag": [
+      "migration"
+    ],
+    "path": "before-leaving-germany"
+  },
+  {
+    "title": {
+      "zh": "线程、进程、协程",
+      "en": "Threads, Processes, Coroutines"
+    },
+    "link": "thread-process-coroutine",
+    "date": "2023-06-29",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx"
+    },
+    "description": {
+      "zh": "程序的并发实现方式，常见的无非如题所述的三种：线程、进程和协程。本文将总结三者的区别，以及在 python 和 golang 等语言中的实际应用。",
+      "en": "The concurrency implementation of the program, the commonly mentioned three: threads, processes, and coroutines. This article summarizes the differences between them and the actual application in python and golang."
+    },
+    "tag": [
+      "backend",
+      "code",
+      "migration"
+    ],
+    "path": "concurrency"
+  },
+  {
+    "title": {
+      "en": "Why Golang",
+      "zh": "为什么 Golang"
+    },
+    "link": "why-golang",
+    "date": "2024-01-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx"
+    },
+    "description": {
+      "zh": "本文是为了 《编译原理》期末大作业而准备的。本文将讨论 Golang  的特点",
+      "en": "This is a preparation for the final project of the 《Compilation Principles》. This article will discuss the features of Golang."
+    },
+    "tag": [
+      "Golang",
+      "backend"
+    ],
+    "path": "golang"
+  },
+  {
+    "title": {
+      "en": "Compile Principle (I): Lexical Analysis",
+      "zh": "编译原理（一）：词法分析"
+    },
+    "link": "compile-lexical-analysis",
+    "date": "2024-01-16",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "compilePrinciple",
+      "migration"
+    ],
+    "path": "compile-lexical-analysis"
+  },
+  {
+    "title": {
+      "en": "Compile Principle (II): Syntax Analysis",
+      "zh": "编译原理（二）：语法分析"
+    },
+    "link": "compile-grammer-analysis",
+    "date": "2024-01-17",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "migration",
+      "compilePrinciple"
+    ],
+    "path": "compile-grammer-analysis"
   },
   {
     "draft": false,
@@ -496,5 +496,32 @@
       "code"
     ],
     "path": "homesite-project-style-problem-on-edge-browser"
+  },
+  {
+    "draft": false,
+    "title": {
+      "en": "Use Babel to generate customized API docs",
+      "zh": "使用 Babel 生成自定义的 API 文档"
+    },
+    "link": "use-babel-generate-customized-apidoc",
+    "date": "2024-10-04",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/home/finley/Projects/homesite/projects/blog/blogs/use-babel-generate-customized-apidoc/zh.mdx",
+      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/use-babel-generate-customized-apidoc/zh.mdx"
+    },
+    "description": {
+      "en": "Although FastGPT is built with Next.js, but the backend codes were modified highly. It causes that we can not use universal api generator. This article will use babel to analyisis the AST of code, extract the type difinition and then generate API docs following OpenAPI norms.",
+      "zh": "FastGPT 虽然使用 Next.js 作为脚手架，但是后端部分代码经过了高度的魔改，导致无法简单的接入 API 文档生成。本文将使用 Babel 对代码的 AST 进行分析，抽取出必要的类型定义，生产符合 OpenAPI 规范的文档。"
+    },
+    "tag": [
+      "devtools",
+      "fastgpt",
+      "frontend",
+      "code"
+    ],
+    "path": "use-babel-generate-customized-apidoc"
   }
 ]

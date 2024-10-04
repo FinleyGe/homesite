@@ -4,7 +4,7 @@ import { readFileSync, watchFile, writeFileSync } from "fs";
 import { run } from "@mdx-js/mdx";
 import * as jsx from "vue/jsx-runtime";
 import { renderToString } from "vue/server-renderer";
-import { start } from "live-server";
+import Button from "mdx-components/common/Button";
 
 const program = new Command();
 
@@ -20,7 +20,13 @@ async function generate({ path }: { path: string }) {
     const code = await run(blog, {
       ...jsx,
     });
-    const html = await renderToString((code.default as any)());
+    const html = await renderToString(
+      (code.default as any)({
+        components: {
+          'Button': Button
+        }
+      })
+    );
     const head = `<head><meta charset="UTF-8"></head>`;
     writeFileSync("preview.html", `${head}<body>${html}</body>`);
   } catch (error) {
@@ -44,10 +50,3 @@ async function main() {
 
 console.log("preview, waiting for blog change...");
 main();
-
-// start({
-//   root: "preview.html",
-//   wait: 1000,
-//   port: 8080,
-//   open: true,
-// });
