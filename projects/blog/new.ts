@@ -84,9 +84,10 @@ tag: ${answers.tags ? JSON.stringify(answers.tags) : "[]"}
   console.log("New blog created!");
   console.log(`Path: ./blogs/${answers.link}/zh.mdx`);
   console.log(`Run:
-bun preview -p ./blogs/${answers.link} && open ./preview.html
-to preview,
+bun preview -p ./blogs/${answers.link}/zh.mdx &
+bun live-server preview.html
 `);
 }
+// bun preview -p ./blogs/${answers.link}/en.mdx &
 
 main();
