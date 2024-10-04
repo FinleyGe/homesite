@@ -1,8 +1,14 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 <template>
-  <ol class="list-decimal mx-8">
+  <ol>
     <slot></slot>
   </ol>
 </template>
+
+<style lang="scss" scoped>
+ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+</style>

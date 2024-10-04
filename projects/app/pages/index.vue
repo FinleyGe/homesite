@@ -31,12 +31,12 @@ update()
 <template>
   <div class="p-4 max-w-2xl mx-auto">
     <MDXProvider
-:components="{
-      ...md,
-      'HoverComment': HoverComment,
-      'Avatar': Avatar,
-      'Button': ColorfulButton,
-    }">
+      :components="{
+        ...md,
+        'HoverComment': HoverComment,
+        'Avatar': Avatar,
+        'Button': ColorfulButton,
+      }">
 
       <Content />
     </MDXProvider>
