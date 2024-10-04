@@ -10,7 +10,10 @@ useHead({
       "data-website-id": "d7f2d8d0-e6ff-4712-a469-2ad25faf0570",
       defer: true
     }
-  ]
+  ],
+  htmlAttrs: {
+    fontSize: "16px",
+  }
 });
 
 </script>
