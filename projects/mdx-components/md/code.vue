@@ -19,7 +19,7 @@ code {
   margin-inline: 0.25rem;
   font-family: 'Fira Code', monospace;
   counter-set: line;
-  overflow: scroll;
+  overflow: auto;
 
   :deep(*) {
     font-family: 'Fira Code', monospace;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "bun --filter=blog run build && bun --filter=app run build",
-    "build:blog": "bun -filter=blog run build"
+    "build:blog": "bun --filter=blog run build"
   },
   "keywords": [],
   "author": "",

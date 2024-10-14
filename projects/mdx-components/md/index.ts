@@ -10,7 +10,7 @@ import a from "./a.vue";
 import Blockquote from "./blockquote.vue";
 import Mark from "./mark.vue";
 import H4 from "./h4.vue";
-// import pre from "./pre.vue";
+import pre from "./pre.vue";
 
 export default {
   'h1': H1,
@@ -23,7 +23,7 @@ export default {
   'p': p,
   'code': code,
   'a': a,
-  // 'pre': pre,
+  'pre': pre,
   'blockquote': Blockquote,
   'mark': Mark,
 }

@@ -2,10 +2,7 @@
 
 </script>
 <template>
-
-  <pre class="mt-4">
+  <pre class="mt-4 overflow-auto">
     <slot></slot>
   </pre>
 </template>
-
-<style scoped></style>

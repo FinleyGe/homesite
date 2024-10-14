@@ -264,7 +264,7 @@ function handleStopTomato() {
         </span>
       </div>
 
-      <table v-if="tomatoes?.length ?? 0 > 0" class="w-full max-h-80 overflow-y-scroll table-auto">
+      <table v-if="tomatoes?.length ?? 0 > 0" class="w-full max-h-80 overflow-y-auto table-auto">
         <thead class="bg-gray-50 dark:bg-gray-800">
           <tr>
             <th>Focus On</th>
