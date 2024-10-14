@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
 import { Tags } from "./index";
 import * as fs from "fs";
+// @ts-ignore
 import dayjs from "dayjs";
 
 async function main() {
