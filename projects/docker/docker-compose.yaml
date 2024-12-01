@@ -7,13 +7,23 @@ services:
         POSTGRES_PASSWORD: root
         PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - homesite:/var/lib/postgresql/data
+      - ./pg:/var/lib/postgresql/data
     networks:
       - homesite
     ports:
       - "15432:5432"
-
-volumes:
   homesite:
+    image: localhost/homesite:latest
+    restart: unless-stopped
+    environment:
+      JWT_SECRET: "JWT_SECRET"
+      DATABASE_URL: "postgres://root:rootE@pg:5432/homesite"
+      UPLOAD_PATH: "/var/opt/uploads"
+    volumes:
+      - ./uploads:/var/opt/uploads
+    networks:
+      - homesite
+    ports:
+      - "3000:3000"
 networks:
   homesite:
