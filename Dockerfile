@@ -1,7 +1,7 @@
 FROM oven/bun:latest AS builder
 WORKDIR /app
 COPY . /app
-RUN bun i -p && bun run build
+RUN bun i && bun run build
 
 FROM oven/bun:latest
 WORKDIR /app
