@@ -22,3 +22,15 @@ jobs:
         with:
           push: true
           tags: finleyge/homesite:latest
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: root
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: cd /opt/homesite && docker compose pull && docker compose up -d
