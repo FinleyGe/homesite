@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "prisma generate && nuxt build && cp -r ../blog/blogs/ ./.output/blogs",
+    "build": "prisma generate && nuxt build && cp -r ../blog/blogs/ ./.output/blogs && cp -r ./content ./.output/content",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.0",
+    "@nuxt/content": "^3.0.1",
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/ui": "^2.21.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/fontaine": "^0.4.4",
     "@nuxtjs/i18n": "^8.5.6",
+    "@nuxtjs/mdx": "^1.0.0",
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@prisma/client": "5.13.0",
     "blog": "workspace:*",

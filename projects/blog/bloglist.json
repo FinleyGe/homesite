@@ -1,5 +1,55 @@
 [
   {
+    "draft": false,
+    "title": {
+      "en": "Mdx hot reload preview tool",
+      "zh": "MDX 热重载预览工具"
+    },
+    "link": "mdx-hot-reload-preview-tool",
+    "date": "2024-09-30",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/mdx-hot-reload-preview-tool/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/mdx-hot-reload-preview-tool/zh.mdx"
+    },
+    "description": {
+      "en": "Write a hot reload preview tool for mdx by using watch, commanderjs, and inquirer..",
+      "zh": "使用 watch, commanderjs, inquirer 等工具写一个轻量化的有热重载的 mdx 预览工具"
+    },
+    "tag": [
+      "blog",
+      "frontend",
+      "code"
+    ],
+    "path": "mdx-hot-reload-preview-tool"
+  },
+  {
+    "title": {
+      "en": "The first blog",
+      "zh": "第一篇博客"
+    },
+    "link": "blog1",
+    "date": "2024-05-13",
+    "lang": [
+      "en",
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/blog1/blog1.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/blog1/blog1.zh.mdx"
+    },
+    "description": {
+      "en": "This is the first blog",
+      "zh": "这是第一篇博客"
+    },
+    "tag": [
+      "blog"
+    ],
+    "path": "blog1"
+  },
+  {
     "title": {
       "zh": "关于主页项目的技术点",
       "en": "About the main technical points of the homepage project"
@@ -10,8 +60,8 @@
       "zh"
     ],
     "content": {
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx",
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx"
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx",
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/about-the-homesite/zh.mdx"
     },
     "description": {
       "en": "The main technical points of the homepage project are introduced in detail, including the use of Next.js, the use of MDX, the use of Tailwind and so on",
@@ -24,6 +74,120 @@
   },
   {
     "title": {
+      "en": "Before leaving Germany",
+      "zh": "写在离开德国之前"
+    },
+    "link": "before-leaving-germany",
+    "date": "2023-09-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
+    },
+    "description": {
+      "zh": "本文写在即将离开亚琛，对我，半个也到一个月在德国“准生活”的一个回顾。",
+      "en": "This is a reflection of my short stay in Germany before leaving."
+    },
+    "tag": [
+      "migration"
+    ],
+    "path": "before-leaving-germany"
+  },
+  {
+    "title": {
+      "en": "From Obsidian to Notion",
+      "zh": "从 Obsidian 到 Notion"
+    },
+    "link": "from-obsidian-to-notion",
+    "date": "2024-07-01",
+    "lang": [
+      "en"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx"
+    },
+    "description": {
+      "en": "Why I migrate from Obsidian to Notion, and the future",
+      "zh": "为什么从 Obsidian 迁移到 Notion, 以及未来"
+    },
+    "path": "from-obsidian-to-notion"
+  },
+  {
+    "draft": false,
+    "title": {
+      "en": "Hydration, what is that?",
+      "zh": "水合(Hydration)到底是什么"
+    },
+    "link": "hydration",
+    "date": "2024-09-27",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/hydration/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/hydration/zh.mdx"
+    },
+    "description": {
+      "en": "What is Hydration? This article will start from the prerender problem in the homesite project, to understand the Hydration",
+      "zh": "水合到底是什么？本文从在主页项目中遇到的页面与渲染问题出发，理解水合这一概念。"
+    },
+    "tag": [
+      "frontend"
+    ],
+    "path": "hydration"
+  },
+  {
+    "title": {
+      "en": "Why Golang",
+      "zh": "为什么 Golang"
+    },
+    "link": "why-golang",
+    "date": "2024-01-01",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/golang/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/golang/zh.mdx"
+    },
+    "description": {
+      "zh": "本文是为了 《编译原理》期末大作业而准备的。本文将讨论 Golang  的特点",
+      "en": "This is a preparation for the final project of the 《Compilation Principles》. This article will discuss the features of Golang."
+    },
+    "tag": [
+      "Golang",
+      "backend"
+    ],
+    "path": "golang"
+  },
+  {
+    "title": {
+      "en": "Setup audio driver on Pixelbook",
+      "zh": "在 PixelBook 安装声卡驱动"
+    },
+    "link": "setup-audio-driver-on-pixelbook",
+    "date": "2024-07-16",
+    "lang": [
+      "en"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx"
+    },
+    "description": {
+      "en": "Setup audio driver on Pixelbook running any linux distribute",
+      "zh": ""
+    },
+    "tag": [
+      "linux"
+    ],
+    "path": "setup-audio-driver-on-pixelbook"
+  },
+  {
+    "title": {
       "en": "Bazel simple intro",
       "zh": "Bazel 简略介绍"
     },
@@ -33,8 +197,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/bazel-simple-intro/zh.mdx"
     },
     "description": {
       "zh": "为了完成 Cpp 的的课程设计，需要一个好用的构建工具。接触了 Google 的 Bazel 后，决定学习一下。",
@@ -49,74 +213,27 @@
   },
   {
     "title": {
-      "en": "Before leaving Germany",
-      "zh": "写在离开德国之前"
+      "en": "The first interview for DingTalk",
+      "zh": "钉钉一面"
     },
-    "link": "before-leaving-germany",
-    "date": "2023-09-01",
+    "link": "dingtalk-interview-1",
+    "date": "2024-05-27",
     "lang": [
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/before-leaving-germany/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx"
     },
     "description": {
-      "zh": "本文写在即将离开亚琛，对我，半个也到一个月在德国“准生活”的一个回顾。",
-      "en": "This is a reflection of my short stay in Germany before leaving."
+      "en": "I had my first interview for Dingtalk on 2024-05-27, this is a summary of the interview",
+      "zh": "在2024-05-27我参加了钉钉的第一次面试，这是面试总结"
     },
     "tag": [
-      "migration"
+      "interview",
+      "dingtalk"
     ],
-    "path": "before-leaving-germany"
-  },
-  {
-    "title": {
-      "en": "The first blog",
-      "zh": "第一篇博客"
-    },
-    "link": "blog1",
-    "date": "2024-05-13",
-    "lang": [
-      "en",
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/blog1/blog1.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/blog1/blog1.zh.mdx"
-    },
-    "description": {
-      "en": "This is the first blog",
-      "zh": "这是第一篇博客"
-    },
-    "tag": [
-      "blog"
-    ],
-    "path": "blog1"
-  },
-  {
-    "title": {
-      "en": "Compile Principle (II): Syntax Analysis",
-      "zh": "编译原理（二）：语法分析"
-    },
-    "link": "compile-grammer-analysis",
-    "date": "2024-01-17",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
-    },
-    "description": {
-      "en": "",
-      "zh": ""
-    },
-    "tag": [
-      "migration",
-      "compilePrinciple"
-    ],
-    "path": "compile-grammer-analysis"
+    "path": "dingtalk-interview-1"
   },
   {
     "title": {
@@ -129,8 +246,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/compile-lexical-analysis/zh.mdx"
     },
     "description": {
       "en": "",
@@ -153,8 +270,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/concurrency/zh.mdx"
     },
     "description": {
       "zh": "程序的并发实现方式，常见的无非如题所述的三种：线程、进程和协程。本文将总结三者的区别，以及在 python 和 golang 等语言中的实际应用。",
@@ -169,169 +286,6 @@
   },
   {
     "title": {
-      "en": "The first interview for DingTalk",
-      "zh": "钉钉一面"
-    },
-    "link": "dingtalk-interview-1",
-    "date": "2024-05-27",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/dingtalk-interview-1/zh.mdx"
-    },
-    "description": {
-      "en": "I had my first interview for Dingtalk on 2024-05-27, this is a summary of the interview",
-      "zh": "在2024-05-27我参加了钉钉的第一次面试，这是面试总结"
-    },
-    "tag": [
-      "interview",
-      "dingtalk"
-    ],
-    "path": "dingtalk-interview-1"
-  },
-  {
-    "title": {
-      "en": "Docker Network Model",
-      "zh": "Docker 网络模型"
-    },
-    "link": "docker-network-model",
-    "date": "2024-03-17",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx"
-    },
-    "description": {
-      "en": "Docker Network Model Analysis",
-      "zh": "Docker 网络模型解析"
-    },
-    "tag": [
-      "docker",
-      "migration"
-    ],
-    "path": "docker-network-model"
-  },
-  {
-    "title": {
-      "en": "FastGPT: Building an English Essay Correction Robot",
-      "zh": "FastGPT: 搭建一个英语作文纠错机器人"
-    },
-    "link": "fastgpt-english-essay-correction-robot",
-    "date": "2024-07-28",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx"
-    },
-    "description": {
-      "en": "This Blog introduces how to use FastGPT to build an English essay correction robot via a workflow.",
-      "zh": "本文通过搭建一个英语作文纠错机器人，介绍一下如何使用FastGPT的工作流"
-    },
-    "tag": [
-      "fastgpt"
-    ],
-    "path": "fastgpt-english-article-analyse"
-  },
-  {
-    "title": {
-      "en": "From Obsidian to Notion",
-      "zh": "从 Obsidian 到 Notion"
-    },
-    "link": "from-obsidian-to-notion",
-    "date": "2024-07-01",
-    "lang": [
-      "en"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/from-obsidian-to-notion/en.mdx"
-    },
-    "description": {
-      "en": "Why I migrate from Obsidian to Notion, and the future",
-      "zh": "为什么从 Obsidian 迁移到 Notion, 以及未来"
-    },
-    "path": "from-obsidian-to-notion"
-  },
-  {
-    "title": {
-      "en": "Use Gitea to build up a personal git server and CI/CD",
-      "zh": "使用 Gitea 搭建私有 Git 服务器和 CI/CD"
-    },
-    "link": "gitea-ci-cd",
-    "date": "2024-07-18",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx"
-    },
-    "description": {
-      "zh": "为了编辑博客时不需要在本地进行编译，也为了方便部署，使用 Gitea 搭建私有的 Git 服务器和 CI/CD。这样就可以专注于博客内容",
-      "en": "As for editing blog without compiling locally and deploying conveniently, I use Gitea to build up a personal git server and CI/CD. In this way, I can focus on the content of the blog."
-    },
-    "tag": [
-      "linux",
-      "projectManagement"
-    ],
-    "path": "gitea-ci-cd"
-  },
-  {
-    "title": {
-      "en": "Why Golang",
-      "zh": "为什么 Golang"
-    },
-    "link": "why-golang",
-    "date": "2024-01-01",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/golang/zh.mdx"
-    },
-    "description": {
-      "zh": "本文是为了 《编译原理》期末大作业而准备的。本文将讨论 Golang  的特点",
-      "en": "This is a preparation for the final project of the 《Compilation Principles》. This article will discuss the features of Golang."
-    },
-    "tag": [
-      "Golang",
-      "backend"
-    ],
-    "path": "golang"
-  },
-  {
-    "title": {
-      "zh": "n1盒子安装docker，docker中安装openwrt，openwrt配置旁路由",
-      "en": "Install docker on n1 box, install openwrt in docker, and configure bypass route in openwrt"
-    },
-    "link": "n1-armbian-docker-openwrt-bypass-route",
-    "date": "2024-02-27",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx"
-    },
-    "description": {
-      "zh": "去年买了个n1盒子，这篇文章记录了如何在n1盒子上安装docker，然后在docker中安装openwrt，最后在openwrt中配置旁路由。",
-      "en": "I bought an n1 box last year. This article records how to install docker on the n1 box, then install openwrt in docker, and finally configure the bypass route in openwrt."
-    },
-    "tag": [
-      "docker",
-      "migration"
-    ],
-    "path": "n1-armbian-docker-openwrt-bypass-route"
-  },
-  {
-    "title": {
       "en": "Niri, A scrollable-tiling Wayland compositor.",
       "zh": "Niri，一个可滚动平铺的 Wayland 组合器。"
     },
@@ -341,8 +295,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/niri/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/niri/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/niri/zh.mdx"
     },
     "description": {
       "en": "This is a blog about Niri, a scrollable-tiling Wayland compositor.",
@@ -354,123 +308,28 @@
     "path": "niri"
   },
   {
-    "title": {
-      "en": "I18n: Query Chinese in Code",
-      "zh": "I18n: 从代码中查询中文"
-    },
-    "link": "i18n-query-chinese-in-code",
-    "date": "2024-08-26",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx"
-    },
-    "description": {
-      "en": "This article shows how to query Chinese in code.",
-      "zh": "本文展示了如何在代码中查询中文。"
-    },
-    "tag": [
-      "frontend"
-    ],
-    "path": "query-chinese-in-code"
-  },
-  {
-    "title": {
-      "en": "Setup audio driver on Pixelbook",
-      "zh": "在 PixelBook 安装声卡驱动"
-    },
-    "link": "setup-audio-driver-on-pixelbook",
-    "date": "2024-07-16",
-    "lang": [
-      "en"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/setup-audio-driver-on-pixelbook/en.mdx"
-    },
-    "description": {
-      "en": "Setup audio driver on Pixelbook running any linux distribute",
-      "zh": ""
-    },
-    "tag": [
-      "linux"
-    ],
-    "path": "setup-audio-driver-on-pixelbook"
-  },
-  {
-    "title": {
-      "en": "Custom Symbol for aerial.nvim with Tree-sitter Query",
-      "zh": "使用 Tree-sitter Query 为 aerial.nvim 添加自定义 symbol"
-    },
-    "link": "tree-sitter-query-custom-symbol-for-aerial-nvim",
-    "date": "2024-07-24",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx"
-    },
-    "description": {
-      "zh": "在使用 aerial.nvim 的时候发现某些 symbol 没有被识别。需要自定义 symbol。本文将简要介绍如何使用 Tree-sitter 的 Query 为 aerial 提供自定义的 Symbol",
-      "en": "When using aerial.nvim, I found that some symbols were not recognized. Custom symbols are needed. This article will briefly introduce how to use Tree-sitter Query to provide custom symbols for aerial"
-    },
-    "tag": [
-      "devtools"
-    ],
-    "path": "tree-sitter-query"
-  },
-  {
     "draft": false,
     "title": {
-      "en": "Hydration, what is that?",
-      "zh": "水合(Hydration)到底是什么"
+      "zh": "使用 FastGPT 构建一个 Github issue 总结机器人",
+      "en": "Build a Github issue conclusion bot by FastGPT"
     },
-    "link": "hydration",
-    "date": "2024-09-27",
+    "link": "build-github-issue-conclusion-bot-by-fastgpt",
+    "date": "2024-10-14",
     "lang": [
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/hydration/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/hydration/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/build-github-issue-conclusion-bot-by-fastgpt/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/build-github-issue-conclusion-bot-by-fastgpt/zh.mdx"
     },
     "description": {
-      "en": "What is Hydration? This article will start from the prerender problem in the homesite project, to understand the Hydration",
-      "zh": "水合到底是什么？本文从在主页项目中遇到的页面与渲染问题出发，理解水合这一概念。"
+      "zh": "这篇文章将为您介绍如何使用 FastGPT 搭建一个 Github Issue 总结机器人，并向飞书机器人发送 webhook 进行通知",
+      "en": "This article will introduce you how to build a Github issue conclusion bot using FastGPT and send webhooks to the Feishu bot"
     },
     "tag": [
-      "frontend"
+      "fastgpt"
     ],
-    "path": "hydration"
-  },
-  {
-    "draft": false,
-    "title": {
-      "en": "Mdx hot reload preview tool",
-      "zh": "MDX 热重载预览工具"
-    },
-    "link": "mdx-hot-reload-preview-tool",
-    "date": "2024-09-30",
-    "lang": [
-      "zh"
-    ],
-    "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/mdx-hot-reload-preview-tool/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/mdx-hot-reload-preview-tool/zh.mdx"
-    },
-    "description": {
-      "en": "Write a hot reload preview tool for mdx by using watch, commanderjs, and inquirer..",
-      "zh": "使用 watch, commanderjs, inquirer 等工具写一个轻量化的有热重载的 mdx 预览工具"
-    },
-    "tag": [
-      "blog",
-      "frontend",
-      "code"
-    ],
-    "path": "mdx-hot-reload-preview-tool"
+    "path": "build-github-issue-conclusion-bot-by-fastgpt"
   },
   {
     "draft": false,
@@ -484,8 +343,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/homesite-project-style-problem-on-edge-browser/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/homesite-project-style-problem-on-edge-browser/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/homesite-project-style-problem-on-edge-browser/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/homesite-project-style-problem-on-edge-browser/zh.mdx"
     },
     "description": {
       "en": "I found some style problems of my homesite project on the Edge Browser.",
@@ -509,8 +368,8 @@
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/use-babel-generate-customized-apidoc/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/use-babel-generate-customized-apidoc/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/use-babel-generate-customized-apidoc/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/use-babel-generate-customized-apidoc/zh.mdx"
     },
     "description": {
       "en": "Although FastGPT is built with Next.js, but the backend codes were modified highly. It causes that we can not use universal api generator. This article will use babel to analyisis the AST of code, extract the type difinition and then generate API docs following OpenAPI norms.",
@@ -525,27 +384,168 @@
     "path": "use-babel-generate-customized-apidoc"
   },
   {
-    "draft": false,
     "title": {
-      "zh": "使用 FastGPT 构建一个 Github issue 总结机器人",
-      "en": "Build a Github issue conclusion bot by FastGPT"
+      "en": "I18n: Query Chinese in Code",
+      "zh": "I18n: 从代码中查询中文"
     },
-    "link": "build-github-issue-conclusion-bot-by-fastgpt",
-    "date": "2024-10-14",
+    "link": "i18n-query-chinese-in-code",
+    "date": "2024-08-26",
     "lang": [
       "zh"
     ],
     "content": {
-      "en": "/home/finley/Projects/homesite/projects/blog/blogs/build-github-issue-conclusion-bot-by-fastgpt/zh.mdx",
-      "zh": "/home/finley/Projects/homesite/projects/blog/blogs/build-github-issue-conclusion-bot-by-fastgpt/zh.mdx"
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/query-chinese-in-code/zh.mdx"
     },
     "description": {
-      "zh": "这篇文章将为您介绍如何使用 FastGPT 搭建一个 Github Issue 总结机器人，并向飞书机器人发送 webhook 进行通知",
-      "en": "This article will introduce you how to build a Github issue conclusion bot using FastGPT and send webhooks to the Feishu bot"
+      "en": "This article shows how to query Chinese in code.",
+      "zh": "本文展示了如何在代码中查询中文。"
+    },
+    "tag": [
+      "frontend"
+    ],
+    "path": "query-chinese-in-code"
+  },
+  {
+    "title": {
+      "en": "Compile Principle (II): Syntax Analysis",
+      "zh": "编译原理（二）：语法分析"
+    },
+    "link": "compile-grammer-analysis",
+    "date": "2024-01-17",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/compile-grammer-analysis/zh.mdx"
+    },
+    "description": {
+      "en": "",
+      "zh": ""
+    },
+    "tag": [
+      "migration",
+      "compilePrinciple"
+    ],
+    "path": "compile-grammer-analysis"
+  },
+  {
+    "title": {
+      "en": "Custom Symbol for aerial.nvim with Tree-sitter Query",
+      "zh": "使用 Tree-sitter Query 为 aerial.nvim 添加自定义 symbol"
+    },
+    "link": "tree-sitter-query-custom-symbol-for-aerial-nvim",
+    "date": "2024-07-24",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/tree-sitter-query/zh.mdx"
+    },
+    "description": {
+      "zh": "在使用 aerial.nvim 的时候发现某些 symbol 没有被识别。需要自定义 symbol。本文将简要介绍如何使用 Tree-sitter 的 Query 为 aerial 提供自定义的 Symbol",
+      "en": "When using aerial.nvim, I found that some symbols were not recognized. Custom symbols are needed. This article will briefly introduce how to use Tree-sitter Query to provide custom symbols for aerial"
+    },
+    "tag": [
+      "devtools"
+    ],
+    "path": "tree-sitter-query"
+  },
+  {
+    "title": {
+      "en": "Use Gitea to build up a personal git server and CI/CD",
+      "zh": "使用 Gitea 搭建私有 Git 服务器和 CI/CD"
+    },
+    "link": "gitea-ci-cd",
+    "date": "2024-07-18",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/gitea-ci-cd/zh.mdx"
+    },
+    "description": {
+      "zh": "为了编辑博客时不需要在本地进行编译，也为了方便部署，使用 Gitea 搭建私有的 Git 服务器和 CI/CD。这样就可以专注于博客内容",
+      "en": "As for editing blog without compiling locally and deploying conveniently, I use Gitea to build up a personal git server and CI/CD. In this way, I can focus on the content of the blog."
+    },
+    "tag": [
+      "linux",
+      "projectManagement"
+    ],
+    "path": "gitea-ci-cd"
+  },
+  {
+    "title": {
+      "en": "Docker Network Model",
+      "zh": "Docker 网络模型"
+    },
+    "link": "docker-network-model",
+    "date": "2024-03-17",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/docker-network-model/zh.mdx"
+    },
+    "description": {
+      "en": "Docker Network Model Analysis",
+      "zh": "Docker 网络模型解析"
+    },
+    "tag": [
+      "docker",
+      "migration"
+    ],
+    "path": "docker-network-model"
+  },
+  {
+    "title": {
+      "en": "FastGPT: Building an English Essay Correction Robot",
+      "zh": "FastGPT: 搭建一个英语作文纠错机器人"
+    },
+    "link": "fastgpt-english-essay-correction-robot",
+    "date": "2024-07-28",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/fastgpt-english-article-analyse/zh.mdx"
+    },
+    "description": {
+      "en": "This Blog introduces how to use FastGPT to build an English essay correction robot via a workflow.",
+      "zh": "本文通过搭建一个英语作文纠错机器人，介绍一下如何使用FastGPT的工作流"
     },
     "tag": [
       "fastgpt"
     ],
-    "path": "build-github-issue-conclusion-bot-by-fastgpt"
+    "path": "fastgpt-english-article-analyse"
+  },
+  {
+    "title": {
+      "zh": "n1盒子安装docker，docker中安装openwrt，openwrt配置旁路由",
+      "en": "Install docker on n1 box, install openwrt in docker, and configure bypass route in openwrt"
+    },
+    "link": "n1-armbian-docker-openwrt-bypass-route",
+    "date": "2024-02-27",
+    "lang": [
+      "zh"
+    ],
+    "content": {
+      "en": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx",
+      "zh": "/Users/finley_ge/Projects/homesite/projects/blog/blogs/n1-armbian-docker-openwrt-bypass-route/zh.mdx"
+    },
+    "description": {
+      "zh": "去年买了个n1盒子，这篇文章记录了如何在n1盒子上安装docker，然后在docker中安装openwrt，最后在openwrt中配置旁路由。",
+      "en": "I bought an n1 box last year. This article records how to install docker on the n1 box, then install openwrt in docker, and finally configure the bypass route in openwrt."
+    },
+    "tag": [
+      "docker",
+      "migration"
+    ],
+    "path": "n1-armbian-docker-openwrt-bypass-route"
   }
 ]

@@ -75,6 +75,7 @@ export default defineNuxtConfig({
     },
     routeRules: {
       "/": {
+        swr: true,
         prerender: true,
       },
       "blog/**": {
