@@ -18,10 +18,11 @@ const blog = bloglist!.find((item) => item.link === link.value)!;
 </script>
 <template>
   <div class="mt-4">
-    <MDXProvider :components="{
-      ...md,
-      ...common,
-    }">
+    <MDXProvider
+      :components="{
+        ...md,
+        ...common,
+      }">
       <BlogPage :blog="blog" />
     </MDXProvider>
   </div>

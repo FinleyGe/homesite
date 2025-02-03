@@ -19,7 +19,11 @@ useHead({
 
 <template>
   <div
-    class="bg-gradient-to-bl from-sky-50 to-sky-200 dark:bg-gradient-to-bl dark:from-indigo-900 dark:to-pink-900 dark:text-white transition-colors duration-200 min-h-svh flex flex-col">
+    class="bg-gradient-to-bl
+    from-sky-50 to-sky-200
+    dark:bg-gradient-to-bl dark:from-indigo-900 dark:to-pink-900 dark:text-white
+    transition-colors duration-200 min-h-svh flex flex-col"
+  >
     <header class="h-10">
       <ColorScheme>
         <ToolBar />
@@ -36,7 +40,6 @@ useHead({
 
 <style>
 main {
-
   .page-enter-active,
   .page-leave-active {
     transition: all 0.2s;

@@ -50,7 +50,7 @@ const handleDelete = async (filename: string) => {
 <template>
   <div>
     <h1>Upload</h1>
-    <input type="file" capture @input="handleFileInput" />
+    <input type="file" capture @input="handleFileInput" >
     <Button
       @click="
         () => {

@@ -12,6 +12,7 @@ const { t } = useI18n({
       Collection: 'Collection',
       CollectionDesc: 'Collection',
       Progress: 'Progress',
+      'playground Description': 'Playground is for testing and development purposes',
     },
     zh: {
       TodoList: '待办列表',
@@ -21,6 +22,7 @@ const { t } = useI18n({
       Collection: '拾金',
       CollectionDesc: '拾金',
       Progress: '进度',
+      'playground Description': '快速开发的一些小玩意',
     }
   }
 });
@@ -29,6 +31,7 @@ const { t } = useI18n({
 <template>
   <div class="max-w-5xl mx-auto">
     <h1 class="text-2xl"> {{ t('common.playground') }} </h1>
+    <h2 class="text-md italic"> {{ t('playground Description') }} </h2>
     <div class="flex flex-row mt-4 gap-4 flex-wrap">
       <PlaygroundItem
         :name="t('TodoList')" :description="t('Todo List Description')"

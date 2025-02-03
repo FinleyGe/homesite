@@ -1,5 +1,5 @@
 //@ts-expect-error: rollup-plugin-string is not typed
-import { string } from 'rollup-plugin-string';
+import { string } from "rollup-plugin-string";
 
 export default defineNuxtConfig({
   experimental: {
@@ -17,20 +17,20 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "@pinia/nuxt",
-    '@pinia-plugin-persistedstate/nuxt',
-    'nuxt-primevue',
-    'nuxt-file-storage',
+    "@pinia-plugin-persistedstate/nuxt",
+    "nuxt-primevue",
+    "nuxt-file-storage",
   ],
 
   app: {
     pageTransition: {
-      name: 'page',
-      mode: 'out-in',
-    }
+      name: "page",
+      mode: "out-in",
+    },
   },
 
   colorMode: {
-    classSuffix: '',
+    classSuffix: "",
   },
 
   primevue: {
@@ -38,54 +38,53 @@ export default defineNuxtConfig({
       unstyled: true,
     },
     components: {
-      include: ['Calendar'],
+      include: ["Calendar"],
     },
     directives: {
-      exclude: ['*'],
-    }
+      exclude: ["*"],
+    },
   },
 
-  css: [
-    '~/assets/styles/main.css',
-  ],
+  css: ["~/assets/styles/main.css"],
 
   vite: {
     plugins: [
       string({
-        include: '/**/*.mdx',
+        include: "/**/*.mdx",
       }),
     ],
   },
 
   i18n: {
-    locales: ['en', 'zh'],
-    defaultLocale: 'en',
-    vueI18n: 'i18n.config.ts',
+    locales: ["en", "zh"],
+    defaultLocale: "en",
+    vueI18n: "i18n.config.ts",
   },
 
   fileStorage: {
-    mount: process.env.UPLOAD_PATH!
+    mount: process.env.UPLOAD_PATH!,
   },
 
   nitro: {
+    experimental: { tasks: true },
     storage: {
       img: {
-        driver: 'fs',
+        driver: "fs",
         base: process.env.UPLOAD_PATH!,
-      }
+      },
     },
     routeRules: {
-      '/': {
+      "/": {
         prerender: true,
       },
-      'blog/**': {
+      "blog/**": {
         swr: true,
       },
-      'blog': {
+      blog: {
         swr: true,
       },
-    }
+    },
   },
 
-  compatibilityDate: '2024-07-18',
+  compatibilityDate: "2024-07-18",
 });

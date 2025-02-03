@@ -101,7 +101,8 @@ const openFeed = () => {
           </template>
         </Button>
 
-        <Button rounded :hold="option === 'search'"
+        <Button
+          rounded :hold="option === 'search'"
           @click="option = option === null ? 'search' : (querySearch = null, null)">
           {{ t('Search') }}
           <template #icon>
@@ -109,7 +110,8 @@ const openFeed = () => {
           </template>
         </Button>
 
-        <Button rounded :hold="option === 'archive'"
+        <Button
+          rounded :hold="option === 'archive'"
           @click="option = option === null ? 'archive' : (queryArchive = null, null)">
           {{ t('Archive') }}
           <template #icon>
@@ -120,7 +122,8 @@ const openFeed = () => {
     </div>
 
     <div v-if="option === 'tag'" class="flex flex-row flex-wrap gap-2 mt-4">
-      <span v-for="tag in Object.keys(Tags)" :key="tag"
+      <span
+        v-for="tag in Object.keys(Tags)" :key="tag"
         class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
         @click="() => router.push(localePath(`/blog?tag=${tag}`))">
         {{ (Tags[tag as keyof typeof Tags] as any)[locale] }}
@@ -133,7 +136,8 @@ const openFeed = () => {
 
     <div v-if="option === 'archive'" class="mt-4">
       <div class="flex flex-row flex-wrap gap-2">
-        <span v-for="month in months" :key="month"
+        <span
+          v-for="month in months" :key="month"
           class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
           @click="() => router.push(localePath(`/blog?archive=${month}`))">
           {{ month }}
@@ -146,9 +150,10 @@ const openFeed = () => {
     </span>
 
     <div class="flex flex-col">
-      <div v-for="blog in BlogListFiltered.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date))).filter((item) => {
-        return !queryTag ? true : item?.tag?.includes(queryTag);
-      })" :key="blog.link" class="mt-4 bg-pink-200 dark:bg-pink-800 p-4 rounded-lg shadow-md">
+      <div
+        v-for="blog in BlogListFiltered.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date))).filter((item) => {
+          return !queryTag ? true : item?.tag?.includes(queryTag);
+        })" :key="blog.link" class="mt-4 bg-pink-200 dark:bg-pink-800 p-4 rounded-lg shadow-md">
         <NuxtLink :to="localePath(`/blog/${blog.link}`)">
           <span class="font-bold text-lg">
             {{ blog.title[locale] }}
@@ -164,7 +169,8 @@ const openFeed = () => {
           </span>
         </div>
         <div class="text-sm mt-2">
-          <span v-for="tag in blog.tag" :key="tag"
+          <span
+            v-for="tag in blog.tag" :key="tag"
             class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
             @click="() => router.push(localePath(`/blog?tag=${tag}`))">
             #{{ Tags[tag as Tag][locale] }}

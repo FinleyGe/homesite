@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import Button from '~/components/common/Button.vue'
-import { toast } from 'vue3-toastify'
-import useStore from '~/stores';
+import Button from "~/components/common/Button.vue";
+import { toast } from "vue3-toastify";
+import useStore from "~/stores";
 
 const body = ref({
-  email: '',
-  password: '',
-})
+  email: "",
+  password: "",
+});
 
-const store = useStore()
-const router = useRouter()
+const store = useStore();
+const router = useRouter();
 
-const { execute: login } = useFetch(
-  '/api/user/login', {
-  method: 'POST',
+const { execute: login } = useFetch("/api/user/login", {
+  method: "POST",
   body,
   watch: false,
   immediate: false,
@@ -21,14 +20,15 @@ const { execute: login } = useFetch(
     store.expireAt = new Date(response._data?.expireAt);
     store.token = response._data?.accessToken;
     toast.success("Success");
-    router.push('/admin')
+    router.push("/admin");
   },
 });
-
 </script>
 <template>
   <div class="w-full h-full flex items-center justify-center">
-    <div class="p-4 rounded-xl w-fit bg-pink-50 dark:bg-pink-800 flex flex-col gap-4 shadow-2xl">
+    <div
+      class="p-4 rounded-xl w-fit bg-pink-50 
+      dark:bg-pink-800 flex flex-col gap-4 shadow-2xl">
       <h1 class="text-2xl font-bold">Login</h1>
       <input v-model="body.email" placeholder="email">
       <input v-model="body.password" placeholder="password" type="password">

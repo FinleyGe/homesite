@@ -11,7 +11,8 @@ defineProps<{
     <u>
       <slot />
     </u>
-    <span :class="{ 'show': hover }"
+    <span
+      :class="{ 'show': hover }"
       class="comment absolute bg-pink-100 dark:bg-pink-800 rounded-md justify-center align-middle text-center w-max px-4 z-50"
     >
       {{ comment }}
