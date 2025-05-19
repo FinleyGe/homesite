@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "bun --filter=app run build"
+    "build": "pnpm -F app run build"
   },
   "keywords": [],
   "author": "",

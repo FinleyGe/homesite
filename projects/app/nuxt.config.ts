@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "@pinia/nuxt",
-    "@pinia-plugin-persistedstate/nuxt",
+    "pinia-plugin-persistedstate/nuxt",
     "nuxt-primevue",
     "nuxt-file-storage",
     "@nuxt/content",
@@ -91,14 +91,7 @@ export default defineNuxtConfig({
       },
     },
     routeRules: {
-      "/": {
-        swr: true,
-        prerender: true,
-      },
       "blog/**": {
-        swr: true,
-      },
-      blog: {
         swr: true,
       },
     },
