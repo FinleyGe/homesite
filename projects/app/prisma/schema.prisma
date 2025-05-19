@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x", "debian-openssl-1.1.x"]
@@ -28,10 +22,10 @@ model Post {
   id        String   @id @default(cuid())
   content   String
   language  String?
-  author    User     @relation(fields: [authorId], references: [id])
   authorId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
 }
 
 model TodoList {
@@ -42,7 +36,7 @@ model TodoList {
   priority  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  tags      Tag[]
+  tags      Tag[]    @relation("TagToTodoList")
 }
 
 model Tomato {
@@ -50,26 +44,25 @@ model Tomato {
   focusOn   String?
   createdAt DateTime @default(now())
   score     Int      @default(0)
-  tags      Tag[]
+  tags      Tag[]    @relation("TagToTomato")
 }
 
 model Tag {
-  id   String @id @default(cuid())
-  name String
-
-  TodoList   TodoList[]
-  Tomato     Tomato[]
-  Collection Collection[]
-  Progress   Progress[]
+  id         String       @id @default(cuid())
+  name       String
+  Collection Collection[] @relation("CollectionToTag")
+  Progress   Progress[]   @relation("ProgressToTag")
+  TodoList   TodoList[]   @relation("TagToTodoList")
+  Tomato     Tomato[]     @relation("TagToTomato")
 }
 
 model Collection {
   id        String   @id @default(cuid())
   content   String
   from      String?
-  tags      Tag[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  tags      Tag[]    @relation("CollectionToTag")
 
   @@map("Collective")
 }
@@ -80,7 +73,7 @@ model Progress {
   description String?
   target      Int
   status      Int      @default(0)
-  tags        Tag[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  tags        Tag[]    @relation("ProgressToTag")
 }

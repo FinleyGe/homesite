@@ -4,10 +4,10 @@ import { toast } from "vue3-toastify";
 import Post from "~/components/Post.vue";
 import Button from "~/components/common/Button.vue";
 import useStore from "~/stores";
+
 const content = ref<string>("");
 const isPreview = ref<boolean>(false);
 
-const post = ref<InstanceType<typeof Post> | null>(null);
 const lang = ref<string>("en");
 
 const postList = ref<PostType[]>([]);
@@ -72,7 +72,6 @@ const handleCancel = () => {
 
 const handlePreview = () => {
   isPreview.value = !isPreview.value;
-  post.value?.update();
 };
 </script>
 <template>

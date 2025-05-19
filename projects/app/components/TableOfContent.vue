@@ -1,27 +1,18 @@
 <script setup lang="ts">
-interface TOC {
-  depth: number;
-  value: string;
-  attributes?: {
-    [key: string]: string;
-  }
-  children?: TOC[];
-}
-
+import type { TocLink } from "@nuxt/content";
 defineProps<{
-  toc: TOC[];
+  toc: TocLink[];
 }>();
-
 </script>
 <template>
-  <div>
-    <ul>
-      <li v-for="item in toc" :key="item.value" :class="'depth-' + item.depth">
-        <a class="hover:underline cursor-pointer" :href="'#' + item?.attributes?.id">{{ item.value }}</a>
-        <TableOfContent v-if="item.children" :toc="item.children" />
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li v-for="item in toc" :key="item.text" :class="'depth-' + item.depth">
+      <a class="hover:underline cursor-pointer" :href="'#' + item.id">{{
+        item.text
+      }}</a>
+      <TableOfContent v-if="item.children" :toc="item.children" />
+    </li>
+  </ul>
 </template>
 
 <style scoped lang="scss">
@@ -31,7 +22,7 @@ defineProps<{
 
 :deep(a):hover {
   &::before {
-    content: '#';
+    content: "#";
     margin-right: 0.25rem;
     text-decoration: none;
   }

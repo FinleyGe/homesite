@@ -20,8 +20,25 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-primevue",
     "nuxt-file-storage",
+    "@nuxt/content",
   ],
-
+  content: {
+    build: {
+      markdown: {
+        remarkPlugins: {
+          "remark-gfm": {},
+          "remark-math": {},
+        },
+        highlight: {
+          theme: {
+            default: "catppuccin-latte",
+            dark: "catppuccin-macchiato",
+            light: "catppuccin-latte",
+          },
+        },
+      },
+    },
+  },
   app: {
     pageTransition: {
       name: "page",
