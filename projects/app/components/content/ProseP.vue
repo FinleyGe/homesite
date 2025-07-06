@@ -8,11 +8,11 @@
 <style scoped lang="scss">
 p {
   :deep(strong) {
-    @apply text-pink-700 dark:text-pink-300;
+    @reference text-pink-700 dark:text-pink-300;
   }
 
   :deep(em) {
-    @apply text-purple-700 dark:text-purple-300;
+    @reference text-purple-700 dark:text-purple-300;
   }
 }
 </style>

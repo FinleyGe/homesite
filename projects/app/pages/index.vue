@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { locale } = useI18n();
 const { data: aboutContents } = await useAsyncData(() =>
+
   queryCollection("about").all()
 );
 const data = computed(() => {

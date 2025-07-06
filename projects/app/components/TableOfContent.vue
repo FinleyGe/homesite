@@ -17,7 +17,7 @@ defineProps<{
 
 <style scoped lang="scss">
 :deep(div) {
-  @apply border-l border-gray-300;
+  @reference border-l border-gray-300;
 }
 
 :deep(a):hover {

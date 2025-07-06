@@ -36,6 +36,6 @@ const slots = useSlots();
 
 <style scoped lang="scss">
 .holding {
-  @apply bg-pink-300 dark:bg-pink-700 text-pink-900 dark:text-pink-100;
+  @reference bg-pink-300 dark:bg-pink-700 text-pink-900 dark:text-pink-100;
 }
 </style>

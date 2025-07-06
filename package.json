@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm -F app run build"
+    "generate": "bun --cwd=projects/app run generate"
   },
   "keywords": [],
   "author": "",

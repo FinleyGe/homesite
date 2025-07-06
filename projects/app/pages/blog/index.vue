@@ -25,16 +25,12 @@ const router = useRouter();
 const page = parseInt((router.currentRoute.value.query.page as string) || "1");
 
 const { data: blogsTotal } = useAsyncData(
-  async () => (await queryCollection("blog").count()) ?? 0
+  async () => (await queryCollection("blog").count()) ?? 0,
 );
 
 const { data: blogs } = useAsyncData(
   "blogs",
   () => {
-    const page = parseInt(
-      (router.currentRoute.value.query.page as string) || "1"
-    );
-
     return queryCollection("blog")
       .order("create", "DESC")
       .select(
@@ -45,15 +41,13 @@ const { data: blogs } = useAsyncData(
         "create",
         "lang",
         "update",
-        "tags"
+        "tags",
       )
-      .skip((page - 1) * 10)
-      .limit(10)
       .all();
   },
   {
     watch: [router.currentRoute],
-  }
+  },
 );
 
 const goToNextPage = async () => {
@@ -160,7 +154,7 @@ const openFeed = () => {
           </template>
         </Button> -->
 
-        <Button
+        <!-- <Button
           rounded
           :hold="option === 'search'"
           @click="
@@ -184,7 +178,7 @@ const openFeed = () => {
           <template #icon>
             <Archive />
           </template>
-        </Button>
+        </Button> -->
       </div>
     </div>
 
@@ -254,17 +248,6 @@ const openFeed = () => {
             #{{ tag }}
           </span>
         </div>
-      </div>
-    </div>
-    <div>
-      <div class="flex flex-row items-center gap-x-4 justify-end">
-        <Button v-if="page > 1" rounded @click="goToPrevPage">上一页</Button>
-        <Button
-          v-if="BlogListFiltered.length >= 10"
-          rounded
-          @click="goToNextPage"
-          >下一页</Button
-        >
       </div>
     </div>
   </div>

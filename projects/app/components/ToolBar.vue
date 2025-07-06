@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import Button from '~/components/common/Button.vue';
-import ColorfulButton from '~/components/common/ColorfulButton.vue';
-import LogoTitle from './LogoTitle.vue';
-import { Sun, Moon } from '@vicons/carbon';
+import Button from "~/components/common/Button.vue";
+import LogoTitle from "./LogoTitle.vue";
+import { Sun, Moon } from "@vicons/carbon";
+import ColorfulButton from "~/components/common/ColorfulButton.vue";
 
 const colorMode = useColorMode();
 const localePath = useLocalePath();
 const router = useRouter();
 
 function toggleTheme() {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
 }
 
 const { t } = useI18n();
@@ -17,9 +17,8 @@ const { t } = useI18n();
 const { locale, setLocale } = useI18n();
 
 function toggleLocale() {
-  setLocale(locale.value === 'en' ? 'zh' : 'en');
+  setLocale(locale.value === "en" ? "zh" : "en");
 }
-
 </script>
 
 <template>
@@ -27,17 +26,10 @@ function toggleLocale() {
     <LogoTitle @click="router.push(localePath('/'))" />
 
     <div
-      class="flex flex-1  justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-auto">
+      class="flex flex-1 justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-auto"
+    >
       <ColorfulButton color="pink" :router-link="localePath('blog')">
-        {{ t('common.blog') }}
-      </ColorfulButton>
-
-      <ColorfulButton color="blue" :router-link="localePath('post')">
-        {{ t('common.post') }}
-      </ColorfulButton>
-
-      <ColorfulButton color="gray" :router-link="localePath('playground')">
-        {{ t('common.playground') }}
+        {{ t("common.blog") }}
       </ColorfulButton>
     </div>
 
@@ -50,7 +42,7 @@ function toggleLocale() {
       </Button>
 
       <Button circle @click="toggleLocale">
-        {{ locale === 'en' ? '中' : 'EN' }}
+        {{ locale === "en" ? "中" : "EN" }}
       </Button>
     </div>
   </div>

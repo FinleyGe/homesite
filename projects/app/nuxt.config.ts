@@ -1,16 +1,20 @@
-//@ts-expect-error: rollup-plugin-string is not typed
-import { string } from "rollup-plugin-string";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   experimental: {
     componentIslands: true,
+  },
+  postcss: {
+    plugins: {
+      "@tailwindcss/postcss": {},
+      autoprefixer: {},
+    },
   },
 
   devtools: { enabled: true },
   pages: true,
 
   modules: [
-    "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
     "@nuxtjs/color-mode",
     "@nuxtjs/fontaine",
@@ -18,8 +22,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
-    "nuxt-primevue",
-    "nuxt-file-storage",
     "@nuxt/content",
   ],
   content: {
@@ -49,52 +51,15 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "",
   },
-
-  primevue: {
-    options: {
-      unstyled: true,
-    },
-    components: {
-      include: ["Calendar"],
-    },
-    directives: {
-      exclude: ["*"],
-    },
-  },
-
   css: ["~/assets/styles/main.css"],
-
   vite: {
-    plugins: [
-      string({
-        include: "/**/*.mdx",
-      }),
-    ],
+    plugins: [tailwindcss()],
   },
 
   i18n: {
     locales: ["en", "zh"],
     defaultLocale: "en",
     vueI18n: "i18n.config.ts",
-  },
-
-  fileStorage: {
-    mount: process.env.UPLOAD_PATH!,
-  },
-
-  nitro: {
-    experimental: { tasks: true },
-    storage: {
-      img: {
-        driver: "fs",
-        base: process.env.UPLOAD_PATH!,
-      },
-    },
-    routeRules: {
-      "blog/**": {
-        swr: true,
-      },
-    },
   },
 
   compatibilityDate: "2024-07-18",
