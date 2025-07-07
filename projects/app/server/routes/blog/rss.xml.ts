@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
         title: blog.title,
         description: blog.description,
         url: `https://www.f1nley.xyz${blog.path}`,
-        date: blog.meta.create as string,
+        date: blog.create as string,
       });
     }
     isInit = true;
