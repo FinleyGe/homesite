@@ -10,6 +10,7 @@ const router = useRouter();
 
 function toggleTheme() {
   colorMode.value = colorMode.value === "dark" ? "light" : "dark";
+  colorMode.preference = colorMode.value;
 }
 
 const { t, locale } = useI18n();

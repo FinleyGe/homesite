@@ -11,7 +11,6 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
   pages: true,
-
   modules: [
     "@nuxt/eslint",
     "@nuxtjs/color-mode",
@@ -22,6 +21,11 @@ export default defineNuxtConfig({
     "pinia-plugin-persistedstate/nuxt",
     "@nuxt/content",
   ],
+  colorMode: {
+    preference: "system",
+    fallback: "dark",
+    storage: "localStorage",
+  },
   content: {
     build: {
       markdown: {
