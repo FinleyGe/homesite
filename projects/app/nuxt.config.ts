@@ -1,15 +1,13 @@
 import tailwindcss from "@tailwindcss/vite";
-
 export default defineNuxtConfig({
-  experimental: {
-    componentIslands: true,
-  },
-  postcss: {
-    plugins: {
-      "@tailwindcss/postcss": {},
-      autoprefixer: {},
-    },
-  },
+  // experimental: {
+  //   componentIslands: true,
+  // },
+  // postcss: {
+  //   plugins: {
+  //     autoprefixer: {},
+  //   },
+  // },
 
   devtools: { enabled: true },
   pages: true,
@@ -30,6 +28,7 @@ export default defineNuxtConfig({
         remarkPlugins: {
           "remark-gfm": {},
           "remark-math": {},
+          // "remark-mermaidjs": {},
         },
         highlight: {
           theme: {
@@ -37,6 +36,9 @@ export default defineNuxtConfig({
             dark: "catppuccin-macchiato",
             light: "catppuccin-latte",
           },
+        },
+        rehypePlugins: {
+          // "rehype-mermaid": {},
         },
       },
     },

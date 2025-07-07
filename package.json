@@ -11,5 +11,9 @@
   "license": "ISC",
   "workspaces": [
     "projects/*"
-  ]
+  ],
+  "dependencies": {
+    "@d0rich/nuxt-content-mermaid": "^1.0.0",
+    "mermaid": "^11.8.1"
+  }
 }

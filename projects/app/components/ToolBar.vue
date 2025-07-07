@@ -9,15 +9,13 @@ const localePath = useLocalePath();
 const router = useRouter();
 
 function toggleTheme() {
-  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
+  colorMode.value = colorMode.value === "dark" ? "light" : "dark";
 }
 
-const { t } = useI18n();
-
-const { locale, setLocale } = useI18n();
+const { t, locale } = useI18n();
 
 function toggleLocale() {
-  setLocale(locale.value === "en" ? "zh" : "en");
+  locale.value = locale.value === "en" ? "zh" : "en";
 }
 </script>
 

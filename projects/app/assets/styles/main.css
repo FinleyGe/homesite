@@ -1,7 +1,7 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 html * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 @keyframes fadeIn {
@@ -12,3 +12,5 @@ html * {
     opacity: 1;
   }
 }
+
+@custom-variant dark (&:where(.dark, .dark *));

@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-gray-50 dark:bg-gray-700 p-4 my-4 rounded-lg">
+  <div
+    v-if="!isMermaid"
+    class="bg-gray-50 dark:bg-gray-700 p-4 my-4 rounded-lg"
+    v-bind="props"
+  >
     <div class="flex justify-between items-center mb-1 border-b-2">
       <div class="flex flex-col">
         <b>{{ language }}</b>
@@ -14,6 +18,10 @@
     </div>
     <pre :class="$props.class"><slot/></pre>
   </div>
+
+  <Mermaid v-else>
+    {{ code }}
+  </Mermaid>
 </template>
 
 <script setup lang="ts">
@@ -52,6 +60,10 @@ function copyCode() {
     codeCopied.value = false;
   }, 2000);
 }
+
+const isMermaid = computed(() => {
+  return props.language === "mermaid";
+});
 </script>
 
 <style scoped lang="scss">

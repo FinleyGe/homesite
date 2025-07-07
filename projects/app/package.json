@@ -9,9 +9,11 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "build:docker": "nuxt build && docker build -t homesite-app .",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "new": "bun scripts/new.ts"
   },
   "dependencies": {
+    "@d0rich/nuxt-content-mermaid": "^1.0.0",
     "@nuxt/content": "^3.5.1",
     "@nuxt/eslint": "^1.4.1",
     "@nuxt/ui": "^3.1.2",
@@ -29,7 +31,6 @@
     "h3-formidable": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.17.3",
-    "nuxt-file-storage": "^0.3.0",
     "pinia-plugin-persistedstate": "^4.3.0",
     "rehype-katex": "^7.0.1",
     "rehype-pretty-code": "^0.14.1",
@@ -58,8 +59,10 @@
     "@vueuse/core": "^13.2.0",
     "@vueuse/nuxt": "^13.2.0",
     "eslint": "^9.27.0",
+    "inquirer": "^12.7.0",
     "nuxt-primevue": "^3.0.0",
     "ohash": "^2.0.11",
+    "rehype-mermaid": "^3.0.0",
     "rollup-plugin-string": "^3.0.0",
     "sass": "^1.89.0",
     "vite-plugin-string": "^1.2.3"
