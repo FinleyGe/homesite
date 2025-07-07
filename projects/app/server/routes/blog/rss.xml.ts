@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       feed.item({
         title: blog.title,
         description: blog.description,
-        url: `https://www.f1nley.xyz/${blog.path}`,
+        url: `https://www.f1nley.xyz${blog.path}`,
         date: blog.meta.create as string,
       });
     }
