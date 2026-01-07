@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "bun --cwd=projects/app run generate"
+    "generate": "bun --cwd=projects/app run generate",
+    "build": "npm run generate --prefix projects/app"
   },
   "keywords": [],
   "author": "",

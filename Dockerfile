@@ -1,7 +1,8 @@
-FROM oven/bun:1.3.4 AS builder
+FROM node:20-slim AS builder
 WORKDIR /app
 COPY . /app
-RUN bun i && bun run generate
+
+RUN npm install && npm run build
 
 FROM nginx:latest
 COPY --from=builder /app/projects/app/.output/public /usr/share/nginx/html
