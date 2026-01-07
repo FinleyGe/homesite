@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Rss, Search, Archive } from "@vicons/carbon";
+import { Rss } from "@vicons/carbon";
 import Button from "~/components/common/Button.vue";
+
 const { t } = useI18n({
   messages: {
     zh: {
@@ -22,7 +23,6 @@ const { t } = useI18n({
 
 const localePath = useLocalePath();
 const router = useRouter();
-const page = parseInt((router.currentRoute.value.query.page as string) || "1");
 
 const { data: blogsTotal } = useAsyncData(
   async () => (await queryCollection("blog").count()) ?? 0,
@@ -50,21 +50,6 @@ const { data: blogs } = useAsyncData(
   },
 );
 
-const goToNextPage = async () => {
-  await router.push({
-    query: { ...router.currentRoute.value.query, page: page + 1 },
-  });
-  router.go(0);
-};
-
-const goToPrevPage = async () => {
-  await router.push({
-    query: { ...router.currentRoute.value.query, page: page - 1 },
-  });
-  router.go(0);
-};
-
-// const queryTag = ref<Tag | null>(null);
 const querySearch = ref<string | null>(null);
 const queryArchive = ref<string | null>(null);
 
@@ -221,7 +206,7 @@ const openFeed = () => {
       <div
         v-for="blog in BlogListFiltered"
         :key="blog.id"
-        class="mt-4 bg-pink-200 dark:bg-pink-800 p-4 rounded-lg shadow-md"
+        class="mt-4 bg-pink-100 dark:bg-gray-900 p-4 rounded-lg shadow-md"
       >
         <NuxtLink :to="blog.path">
           <span class="font-bold text-lg">
@@ -242,7 +227,7 @@ const openFeed = () => {
           <span
             v-for="tag in blog.tags"
             :key="tag"
-            class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
+            class="text-sm m-1 p-1 px-2 bg-sky-300 rounded-xl dark:bg-gray-800 hover:bg-sky-500 hover:dark:bg-gray-700 cursor-pointer"
             @click="() => router.push(localePath(`/blog?tag=${tag}`))"
           >
             #{{ tag }}

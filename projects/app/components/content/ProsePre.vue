@@ -9,11 +9,16 @@
         <b>{{ language }}</b>
         <i>{{ filename }}</i>
       </div>
-      <div class="flex flex-row items-center gap-x-2">
-        <span v-if="codeCopied" class="copy-success text-green-500"
-          ><i> Copied </i></span
+      <div class="flex flex-row items-center">
+        <button
+          class="copy-btn hover:bg-gray-300 hover:dark:bg-gray-600 cursor-pointer px-2 py-1 rounded-xl"
+          :class="{
+            'bg-green-300 hover:bg-green-400': codeCopied,
+          }"
+          @click="copyCode"
         >
-        <button class="copy-btn" @click="copyCode">Copy</button>
+          {{ codeCopied ? "Copied" : "Copy" }}
+        </button>
       </div>
     </div>
     <pre :class="$props.class"><slot/></pre>

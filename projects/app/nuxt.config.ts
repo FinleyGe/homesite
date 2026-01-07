@@ -66,6 +66,12 @@ export default defineNuxtConfig({
     locales: ["en", "zh"],
     defaultLocale: "en",
     vueI18n: "i18n.config.ts",
+    strategy: "prefix_except_default",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root",
+    },
   },
 
   compatibilityDate: "2024-07-18",

@@ -30,6 +30,12 @@ function toggleLocale() {
       <ColorfulButton color="pink" :router-link="localePath('blog')">
         {{ t("common.blog") }}
       </ColorfulButton>
+      <ColorfulButton color="blue" :router-link="localePath('link-exchange')">
+        {{ t("common.link-exchange") }}
+      </ColorfulButton>
+      <ColorfulButton color="yellow" :router-link="localePath('donate')">
+        {{ t("common.donate") }}
+      </ColorfulButton>
     </div>
 
     <div class="flex flex-row">

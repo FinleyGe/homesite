@@ -19,7 +19,7 @@ useHead({
 
 <template>
   <div
-    class="bg-gradient-to-bl from-sky-50 to-sky-200 dark:bg-gradient-to-bl dark:from-indigo-900 dark:to-pink-900 dark:text-white transition-colors duration-200 min-h-svh flex flex-col"
+    class="bg-gradient-to-t to-sky-100 from-sky-300 dark:from-black dark:to-gray-800 dark:text-white transition-colors duration-200 min-h-svh flex flex-col max-h-svh overflow-y-auto"
   >
     <header class="h-10">
       <ColorScheme>
@@ -28,10 +28,10 @@ useHead({
     </header>
     <main class="min-h-full mx-2 px-2 flex-grow">
       <NuxtPage />
+      <footer class="h-12">
+        <CopyrightFooter />
+      </footer>
     </main>
-    <footer class="h-12">
-      <CopyrightFooter />
-    </footer>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 export default defineI18nConfig(() => ({
   legacy: false,
-  locale: 'en',
+  locale: "en",
   messages: {
     en: {
       lang: {
@@ -14,11 +14,13 @@ export default defineI18nConfig(() => ({
         blog: "Blog",
         playground: "Playground",
         post: "Post",
+        "link-exchange": "Link Exchange",
+        donate: "Donate",
       },
       blog: {
         list: "Blog List",
       },
-      LinkExchange: 'Link Exchange'
+      LinkExchange: "Link Exchange",
     },
     zh: {
       lang: {
@@ -32,11 +34,13 @@ export default defineI18nConfig(() => ({
         blog: "博客",
         playground: "玩具盒",
         post: "琐碎",
+        "link-exchange": "友情链接",
+        donate: "赞助",
       },
       blog: {
         list: "博客列表",
       },
-      LinkExchange: '友情链接'
+      LinkExchange: "友链",
     },
-  }
+  },
 }));
