@@ -26,12 +26,12 @@ useHead({
         <ToolBar />
       </ColorScheme>
     </header>
-    <main class="min-h-full mx-2 px-2 flex-grow">
+    <main class="mx-2 px-2 flex-grow">
       <NuxtPage />
-      <footer class="h-12">
-        <CopyrightFooter />
-      </footer>
     </main>
+    <footer class="h-12">
+      <CopyrightFooter />
+    </footer>
   </div>
 </template>
 
