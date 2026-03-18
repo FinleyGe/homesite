@@ -6,10 +6,13 @@ tags:
   - 日常
 ---
 
+# 珍視生命中真正的奢侈品——理想的日常
+
 > 這是我的「[BlogBlog 同樂會 - 2026 年 3 月](https://blogblog.club/party)」的投稿文章。本月主題是「[理想的日常](https://alexhsu.com/perfect-days)」，由 [Alex Hsu](https://alexhsu.com) 主持。如果你有自己的部落格，歡迎一起來參加！
 
 > **寫在前面**
 > 毋庸諱言,筆者來自中國大陸,因而習慣使用簡體中文,而根據 **BlogBlog 同樂會**每月主題寫作活動之規則,寫作應以繁體中文為主。筆者正文將先使用簡體中文寫畢,而後使用 AI 技術將其「有機翻譯」為繁體中文,再輔以人工校訂,以避免某些並不常見於繁體中文圈的詞彙慣用法。但縱然如此,文內一定也會有疏漏之處,希望各位讀者見諒。
+>
 > 另:本文正文,除了翻譯工作、錯字校正和一些資料查詢的工作外,皆為筆者本人書寫,無 AI 輔助創作。
 
 ## 「奢侈品」
@@ -19,17 +22,29 @@ tags:
 ![](https://objects.g0v.social/cache/media_attachments/files/115/876/314/444/288/680/original/c9cee75361a1c860.jpg)
 
 > The real luxuries in life: (生命中真正的奢侈品:)
+>
 > time(時間)
+>
 > health(健康)
+>
 > a quiet mind(清明的思緒)
+>
 > slow mornings(悠閒的早晨)
+>
 > ability to travel(有能力去旅行)
+>
 > rest without guilt(無愧的休息)
+>
 > a good night's sleep(一夜好眠)
+>
 > calm and "boring" days(平靜而「無聊」的日子)
+>
 > meaningful conversations(有意義的對話)
+>
 > home-cooked meals(自己煮飯)
+>
 > people you love(你愛的人)
+>
 > people who love you back(也愛你的人)
 
 有這麼一句話「免費的最貴」,對於「生命中真正的奢侈品」來說,誠然如此。
