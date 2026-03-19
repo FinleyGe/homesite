@@ -18,6 +18,29 @@ const { t, locale } = useI18n();
 function toggleLocale() {
   locale.value = locale.value === "en" ? "zh" : "en";
 }
+
+const tabs = [
+  {
+    color: "pink",
+    link: "blog",
+    label: "common.blog",
+  },
+  {
+    color: "blue",
+    link: "link-exchange",
+    label: "common.link-exchange",
+  },
+  {
+    color: "yellow",
+    link: "donate",
+    label: "common.donate",
+  },
+  {
+    color: "green",
+    link: "now",
+    label: "common.now",
+  },
+] as const;
 </script>
 
 <template>
@@ -27,14 +50,13 @@ function toggleLocale() {
     <div
       class="flex flex-1 justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-auto"
     >
-      <ColorfulButton color="pink" :router-link="localePath('blog')">
-        {{ t("common.blog") }}
-      </ColorfulButton>
-      <ColorfulButton color="blue" :router-link="localePath('link-exchange')">
-        {{ t("common.link-exchange") }}
-      </ColorfulButton>
-      <ColorfulButton color="yellow" :router-link="localePath('donate')">
-        {{ t("common.donate") }}
+      <ColorfulButton
+        v-for="tab in tabs"
+        :key="tab.link"
+        :color="tab.color"
+        :router-link="localePath(tab.link)"
+      >
+        {{ t(tab.label) }}
       </ColorfulButton>
     </div>
 

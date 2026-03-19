@@ -37,8 +37,9 @@ function handleAskForLinkExchange() {
           :href="link.link"
           target="_blank"
           class="text-pink-500 dark:text-pink-200"
-          >{{ link.name }}</a
         >
+          {{ link.name }}
+        </a>
       </div>
     </div>
   </div>

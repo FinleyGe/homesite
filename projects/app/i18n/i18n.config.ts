@@ -12,10 +12,10 @@ export default defineI18nConfig(() => ({
       },
       common: {
         blog: "Blog",
-        playground: "Playground",
-        post: "Post",
         "link-exchange": "Link Exchange",
         donate: "Donate",
+        now: "Now",
+        nowDescription: "What I'm doing now.",
       },
       blog: {
         list: "Blog List",
@@ -32,10 +32,10 @@ export default defineI18nConfig(() => ({
       },
       common: {
         blog: "博客",
-        playground: "玩具盒",
-        post: "琐碎",
         "link-exchange": "友情链接",
         donate: "赞助",
+        now: "此刻",
+        nowDescription: "我现在正在做什么。",
       },
       blog: {
         list: "博客列表",

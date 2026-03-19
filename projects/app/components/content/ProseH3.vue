@@ -1,8 +1,6 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 <template>
-  <h3 class="text-xl text-pink-400 dark:text-pink-300 my-1">
-   <slot></slot>
+  <h3 class="text-xl text-pink-400 dark:text-pink-300 my-2">
+    <slot></slot>
   </h3>
 </template>
