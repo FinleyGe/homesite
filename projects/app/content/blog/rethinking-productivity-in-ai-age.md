@@ -1,9 +1,9 @@
 ---
 lang: zh
-create: yyyy-04-W
+create: 2026-04-29
 tags:
   - 同乐会
-  - 日常
+  - miscellany
 ---
 
 # AI 时代对“生产力”的重新思考

@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import { join } from "path";
 import { writeFile } from "fs/promises";
 
-const time = formatDate(new Date(), "yyyy-MM-dd");
+const time = formatDate(new Date(), "YYYY-MM-DD");
 
 const template = `---
 lang: zh

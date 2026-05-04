@@ -3,7 +3,7 @@ lang: zh
 create: 2026-03-18
 tags:
   - 同乐会
-  - 日常
+  - miscellany
 ---
 
 # 珍視生命中真正的奢侈品——理想的日常
