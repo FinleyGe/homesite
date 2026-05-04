@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSeoMeta } from "nuxt/app";
+
 const router = useRouter();
 
 const link = router.currentRoute.value.params.title as string;
@@ -12,6 +14,30 @@ const isTocOpen = ref(true);
 const toggleToc = () => {
   isTocOpen.value = !isTocOpen.value;
 };
+
+useSeoMeta({
+  title: data.value?.title,
+  ogTitle: data.value?.title,
+  description: data.value?.description,
+  ogDescription: data.value?.description,
+  ogImage: "/favicon.ico",
+});
+
+const i18n = useI18n();
+
+useHead({
+  title: data.value?.title,
+  htmlAttrs: {
+    lang: i18n.locale,
+  },
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
 </script>
 <template>
   <div class="w-full">
