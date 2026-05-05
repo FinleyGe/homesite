@@ -15,28 +15,24 @@ const toggleToc = () => {
   isTocOpen.value = !isTocOpen.value;
 };
 
+const title = computed(() => data.value?.title);
+const description = computed(() => data.value?.description);
+
 useSeoMeta({
-  title: data.value?.title,
-  ogTitle: data.value?.title,
-  description: data.value?.description,
-  ogDescription: data.value?.description,
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description,
   ogImage: "/favicon.ico",
 });
 
 const i18n = useI18n();
 
 useHead({
-  title: data.value?.title,
+  title,
   htmlAttrs: {
     lang: i18n.locale,
   },
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
 });
 </script>
 <template>
