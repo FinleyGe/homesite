@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Rss } from "@vicons/carbon";
+import { Archive, Hashtag, Rss, Search } from "@vicons/carbon";
 import Button from "~/components/common/Button.vue";
 
 const { t } = useI18n({
@@ -22,6 +22,7 @@ const { t } = useI18n({
 });
 
 const localePath = useLocalePath();
+const route = useRoute();
 const router = useRouter();
 
 const { data: blogsTotal } = useAsyncData(
@@ -45,61 +46,112 @@ const { data: blogs } = useAsyncData(
       )
       .all();
   },
-  {
-    watch: [router.currentRoute],
-  },
 );
 
-const querySearch = ref<string | null>(null);
-const queryArchive = ref<string | null>(null);
-
-const option = ref<"tag" | "search" | "archive" | null>(null);
-
-router.beforeEach((to) => {
-  // queryTag.value = to.query.tag as Tag;
-  querySearch.value = to.query.search as string;
-  queryArchive.value = to.query.archive as string;
+const queryTag = computed(() => {
+  const value = route.query.tag;
+  return typeof value === "string" ? value : null;
 });
 
-// const months = Array.from(
-//   new Set(
-//     BlogList.map((item) => item.date.slice(0, 7))
-//       .sort((a, b) => Number(new Date(b)) - Number(new Date(a)))
-//       .map((item) => item.slice(0, 7))
-//   )
-// );
+const querySearch = computed(() => {
+  const value = route.query.search;
+  return typeof value === "string" ? value : null;
+});
 
-// watchEffect(
-//   () => {
-//     if (queryTag.value) {
-//       option.value = "tag";
-//     } else if (querySearch.value) {
-//       option.value = "search";
-//     } else if (queryArchive.value) {
-//       option.value = "archive";
-//     }
-//   },
-//   {
-//     flush: "post",
-//   }
-// );
+const queryArchive = computed(() => {
+  const value = route.query.archive;
+  return typeof value === "string" ? value : null;
+});
+
+type BlogFilter = "tag" | "search" | "archive";
+
+const option = ref<BlogFilter | null>(null);
+
+const setBlogQuery = async (
+  key: BlogFilter,
+  value: string | null,
+) => {
+  await router.replace({
+    path: localePath("/blog"),
+    query: value ? { [key]: value } : {},
+  });
+};
+
+const toggleOption = (nextOption: BlogFilter) => {
+  if (option.value === nextOption) {
+    option.value = null;
+    void setBlogQuery(nextOption, null);
+    return;
+  }
+
+  option.value = nextOption;
+
+  if (queryTag.value || querySearch.value || queryArchive.value) {
+    void setBlogQuery(nextOption, null);
+  }
+};
+
+const searchValue = computed({
+  get: () => querySearch.value ?? "",
+  set: (value: string) => {
+    void setBlogQuery("search", value.trim() ? value : null);
+  },
+});
+
+const blogTags = computed(() => {
+  return Array.from(
+    new Set((blogs.value ?? []).flatMap((item) => item.tags ?? [])),
+  ).sort();
+});
+
+const months = computed(() => {
+  return Array.from(
+    new Set(
+      (blogs.value ?? [])
+        .map((item) => item.create.slice(0, 7))
+        .sort((a, b) => Number(new Date(b)) - Number(new Date(a))),
+    ),
+  );
+});
+
+watchEffect(() => {
+  if (queryTag.value) {
+    option.value = "tag";
+    return;
+  }
+
+  if (querySearch.value) {
+    option.value = "search";
+    return;
+  }
+
+  if (queryArchive.value) {
+    option.value = "archive";
+  }
+});
 
 const BlogListFiltered = computed(() => {
-  return blogs.value ?? [];
-  // return blogs.value.filter((item) => {
-  //   if (queryTag.value) {
-  //     return item.tag?.includes(queryTag.value);
-  //   }
-  //   if (querySearch.value) {
-  //     return item.title[locale.value]
-  //       .toLowerCase()
-  //       .includes(querySearch.value.toLowerCase());
-  //   }
-  //   if (queryArchive.value) {
-  //     return item.date.includes(queryArchive.value);
-  //   }
-  //   return true;
-  // });
+  const tag = queryTag.value;
+  const search = querySearch.value?.trim().toLowerCase();
+  const archive = queryArchive.value;
+
+  return (blogs.value ?? []).filter((item) => {
+    if (tag) {
+      return item.tags?.includes(tag);
+    }
+
+    if (search) {
+      return [item.title, item.description, item.tags?.join(" ")]
+        .filter((value): value is string => typeof value === "string")
+        .some((value) => value.toLowerCase().includes(search));
+    }
+
+    if (archive) {
+      return item.create.startsWith(archive);
+    }
+
+    return true;
+  });
 });
 
 useHead({
@@ -128,23 +180,21 @@ const openFeed = () => {
           </template>
         </Button>
 
-        <!-- <Button
+        <Button
           rounded
           :hold="option === 'tag'"
-          @click="option = option === null ? 'tag' : ((queryTag = null), null)"
+          @click="toggleOption('tag')"
         >
           {{ t("Tags") }}
           <template #icon>
             <Hashtag />
           </template>
-        </Button> -->
+        </Button>
 
-        <!-- <Button
+        <Button
           rounded
           :hold="option === 'search'"
-          @click="
-            option = option === null ? 'search' : ((querySearch = null), null)
-          "
+          @click="toggleOption('search')"
         >
           {{ t("Search") }}
           <template #icon>
@@ -155,50 +205,48 @@ const openFeed = () => {
         <Button
           rounded
           :hold="option === 'archive'"
-          @click="
-            option = option === null ? 'archive' : ((queryArchive = null), null)
-          "
+          @click="toggleOption('archive')"
         >
           {{ t("Archive") }}
           <template #icon>
             <Archive />
           </template>
-        </Button> -->
+        </Button>
       </div>
     </div>
 
     <div v-if="option === 'tag'" class="flex flex-row flex-wrap gap-2 mt-4">
-      <!-- <span
-        v-for="tag in Object.keys(Tags)"
+      <span
+        v-for="tag in blogTags"
         :key="tag"
         class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
-        @click="() => router.push(localePath(`/blog?tag=${tag}`))"
+        @click="() => setBlogQuery('tag', tag)"
       >
-        {{ (Tags[tag as keyof typeof Tags] as any)[locale] }}
-      </span> -->
+        #{{ tag }}
+      </span>
     </div>
 
-    <!-- <div v-if="option === 'search'" class="mt-4">
+    <div v-if="option === 'search'" class="mt-4">
       <input
-        v-model="querySearch"
+        v-model="searchValue"
         type="text"
         class="w-full p-2 rounded-lg"
         placeholder="Search"
-      />
-    </div> -->
+      >
+    </div>
 
-    <!-- <div v-if="option === 'archive'" class="mt-4">
+    <div v-if="option === 'archive'" class="mt-4">
       <div class="flex flex-row flex-wrap gap-2">
         <span
           v-for="month in months"
           :key="month"
           class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
-          @click="() => router.push(localePath(`/blog?archive=${month}`))"
+          @click="() => setBlogQuery('archive', month)"
         >
           {{ month }}
         </span>
       </div>
-    </div> -->
+    </div>
 
     <span class="text-md mt-4"> {{ t("count") }}: {{ blogsTotal }} </span>
 
@@ -228,7 +276,7 @@ const openFeed = () => {
             v-for="tag in blog.tags"
             :key="tag"
             class="text-sm m-1 p-1 px-2 bg-sky-300 rounded-xl dark:bg-gray-800 hover:bg-sky-500 hover:dark:bg-gray-700 cursor-pointer"
-            @click="() => router.push(localePath(`/blog?tag=${tag}`))"
+            @click="() => setBlogQuery('tag', tag)"
           >
             #{{ tag }}
           </span>
