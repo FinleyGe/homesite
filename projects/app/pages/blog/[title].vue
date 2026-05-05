@@ -9,11 +9,31 @@ const { data } = useAsyncData(() =>
   queryCollection("blog").path(`/blog/${link}`).first(),
 );
 
-const isTocOpen = ref(true);
+const tocMediaQuery = "(min-width: 1024px)";
+const isTocOpen = ref(false);
+let tocMediaList: MediaQueryList | null = null;
+
+const syncTocState = () => {
+  if (!tocMediaList) {
+    return;
+  }
+
+  isTocOpen.value = tocMediaList.matches;
+};
 
 const toggleToc = () => {
   isTocOpen.value = !isTocOpen.value;
 };
+
+onMounted(() => {
+  tocMediaList = window.matchMedia(tocMediaQuery);
+  syncTocState();
+  tocMediaList.addEventListener("change", syncTocState);
+});
+
+onBeforeUnmount(() => {
+  tocMediaList?.removeEventListener("change", syncTocState);
+});
 
 const title = computed(() => data.value?.title);
 const description = computed(() => data.value?.description);
@@ -53,9 +73,9 @@ useHead({
 
           <!-- 收起/展开按钮 -->
           <button
-            @click="toggleToc"
             class="absolute -right-10 top-0 bg-white dark:bg-gray-800 shadow-lg rounded-r-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
             :title="isTocOpen ? '收起目录' : '展开目录'"
+            @click="toggleToc"
           >
             <svg
               class="w-5 h-5 text-gray-600 dark:text-gray-300 transition-transform duration-300"
