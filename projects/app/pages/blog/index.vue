@@ -1,6 +1,15 @@
 <script setup lang="ts">
-import { Archive, Hashtag, Rss, Search } from "@vicons/carbon";
+import {
+  Archive,
+  ChevronLeft,
+  ChevronRight,
+  Hashtag,
+  Rss,
+  Search,
+} from "@vicons/carbon";
 import Button from "~/components/common/Button.vue";
+
+const BLOGS_PER_PAGE = 10;
 
 const { t } = useI18n({
   messages: {
@@ -10,6 +19,9 @@ const { t } = useI18n({
       Search: "搜索",
       Archive: "归档",
       count: "博客数量",
+      page: "页",
+      Previous: "上一页",
+      Next: "下一页",
     },
     en: {
       Feed: "Feed",
@@ -17,6 +29,9 @@ const { t } = useI18n({
       Search: "Search",
       Archive: "Archive",
       count: "The number of blogs",
+      page: "Page",
+      Previous: "Previous",
+      Next: "Next",
     },
   },
 });
@@ -24,37 +39,30 @@ const { t } = useI18n({
 const localePath = useLocalePath();
 const route = useRoute();
 const router = useRouter();
+const isBlogSearchOpen = useState("blog-content-search-open", () => false);
 
 const { data: blogsTotal } = useAsyncData(
   async () => (await queryCollection("blog").count()) ?? 0,
 );
 
-const { data: blogs } = useAsyncData(
-  "blogs",
-  () => {
-    return queryCollection("blog")
-      .order("create", "DESC")
-      .select(
-        "id",
-        "title",
-        "path",
-        "description",
-        "create",
-        "lang",
-        "update",
-        "tags",
-      )
-      .all();
-  },
-);
+const { data: blogs } = useAsyncData("blogs", () => {
+  return queryCollection("blog")
+    .order("create", "DESC")
+    .select(
+      "id",
+      "title",
+      "path",
+      "description",
+      "create",
+      "lang",
+      "update",
+      "tags",
+    )
+    .all();
+});
 
 const queryTag = computed(() => {
   const value = route.query.tag;
-  return typeof value === "string" ? value : null;
-});
-
-const querySearch = computed(() => {
-  const value = route.query.search;
   return typeof value === "string" ? value : null;
 });
 
@@ -63,17 +71,47 @@ const queryArchive = computed(() => {
   return typeof value === "string" ? value : null;
 });
 
-type BlogFilter = "tag" | "search" | "archive";
+const queryPage = computed(() => {
+  const value = route.query.page;
+  const page = typeof value === "string" ? Number.parseInt(value, 10) : 1;
+  return Number.isFinite(page) && page > 0 ? page : 1;
+});
+
+type BlogFilter = "tag" | "archive";
+type BlogQuery = Partial<Record<BlogFilter | "page", string>>;
 
 const option = ref<BlogFilter | null>(null);
 
-const setBlogQuery = async (
-  key: BlogFilter,
-  value: string | null,
-) => {
+const getActiveFilterQuery = (): BlogQuery => {
+  if (queryTag.value) {
+    return { tag: queryTag.value };
+  }
+
+  if (queryArchive.value) {
+    return { archive: queryArchive.value };
+  }
+
+  return {};
+};
+
+const setBlogQuery = async (key: BlogFilter, value: string | null) => {
   await router.replace({
     path: localePath("/blog"),
     query: value ? { [key]: value } : {},
+  });
+};
+
+const setPage = async (page: number) => {
+  const nextPage = Math.min(Math.max(1, page), totalPages.value);
+  const query: BlogQuery = getActiveFilterQuery();
+
+  if (nextPage > 1) {
+    query.page = String(nextPage);
+  }
+
+  await router.replace({
+    path: localePath("/blog"),
+    query,
   });
 };
 
@@ -86,17 +124,10 @@ const toggleOption = (nextOption: BlogFilter) => {
 
   option.value = nextOption;
 
-  if (queryTag.value || querySearch.value || queryArchive.value) {
+  if (queryTag.value || queryArchive.value) {
     void setBlogQuery(nextOption, null);
   }
 };
-
-const searchValue = computed({
-  get: () => querySearch.value ?? "",
-  set: (value: string) => {
-    void setBlogQuery("search", value.trim() ? value : null);
-  },
-});
 
 const blogTags = computed(() => {
   return Array.from(
@@ -120,30 +151,21 @@ watchEffect(() => {
     return;
   }
 
-  if (querySearch.value) {
-    option.value = "search";
+  if (queryArchive.value) {
+    option.value = "archive";
     return;
   }
 
-  if (queryArchive.value) {
-    option.value = "archive";
-  }
+  option.value = null;
 });
 
 const BlogListFiltered = computed(() => {
   const tag = queryTag.value;
-  const search = querySearch.value?.trim().toLowerCase();
   const archive = queryArchive.value;
 
   return (blogs.value ?? []).filter((item) => {
     if (tag) {
       return item.tags?.includes(tag);
-    }
-
-    if (search) {
-      return [item.title, item.description, item.tags?.join(" ")]
-        .filter((value): value is string => typeof value === "string")
-        .some((value) => value.toLowerCase().includes(search));
     }
 
     if (archive) {
@@ -152,6 +174,30 @@ const BlogListFiltered = computed(() => {
 
     return true;
   });
+});
+
+const totalPages = computed(() => {
+  return Math.max(1, Math.ceil(BlogListFiltered.value.length / BLOGS_PER_PAGE));
+});
+
+const currentPage = computed(() => {
+  return Math.min(queryPage.value, totalPages.value);
+});
+
+const BlogListPaginated = computed(() => {
+  const start = (currentPage.value - 1) * BLOGS_PER_PAGE;
+  return BlogListFiltered.value.slice(start, start + BLOGS_PER_PAGE);
+});
+
+const visiblePages = computed(() => {
+  const start = Math.max(1, currentPage.value - 2);
+  const end = Math.min(totalPages.value, start + 4);
+  const normalizedStart = Math.max(1, end - 4);
+
+  return Array.from(
+    { length: end - normalizedStart + 1 },
+    (_, index) => normalizedStart + index,
+  );
 });
 
 useHead({
@@ -180,22 +226,14 @@ const openFeed = () => {
           </template>
         </Button>
 
-        <Button
-          rounded
-          :hold="option === 'tag'"
-          @click="toggleOption('tag')"
-        >
+        <Button rounded :hold="option === 'tag'" @click="toggleOption('tag')">
           {{ t("Tags") }}
           <template #icon>
             <Hashtag />
           </template>
         </Button>
 
-        <Button
-          rounded
-          :hold="option === 'search'"
-          @click="toggleOption('search')"
-        >
+        <Button rounded :hold="isBlogSearchOpen" @click="isBlogSearchOpen = true">
           {{ t("Search") }}
           <template #icon>
             <Search />
@@ -226,15 +264,6 @@ const openFeed = () => {
       </span>
     </div>
 
-    <div v-if="option === 'search'" class="mt-4">
-      <input
-        v-model="searchValue"
-        type="text"
-        class="w-full p-2 rounded-lg"
-        placeholder="Search"
-      >
-    </div>
-
     <div v-if="option === 'archive'" class="mt-4">
       <div class="flex flex-row flex-wrap gap-2">
         <span
@@ -252,7 +281,7 @@ const openFeed = () => {
 
     <div class="flex flex-col">
       <div
-        v-for="blog in BlogListFiltered"
+        v-for="blog in BlogListPaginated"
         :key="blog.id"
         class="mt-4 bg-pink-100 dark:bg-gray-900 p-4 rounded-lg shadow-md"
       >
@@ -282,6 +311,55 @@ const openFeed = () => {
           </span>
         </div>
       </div>
+    </div>
+
+    <div
+      v-if="totalPages > 1"
+      class="flex flex-row items-center justify-center gap-1 mt-6 flex-wrap"
+    >
+      <Button
+        rounded
+        :disabled="currentPage === 1"
+        :class="{ 'opacity-50 cursor-not-allowed': currentPage === 1 }"
+        @click="() => setPage(currentPage - 1)"
+      >
+        {{ t("Previous") }}
+        <template #icon>
+          <ChevronLeft />
+        </template>
+      </Button>
+
+      <button
+        v-for="page in visiblePages"
+        :key="page"
+        type="button"
+        class="min-w-10 h-10 px-3 rounded-full text-sm transition-colors bg-pink-100 dark:bg-gray-900 text-pink-800 dark:text-pink-200 hover:bg-pink-200 dark:hover:bg-gray-800"
+        :class="{
+          'bg-pink-300 dark:bg-pink-700 text-pink-900 dark:text-pink-100':
+            page === currentPage,
+        }"
+        @click="() => setPage(page)"
+      >
+        {{ page }}
+      </button>
+
+      <span class="text-sm mx-2 text-gray-600 dark:text-gray-300">
+        {{ t("page") }} {{ currentPage }} / {{ totalPages }}
+      </span>
+
+      <Button
+        rounded
+        :disabled="currentPage === totalPages"
+        :class="{
+          'opacity-50 cursor-not-allowed': currentPage === totalPages,
+        }"
+        @click="() => setPage(currentPage + 1)"
+      >
+        {{ t("Next") }}
+        <template #icon>
+          <ChevronRight />
+        </template>
+      </Button>
     </div>
   </div>
 </template>

@@ -6,7 +6,7 @@ useHead({
   title: t("head.title"),
   script: [
     {
-      src: "/unami.js",
+      src: "/umami.js",
       "data-website-id": "d7f2d8d0-e6ff-4712-a469-2ad25faf0570",
       defer: true,
     },
@@ -32,6 +32,7 @@ useHead({
     <footer class="h-12">
       <CopyrightFooter />
     </footer>
+    <BlogContentSearch />
   </div>
 </template>
 

@@ -1,4 +1,34 @@
 import tailwindcss from "@tailwindcss/vite";
+import { readdirSync } from "node:fs";
+import { extname, join, relative } from "node:path";
+
+const getBlogRoutes = () => {
+  const blogDir = join(process.cwd(), "content/blog");
+  const routes: string[] = [];
+
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+
+      if (entry.isDirectory()) {
+        walk(path);
+        continue;
+      }
+
+      if (entry.isFile() && extname(entry.name) === ".md") {
+        const slug = relative(blogDir, path)
+          .replace(/\\/g, "/")
+          .replace(/\.md$/, "");
+        routes.push(`/blog/${slug}`);
+      }
+    }
+  };
+
+  walk(blogDir);
+
+  return routes;
+};
+
 export default defineNuxtConfig({
   // experimental: {
   //   componentIslands: true,
@@ -13,6 +43,7 @@ export default defineNuxtConfig({
   pages: true,
   modules: [
     "@nuxt/eslint",
+    "@nuxt/ui",
     "@nuxtjs/color-mode",
     "@nuxtjs/fontaine",
     "@nuxtjs/i18n",
@@ -25,6 +56,7 @@ export default defineNuxtConfig({
     preference: "system",
     fallback: "dark",
     storage: "localStorage",
+    classSuffix: "",
   },
   content: {
     build: {
@@ -54,9 +86,6 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    classSuffix: "",
-  },
   css: ["~/assets/styles/main.css"],
   vite: {
     plugins: [tailwindcss()],
@@ -75,6 +104,12 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2024-07-18",
+
+  nitro: {
+    prerender: {
+      routes: ["/blog", ...getBlogRoutes()],
+    },
+  },
 
   routeRules: {
     "/blog/rss.xml": {
