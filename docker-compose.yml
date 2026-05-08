@@ -1,0 +1,10 @@
+services:
+  homesite:
+    image: finleyge/homesite:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: homesite
+    restart: unless-stopped
+    ports:
+      - "3000:80"
