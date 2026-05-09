@@ -44,12 +44,10 @@ const tabs = [
 </script>
 
 <template>
-  <div class="flex flex-row justify-between items-center py-1 px-2">
+  <div class="toolbar">
     <LogoTitle @click="router.push(localePath('/'))" />
 
-    <div
-      class="flex flex-1 justify-center flex-row h-min items-center content-center px-2 py-1 gap-x-4 overflow-auto"
-    >
+    <nav class="toolbar__nav" aria-label="Primary">
       <ColorfulButton
         v-for="tab in tabs"
         :key="tab.link"
@@ -58,9 +56,9 @@ const tabs = [
       >
         {{ t(tab.label) }}
       </ColorfulButton>
-    </div>
+    </nav>
 
-    <div class="flex flex-row">
+    <div class="toolbar__controls">
       <Button circle @click="toggleTheme">
         <template #icon>
           <Sun v-if="colorMode.value == 'dark'" />
@@ -75,4 +73,60 @@ const tabs = [
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
+.toolbar__nav {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 0.25rem 0.5rem;
+  scrollbar-width: none;
+}
+
+.toolbar__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.toolbar__controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.25rem;
+}
+
+.toolbar__nav :deep(.content) {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+.toolbar__controls :deep(button) {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .toolbar {
+    padding-top: 0.45rem;
+  }
+
+  .toolbar__nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    padding-inline: 0.1rem;
+  }
+}
+</style>
