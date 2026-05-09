@@ -77,11 +77,11 @@ defineProps<{
 .home-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 13rem;
-  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr) 8rem;
+  gap: clamp(1rem, 3vw, 2.5rem);
   align-items: end;
-  min-height: clamp(28rem, 62vh, 42rem);
-  padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(2.5rem, 6vw, 5rem);
+  min-height: clamp(23rem, 52vh, 35rem);
+  padding: clamp(2.6rem, 5vw, 5rem) 0 clamp(1.4rem, 4vw, 3rem);
   overflow: hidden;
 }
 
@@ -106,15 +106,15 @@ defineProps<{
   max-width: 11ch;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: clamp(4.4rem, 12vw, 10.5rem);
+  font-size: clamp(4rem, 9.5vw, 8.7rem);
   font-weight: 800;
   letter-spacing: -0.08em;
-  line-height: 0.82;
+  line-height: 0.86;
 }
 
 .home-hero__subtitle {
   max-width: 42rem;
-  margin: clamp(1.5rem, 3vw, 2.4rem) 0 0;
+  margin: clamp(1.1rem, 2.3vw, 1.8rem) 0 0;
   color: var(--color-ink);
   font-size: clamp(1.25rem, 2.6vw, 2.05rem);
   font-weight: 650;
@@ -132,7 +132,7 @@ defineProps<{
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: clamp(1.5rem, 3vw, 2.2rem);
+  margin-top: clamp(1.25rem, 2.4vw, 1.8rem);
 }
 
 .home-hero__cta {
@@ -181,14 +181,15 @@ defineProps<{
 
 .home-hero__atmosphere {
   position: relative;
-  min-height: 22rem;
+  min-height: 18rem;
+  opacity: 0.55;
 }
 
 .home-hero__moon {
   position: absolute;
   right: 0.6rem;
-  bottom: 5rem;
-  width: clamp(8rem, 16vw, 12rem);
+  bottom: 6.8rem;
+  width: clamp(5.25rem, 9vw, 7rem);
   aspect-ratio: 1;
   border-radius: 999px;
   background:
@@ -209,13 +210,13 @@ defineProps<{
 }
 
 .home-hero__line--one {
-  bottom: 3.2rem;
+  bottom: 5.5rem;
 }
 
 .home-hero__line--two {
-  bottom: 2rem;
-  right: 4rem;
-  width: clamp(5rem, 12vw, 9rem);
+  bottom: 4.5rem;
+  right: 3rem;
+  width: clamp(4rem, 8vw, 6rem);
   background: color-mix(in srgb, var(--color-mint) 50%, transparent);
 }
 

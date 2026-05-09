@@ -268,7 +268,7 @@ const stateBody = computed(() => {
 }
 
 .home-page__identity {
-  margin-top: clamp(2rem, 8vw, 7rem);
+  margin-top: clamp(1rem, 5vw, 4rem);
 }
 
 .home-page__state-card {
