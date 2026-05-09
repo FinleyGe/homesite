@@ -152,6 +152,8 @@ function handleImageError() {
   position: relative;
   z-index: 1;
   display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   margin-top: 0.9rem;
   color: var(--color-ink);
   font-family: var(--font-code);

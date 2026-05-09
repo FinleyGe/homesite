@@ -310,7 +310,7 @@ const stateBody = computed(() => {
 .home-page__state-actions button,
 .home-page__direction a {
   display: inline-flex;
-  min-height: 2.6rem;
+  min-height: 2.75rem;
   align-items: center;
   justify-content: center;
   border: 1px solid color-mix(in srgb, var(--color-rose) 28%, transparent);
