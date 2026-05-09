@@ -47,5 +47,4 @@ You can contact me via :common-colorful-button{link="mailto:finleyge@qq.com" col
 Follow my :common-colorful-button{link="https://g0v.social/@FinleyGe@g0v.social" color="#5A4DDF"}[Mastodon],
 on which I post occasionally.
 
-You can also follow me on :common-colorful-button{link="https://www.zhihu.com/people/ge-jun-75-34" color="#0751bc"}[知乎],
-:common-colorful-button{link="https://space.bilibili.com/62847286" color="pink"}[BiliBili]
+You can also follow me on :common-colorful-button{link="https://www.zhihu.com/people/ge-jun-75-34" color="#0751bc"}[Zhihu] and :common-colorful-button{link="https://space.bilibili.com/62847286" color="pink"}[BiliBili].

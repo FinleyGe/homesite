@@ -46,5 +46,4 @@ title: about
 关注我的 :common-colorful-button{link="https://g0v.social/@FinleyGe@g0v.social" color="#5A4DDF"}[Mastodon]，
 我偶尔会在上面发帖。
 
-你也可以关注我在 :common-colorful-button{link="https://www.zhihu.com/people/ge-jun-75-34" color="#0751bc"}[知乎]上的动态，
-以及 :common-colorful-button{link="https://space.bilibili.com/62847286" color="pink"}[哔哩哔哩]
+你也可以关注我在 :common-colorful-button{link="https://www.zhihu.com/people/ge-jun-75-34" color="#0751bc"}[知乎] 上的动态，以及 :common-colorful-button{link="https://space.bilibili.com/62847286" color="pink"}[哔哩哔哩]。

@@ -1,7 +1,105 @@
 @import "tailwindcss";
 
-html * {
-  font-family: "Roboto", sans-serif;
+@font-face {
+  font-family: victor;
+  src: url("/fonts/victor.ttf") format("truetype");
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("/fonts/firacode.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --font-display: Georgia, "Times New Roman", "Songti SC", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-signature: victor, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-code: "Fira Code", monospace;
+
+  --color-canvas: #f6fbff;
+  --color-canvas-warm: #fff7f9;
+  --color-surface: rgba(255, 255, 255, 0.76);
+  --color-surface-strong: rgba(255, 255, 255, 0.92);
+  --color-ink: #172033;
+  --color-muted: #64748b;
+  --color-rose: #d94f86;
+  --color-rose-soft: #f8c9dc;
+  --color-sky: #8dd7f7;
+  --color-mint: #7ac7a4;
+  --color-warning: #eab857;
+  --color-error: #d94a4a;
+  --shadow-home-card: 0 22px 70px rgba(45, 91, 128, 0.15);
+  --shadow-home-soft: 0 14px 40px rgba(217, 79, 134, 0.14);
+}
+
+.dark {
+  color-scheme: dark;
+  --color-canvas: #111827;
+  --color-canvas-warm: #1f2937;
+  --color-surface: rgba(17, 24, 39, 0.72);
+  --color-surface-strong: rgba(31, 41, 55, 0.92);
+  --color-ink: #f8fafc;
+  --color-muted: #cbd5e1;
+  --color-rose: #f08ab6;
+  --color-rose-soft: rgba(240, 138, 182, 0.28);
+  --color-sky: #66b9df;
+  --color-mint: #86d7b4;
+  --color-warning: #f0c76f;
+  --color-error: #f87171;
+  --shadow-home-card: 0 22px 70px rgba(0, 0, 0, 0.28);
+  --shadow-home-soft: 0 14px 40px rgba(240, 138, 182, 0.12);
+}
+
+html {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--color-rose-soft) 58%, transparent), transparent 28rem),
+    radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--color-sky) 38%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--color-canvas), var(--color-canvas-warm));
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-code);
+}
+
+::selection {
+  background: var(--color-rose-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
 }
 
 @keyframes fadeIn {
@@ -10,6 +108,28 @@ html * {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes homeFloatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
