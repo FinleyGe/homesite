@@ -22,6 +22,8 @@ const { t } = useI18n({
       Search: "搜索",
       Archive: "归档",
       count: "博客数量",
+      eyebrow: "Writing archive",
+      intro: "技术笔记、产品观察，以及一些正在发生的日常切片。",
       lang: {
         zh: "中文",
         en: "英文",
@@ -39,6 +41,8 @@ const { t } = useI18n({
       Search: "Search",
       Archive: "Archive",
       count: "The number of blogs",
+      eyebrow: "Writing archive",
+      intro: "Technical notes, product observations, and slices of everyday life.",
       lang: {
         zh: "Chinese",
         en: "English",
@@ -223,16 +227,31 @@ const openFeed = () => {
 };
 </script>
 <template>
-  <div class="max-w-5xl mx-auto">
-    <div class="flex flex-row items-center gap-x-4 flex-wrap">
-      <h1
-        class="font-bold text-2xl cursor-pointer"
-        @click="() => router.push(localePath('/blog'))"
-      >
-        {{ t("blog.list") }}
-      </h1>
+  <div class="blog-index mx-auto">
+    <section class="blog-index__hero" aria-labelledby="blog-list-title">
+      <div class="blog-index__hero-copy">
+        <p class="blog-index__eyebrow">
+          {{ t("eyebrow") }}
+        </p>
 
-      <div class="flex flex-row flex-wrap">
+        <h1
+          id="blog-list-title"
+          class="blog-index__title"
+          @click="() => router.push(localePath('/blog'))"
+        >
+          {{ t("blog.list") }}
+        </h1>
+
+        <p class="blog-index__intro">
+          {{ t("intro") }}
+        </p>
+
+        <p class="blog-index__count">
+          {{ t("count") }}: {{ blogsTotal }}
+        </p>
+      </div>
+
+      <div class="blog-index__actions" aria-label="Blog filters">
         <Button rounded @click="openFeed">
           {{ t("Feed") }}
           <template #icon>
@@ -265,71 +284,84 @@ const openFeed = () => {
           </template>
         </Button>
       </div>
-    </div>
+    </section>
 
-    <div v-if="option === 'tag'" class="flex flex-row flex-wrap gap-2 mt-4">
-      <span
+    <section
+      v-if="option === 'tag'"
+      class="blog-index__filter-panel"
+      aria-label="Tag filter"
+    >
+      <button
         v-for="tag in blogTags"
         :key="tag"
-        class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
+        type="button"
+        class="blog-index__filter-chip"
+        :class="{ 'is-active': queryTag === tag }"
         @click="() => setBlogQuery('tag', tag)"
       >
         #{{ tag }}
-      </span>
-    </div>
+      </button>
+    </section>
 
-    <div v-if="option === 'archive'" class="mt-4">
-      <div class="flex flex-row flex-wrap gap-2">
-        <span
-          v-for="month in months"
-          :key="month"
-          class="text-sm m-1 p-1 px-2 bg-pink-300 rounded-xl dark:bg-pink-600 hover:bg-pink-400 hover:dark:bg-pink-500 cursor-pointer"
-          @click="() => setBlogQuery('archive', month)"
-        >
-          {{ month }}
-        </span>
-      </div>
-    </div>
+    <section
+      v-if="option === 'archive'"
+      class="blog-index__filter-panel"
+      aria-label="Archive filter"
+    >
+      <button
+        v-for="month in months"
+        :key="month"
+        type="button"
+        class="blog-index__filter-chip"
+        :class="{ 'is-active': queryArchive === month }"
+        @click="() => setBlogQuery('archive', month)"
+      >
+        {{ month }}
+      </button>
+    </section>
 
-    <span class="text-md mt-4"> {{ t("count") }}: {{ blogsTotal }} </span>
-
-    <div class="flex flex-col">
-      <div
+    <section class="blog-index__list" aria-live="polite">
+      <article
         v-for="blog in BlogListPaginated"
         :key="blog.id"
-        class="mt-4 bg-pink-100 dark:bg-gray-900 p-4 rounded-lg shadow-md"
+        class="blog-card"
       >
-        <NuxtLink :to="blog.path">
-          <span class="font-bold text-lg">
-            {{ blog.title }}
-          </span>
-          <p>
-            {{ blog.description }}
-          </p>
-        </NuxtLink>
-        <div class="text-sm text-right">
-          {{ blog.update ?? blog.create }}
-          <span class="text-sm mx-1">
-            {{ t(`lang.${blog.lang}`) }}
-          </span>
-        </div>
+        <NuxtLink class="blog-card__link" :to="blog.path">
+          <div class="blog-card__copy">
+            <h2 class="blog-card__title">
+              {{ blog.title }}
+            </h2>
 
-        <div class="text-sm mt-2">
-          <span
+            <p class="blog-card__description">
+              {{ blog.description }}
+            </p>
+          </div>
+
+          <div class="blog-card__meta">
+            <span>{{ blog.update ?? blog.create }}</span>
+            <span>{{ t(`lang.${blog.lang}`) }}</span>
+          </div>
+        </NuxtLink>
+
+        <div class="blog-card__tags" aria-label="Blog tags">
+          <button
             v-for="tag in blog.tags"
             :key="tag"
-            class="text-sm m-1 p-1 px-2 bg-sky-300 rounded-xl dark:bg-gray-800 hover:bg-sky-500 hover:dark:bg-gray-700 cursor-pointer"
+            type="button"
+            class="blog-tag"
+            :class="{ 'is-active': queryTag === tag }"
             @click="() => setBlogQuery('tag', tag)"
           >
             #{{ tag }}
-          </span>
+          </button>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
 
-    <div
+    <nav
       v-if="totalPages > 1"
-      class="flex flex-row items-center justify-center gap-1 mt-6 flex-wrap"
+      class="blog-index__pagination"
+      aria-label="Blog pages"
     >
       <Button
         rounded
@@ -347,17 +379,15 @@ const openFeed = () => {
         v-for="page in visiblePages"
         :key="page"
         type="button"
-        class="min-w-10 h-10 px-3 rounded-full text-sm transition-colors bg-pink-100 dark:bg-gray-900 text-pink-800 dark:text-pink-200 hover:bg-pink-200 dark:hover:bg-gray-800"
-        :class="{
-          'bg-pink-300 dark:bg-pink-700 text-pink-900 dark:text-pink-100':
-            page === currentPage,
-        }"
+        class="blog-page-button"
+        :class="{ 'is-active': page === currentPage }"
+        :aria-current="page === currentPage ? 'page' : undefined"
         @click="() => setPage(page)"
       >
         {{ page }}
       </button>
 
-      <span class="text-sm mx-2 text-gray-600 dark:text-gray-300">
+      <span class="blog-index__page-status">
         {{ t("page") }} {{ currentPage }} / {{ totalPages }}
       </span>
 
@@ -374,6 +404,313 @@ const openFeed = () => {
           <ChevronRight />
         </template>
       </Button>
-    </div>
+    </nav>
   </div>
 </template>
+
+<style scoped>
+.blog-index {
+  width: min(100% - clamp(2rem, 5vw, 4rem), 64rem);
+  padding-bottom: 4rem;
+}
+
+.blog-index__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: end;
+  padding: clamp(1.35rem, 4vw, 2.5rem);
+  border: 1px solid rgba(23, 32, 51, 0.08);
+  border-radius: 2rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.84),
+      rgba(255, 248, 243, 0.72) 55%,
+      rgba(207, 234, 242, 0.5)
+    );
+  box-shadow: 0 22px 60px rgba(23, 32, 51, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.blog-index__hero-copy {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.blog-index__eyebrow,
+.blog-index__count,
+.blog-index__page-status,
+.blog-card__meta {
+  color: rgba(23, 32, 51, 0.62);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.blog-index__eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.blog-index__title {
+  max-width: 9ch;
+  color: rgb(23, 32, 51);
+  cursor: pointer;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.blog-index__intro {
+  max-width: 44rem;
+  color: rgba(23, 32, 51, 0.76);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.blog-index__actions,
+.blog-index__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.blog-index__actions {
+  justify-content: flex-end;
+}
+
+.blog-index__actions :deep(button),
+.blog-index__pagination :deep(button) {
+  min-height: 2.75rem;
+  margin: 0;
+  border: 1px solid rgba(196, 68, 124, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 26px rgba(23, 32, 51, 0.08);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.blog-index__actions :deep(button:hover),
+.blog-index__pagination :deep(button:hover),
+.blog-index__filter-chip:hover,
+.blog-tag:hover,
+.blog-page-button:hover {
+  transform: translateY(-1px);
+}
+
+.blog-index__actions :deep(.holding) {
+  border-color: rgba(196, 68, 124, 0.22);
+  background: rgba(246, 217, 228, 0.92);
+}
+
+.blog-index__filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(23, 32, 51, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.blog-index__list {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+}
+
+.blog-card {
+  padding: clamp(1.15rem, 3vw, 1.65rem);
+  border: 1px solid rgba(23, 32, 51, 0.08);
+  border-radius: 1.45rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 248, 243, 0.64)
+    );
+  box-shadow: 0 16px 42px rgba(23, 32, 51, 0.07);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.blog-card:hover {
+  border-color: rgba(23, 32, 51, 0.16);
+  box-shadow: 0 20px 54px rgba(23, 32, 51, 0.1);
+  transform: translateY(-2px);
+}
+
+.blog-card__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 1rem;
+  min-height: 2.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-card__copy {
+  min-width: 0;
+}
+
+.blog-card__title {
+  color: rgb(23, 32, 51);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.blog-card__description {
+  display: -webkit-box;
+  max-width: 72ch;
+  margin-top: 0.55rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: rgba(23, 32, 51, 0.75);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.blog-card__meta {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.blog-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.blog-index__filter-chip,
+.blog-tag,
+.blog-page-button {
+  min-height: 2.75rem;
+  border: 1px solid rgba(17, 153, 119, 0.12);
+  border-radius: 999px;
+  background: rgba(207, 234, 242, 0.72);
+  color: rgb(23, 32, 51);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 0 0.9rem;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.blog-index__filter-chip.is-active,
+.blog-tag.is-active,
+.blog-page-button.is-active {
+  border-color: rgba(17, 153, 119, 0.24);
+  background: rgba(17, 153, 119, 0.16);
+}
+
+.blog-page-button {
+  min-width: 2.75rem;
+  border-color: rgba(196, 68, 124, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.blog-index__pagination {
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+:global(.dark) .blog-index__hero,
+:global(.dark) .blog-index__filter-panel,
+:global(.dark) .blog-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(17, 24, 39, 0.76);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+:global(.dark) .blog-index__title,
+:global(.dark) .blog-card__title,
+:global(.dark) .blog-index__filter-chip,
+:global(.dark) .blog-tag,
+:global(.dark) .blog-page-button {
+  color: rgba(248, 250, 252, 0.94);
+}
+
+:global(.dark) .blog-index__intro,
+:global(.dark) .blog-card__description {
+  color: rgba(226, 232, 240, 0.76);
+}
+
+:global(.dark) .blog-index__eyebrow,
+:global(.dark) .blog-index__count,
+:global(.dark) .blog-index__page-status,
+:global(.dark) .blog-card__meta {
+  color: rgba(226, 232, 240, 0.62);
+}
+
+:global(.dark) .blog-index__actions :deep(button),
+:global(.dark) .blog-index__pagination :deep(button),
+:global(.dark) .blog-page-button {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+:global(.dark) .blog-index__filter-chip,
+:global(.dark) .blog-tag {
+  border-color: rgba(207, 234, 242, 0.16);
+  background: rgba(31, 41, 55, 0.82);
+}
+
+@media (max-width: 720px) {
+  .blog-index {
+    width: min(100% - 2rem, 64rem);
+  }
+
+  .blog-index__hero {
+    grid-template-columns: 1fr;
+    align-items: start;
+    border-radius: 1.5rem;
+  }
+
+  .blog-index__actions {
+    justify-content: flex-start;
+  }
+
+  .blog-index__actions :deep(button) {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+  }
+
+  .blog-card__link {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .blog-card__meta {
+    justify-self: start;
+  }
+
+  .blog-card__description {
+    -webkit-line-clamp: 4;
+  }
+}
+</style>
