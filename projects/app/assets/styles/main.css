@@ -20,20 +20,20 @@
   --font-signature: victor, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-code: "Fira Code", monospace;
 
-  --color-canvas: #f6fbff;
-  --color-canvas-warm: #fff7f9;
+  --color-canvas: #f7fbfc;
+  --color-canvas-warm: #fff8f3;
   --color-surface: rgba(255, 255, 255, 0.76);
   --color-surface-strong: rgba(255, 255, 255, 0.92);
   --color-ink: #172033;
   --color-muted: #64748b;
   --color-rose: #d94f86;
-  --color-rose-soft: #f8c9dc;
-  --color-sky: #8dd7f7;
+  --color-rose-soft: #f6d9e4;
+  --color-sky: #cfeaf2;
   --color-mint: #7ac7a4;
   --color-warning: #eab857;
   --color-error: #d94a4a;
-  --shadow-home-card: 0 22px 70px rgba(45, 91, 128, 0.15);
-  --shadow-home-soft: 0 14px 40px rgba(217, 79, 134, 0.14);
+  --shadow-home-card: 0 22px 70px rgba(54, 82, 105, 0.12);
+  --shadow-home-soft: 0 14px 40px rgba(192, 111, 137, 0.1);
 }
 
 .dark {
@@ -66,8 +66,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--color-rose-soft) 58%, transparent), transparent 28rem),
-    radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--color-sky) 38%, transparent), transparent 24rem),
+    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--color-rose-soft) 34%, transparent), transparent 30rem),
+    radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--color-sky) 42%, transparent), transparent 26rem),
     linear-gradient(180deg, var(--color-canvas), var(--color-canvas-warm));
   color: var(--color-ink);
   font-family: var(--font-body);

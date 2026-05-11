@@ -19,7 +19,7 @@ useHead({
 
 <template>
   <div
-    class="bg-gradient-to-t to-sky-100 from-sky-300 dark:from-black dark:to-gray-800 dark:text-white transition-colors duration-200 min-h-svh flex flex-col max-h-svh overflow-y-auto"
+    class="site-shell dark:text-white transition-colors duration-200 min-h-svh flex flex-col max-h-svh overflow-y-auto"
   >
     <header class="min-h-32 sm:min-h-24 md:min-h-10">
       <ColorScheme>
@@ -37,6 +37,13 @@ useHead({
 </template>
 
 <style>
+.site-shell {
+  background:
+    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--color-sky) 45%, transparent), transparent 24rem),
+    radial-gradient(circle at 14% 88%, color-mix(in srgb, var(--color-rose-soft) 28%, transparent), transparent 26rem),
+    linear-gradient(180deg, var(--color-canvas) 0%, color-mix(in srgb, var(--color-sky) 38%, var(--color-canvas)) 58%, var(--color-canvas-warm) 100%);
+}
+
 main {
   .page-enter-active,
   .page-leave-active {
