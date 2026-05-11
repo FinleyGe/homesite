@@ -6,6 +6,7 @@ import ColorfulButton from "~/components/common/ColorfulButton.vue";
 
 const colorMode = useColorMode();
 const localePath = useLocalePath();
+const route = useRoute();
 const router = useRouter();
 
 function toggleTheme() {
@@ -41,6 +42,11 @@ const tabs = [
     label: "common.now",
   },
 ] as const;
+
+const isTabActive = (link: string) => {
+  const target = localePath(link);
+  return route.path === target || route.path.startsWith(`${target}/`);
+};
 </script>
 
 <template>
@@ -51,6 +57,7 @@ const tabs = [
       <ColorfulButton
         v-for="tab in tabs"
         :key="tab.link"
+        :active="isTabActive(tab.link)"
         :color="tab.color"
         :router-link="localePath(tab.link)"
       >
@@ -80,7 +87,9 @@ const tabs = [
   align-items: center;
   justify-content: space-between;
   gap: 0.35rem 0.75rem;
-  padding: 0.25rem 0.5rem 0.5rem;
+  position: relative;
+  z-index: 30;
+  padding: 0.25rem 0.5rem 0;
 }
 
 .toolbar__nav {
@@ -103,12 +112,6 @@ const tabs = [
   display: flex;
   flex: 0 0 auto;
   gap: 0.25rem;
-}
-
-.toolbar__nav :deep(.content) {
-  display: inline-flex;
-  min-height: 2.75rem;
-  align-items: center;
 }
 
 .toolbar__controls :deep(button) {
