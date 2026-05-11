@@ -14,21 +14,35 @@ const BLOGS_PER_PAGE = 10;
 const { t } = useI18n({
   messages: {
     zh: {
+      blog: {
+        list: "博客列表",
+      },
       Feed: "订阅",
       Tags: "标签",
       Search: "搜索",
       Archive: "归档",
       count: "博客数量",
+      lang: {
+        zh: "中文",
+        en: "英文",
+      },
       page: "页",
       Previous: "上一页",
       Next: "下一页",
     },
     en: {
+      blog: {
+        list: "Blog List",
+      },
       Feed: "Feed",
       Tags: "Tags",
       Search: "Search",
       Archive: "Archive",
       count: "The number of blogs",
+      lang: {
+        zh: "Chinese",
+        en: "English",
+      },
       page: "Page",
       Previous: "Previous",
       Next: "Next",
