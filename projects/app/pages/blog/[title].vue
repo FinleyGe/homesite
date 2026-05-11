@@ -9,32 +9,6 @@ const { data } = useAsyncData(() =>
   queryCollection("blog").path(`/blog/${link}`).first(),
 );
 
-const tocMediaQuery = "(min-width: 1024px)";
-const isTocOpen = ref(false);
-let tocMediaList: MediaQueryList | null = null;
-
-const syncTocState = () => {
-  if (!tocMediaList) {
-    return;
-  }
-
-  isTocOpen.value = tocMediaList.matches;
-};
-
-const toggleToc = () => {
-  isTocOpen.value = !isTocOpen.value;
-};
-
-onMounted(() => {
-  tocMediaList = window.matchMedia(tocMediaQuery);
-  syncTocState();
-  tocMediaList.addEventListener("change", syncTocState);
-});
-
-onBeforeUnmount(() => {
-  tocMediaList?.removeEventListener("change", syncTocState);
-});
-
 const title = computed(() => data.value?.title);
 const description = computed(() => data.value?.description);
 
@@ -57,45 +31,22 @@ useHead({
 </script>
 <template>
   <div class="w-full">
-    <div class="max-w-4xl mx-auto relative">
-      <!-- TOC 悬浮窗 -->
-      <div
+    <div
+      class="mx-auto grid w-full max-w-6xl gap-8 px-0 sm:px-4 xl:grid-cols-[14rem_minmax(0,1fr)]"
+    >
+      <aside
         v-if="data?.body.toc"
-        class="fixed left-0 top-1/4 z-50 transition-transform duration-300 ease-in-out w-80"
-        :class="isTocOpen ? 'translate-x-0' : '-translate-x-80'"
+        class="hidden max-h-[calc(100svh-4rem)] overflow-y-auto rounded-3xl border border-white/60 bg-[var(--color-surface)] p-4 text-sm shadow-[var(--shadow-home-soft)] backdrop-blur xl:sticky xl:top-8 xl:block"
       >
-        <div
-          class="bg-white dark:bg-gray-800 shadow-2xl rounded-r-lg h-full relative"
-        >
-          <div class="p-4 max-h-[60vh] overflow-y-auto">
-            <TableOfContent :toc="data.body.toc.links" />
-          </div>
+        <p class="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-[var(--color-rose)]">
+          Contents
+        </p>
+        <TableOfContent :toc="data.body.toc.links" />
+      </aside>
 
-          <!-- 收起/展开按钮 -->
-          <button
-            class="absolute -right-10 top-0 bg-white dark:bg-gray-800 shadow-lg rounded-r-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-            :title="isTocOpen ? '收起目录' : '展开目录'"
-            @click="toggleToc"
-          >
-            <svg
-              class="w-5 h-5 text-gray-600 dark:text-gray-300 transition-transform duration-300"
-              :class="isTocOpen ? 'rotate-180' : ''"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <ContentRenderer v-if="data" :value="data" />
+      <article class="mx-auto min-w-0 w-full max-w-4xl xl:mx-0">
+        <ContentRenderer v-if="data" :value="data" />
+      </article>
     </div>
   </div>
 </template>
