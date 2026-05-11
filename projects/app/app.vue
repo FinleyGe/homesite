@@ -21,7 +21,7 @@ useHead({
   <div
     class="bg-gradient-to-t to-sky-100 from-sky-300 dark:from-black dark:to-gray-800 dark:text-white transition-colors duration-200 min-h-svh flex flex-col max-h-svh overflow-y-auto"
   >
-    <header class="min-h-24 md:min-h-10">
+    <header class="min-h-32 sm:min-h-24 md:min-h-10">
       <ColorScheme>
         <ToolBar />
       </ColorScheme>
