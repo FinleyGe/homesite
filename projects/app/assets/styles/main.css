@@ -36,7 +36,8 @@
   --shadow-home-soft: 0 14px 40px rgba(192, 111, 137, 0.1);
 }
 
-.dark {
+.dark,
+.dark-mode {
   color-scheme: dark;
   --color-canvas: #111827;
   --color-canvas-warm: #1f2937;
@@ -133,4 +134,4 @@ samp {
   }
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *, .dark-mode, .dark-mode *));

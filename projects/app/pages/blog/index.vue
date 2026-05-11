@@ -11,49 +11,7 @@ import Button from "~/components/common/Button.vue";
 
 const BLOGS_PER_PAGE = 10;
 
-const { t } = useI18n({
-  messages: {
-    zh: {
-      blog: {
-        list: "博客列表",
-      },
-      Feed: "订阅",
-      Tags: "标签",
-      Search: "搜索",
-      Archive: "归档",
-      count: "博客数量",
-      eyebrow: "Writing archive",
-      intro: "技术笔记、产品观察，以及一些正在发生的日常切片。",
-      lang: {
-        zh: "中文",
-        en: "英文",
-      },
-      page: "页",
-      Previous: "上一页",
-      Next: "下一页",
-    },
-    en: {
-      blog: {
-        list: "Blog List",
-      },
-      Feed: "Feed",
-      Tags: "Tags",
-      Search: "Search",
-      Archive: "Archive",
-      count: "The number of blogs",
-      eyebrow: "Writing archive",
-      intro: "Technical notes, product observations, and slices of everyday life.",
-      lang: {
-        zh: "Chinese",
-        en: "English",
-      },
-      page: "Page",
-      Previous: "Previous",
-      Next: "Next",
-    },
-  },
-});
-
+const { t } = useI18n();
 const localePath = useLocalePath();
 const route = useRoute();
 const router = useRouter();
@@ -219,7 +177,7 @@ const visiblePages = computed(() => {
 });
 
 useHead({
-  title: t("blog.list"),
+  title: computed(() => t("blog.list")),
 });
 
 const openFeed = () => {
@@ -231,7 +189,7 @@ const openFeed = () => {
     <section class="blog-index__hero" aria-labelledby="blog-list-title">
       <div class="blog-index__hero-copy">
         <p class="blog-index__eyebrow">
-          {{ t("eyebrow") }}
+          {{ t("blog.eyebrow") }}
         </p>
 
         <h1
@@ -243,31 +201,31 @@ const openFeed = () => {
         </h1>
 
         <p class="blog-index__intro">
-          {{ t("intro") }}
+          {{ t("blog.intro") }}
         </p>
 
         <p class="blog-index__count">
-          {{ t("count") }}: {{ blogsTotal }}
+          {{ t("blog.count") }}: {{ blogsTotal }}
         </p>
       </div>
 
       <div class="blog-index__actions" aria-label="Blog filters">
         <Button rounded @click="openFeed">
-          {{ t("Feed") }}
+          {{ t("blog.feed") }}
           <template #icon>
             <Rss />
           </template>
         </Button>
 
         <Button rounded :hold="option === 'tag'" @click="toggleOption('tag')">
-          {{ t("Tags") }}
+          {{ t("blog.tags") }}
           <template #icon>
             <Hashtag />
           </template>
         </Button>
 
         <Button rounded :hold="isBlogSearchOpen" @click="isBlogSearchOpen = true">
-          {{ t("Search") }}
+          {{ t("blog.search") }}
           <template #icon>
             <Search />
           </template>
@@ -278,7 +236,7 @@ const openFeed = () => {
           :hold="option === 'archive'"
           @click="toggleOption('archive')"
         >
-          {{ t("Archive") }}
+          {{ t("blog.archive") }}
           <template #icon>
             <Archive />
           </template>
@@ -326,7 +284,7 @@ const openFeed = () => {
         :key="blog.id"
         class="blog-card"
       >
-        <NuxtLink class="blog-card__link" :to="blog.path">
+        <NuxtLink class="blog-card__link" :to="localePath(blog.path)">
           <div class="blog-card__copy">
             <h2 class="blog-card__title">
               {{ blog.title }}
@@ -369,7 +327,7 @@ const openFeed = () => {
         :class="{ 'opacity-50 cursor-not-allowed': currentPage === 1 }"
         @click="() => setPage(currentPage - 1)"
       >
-        {{ t("Previous") }}
+        {{ t("blog.previous") }}
         <template #icon>
           <ChevronLeft />
         </template>
@@ -388,7 +346,7 @@ const openFeed = () => {
       </button>
 
       <span class="blog-index__page-status">
-        {{ t("page") }} {{ currentPage }} / {{ totalPages }}
+        {{ t("blog.pageStatus", { current: currentPage, total: totalPages }) }}
       </span>
 
       <Button
@@ -399,7 +357,7 @@ const openFeed = () => {
         }"
         @click="() => setPage(currentPage + 1)"
       >
-        {{ t("Next") }}
+        {{ t("blog.next") }}
         <template #icon>
           <ChevronRight />
         </template>
@@ -420,16 +378,16 @@ const openFeed = () => {
   gap: clamp(1rem, 3vw, 2rem);
   align-items: end;
   padding: clamp(1.35rem, 4vw, 2.5rem);
-  border: 1px solid rgba(23, 32, 51, 0.08);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
   border-radius: 2rem;
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.84),
-      rgba(255, 248, 243, 0.72) 55%,
-      rgba(207, 234, 242, 0.5)
+      var(--color-surface-strong),
+      color-mix(in srgb, var(--color-surface) 82%, var(--color-canvas-warm)) 55%,
+      color-mix(in srgb, var(--color-sky) 20%, var(--color-surface))
     );
-  box-shadow: 0 22px 60px rgba(23, 32, 51, 0.08);
+  box-shadow: var(--shadow-home-card);
   backdrop-filter: blur(18px);
 }
 
@@ -442,7 +400,7 @@ const openFeed = () => {
 .blog-index__count,
 .blog-index__page-status,
 .blog-card__meta {
-  color: rgba(23, 32, 51, 0.62);
+  color: color-mix(in srgb, var(--color-ink) 62%, transparent);
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
 }
@@ -454,7 +412,7 @@ const openFeed = () => {
 
 .blog-index__title {
   max-width: 9ch;
-  color: rgb(23, 32, 51);
+  color: var(--color-ink);
   cursor: pointer;
   font-size: clamp(2.4rem, 7vw, 5rem);
   font-weight: 800;
@@ -465,7 +423,7 @@ const openFeed = () => {
 
 .blog-index__intro {
   max-width: 44rem;
-  color: rgba(23, 32, 51, 0.76);
+  color: color-mix(in srgb, var(--color-ink) 76%, transparent);
   font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.7;
   text-wrap: pretty;
@@ -486,9 +444,9 @@ const openFeed = () => {
 .blog-index__pagination :deep(button) {
   min-height: 2.75rem;
   margin: 0;
-  border: 1px solid rgba(196, 68, 124, 0.14);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 12px 26px rgba(23, 32, 51, 0.08);
+  border: 1px solid color-mix(in srgb, var(--color-rose) 22%, transparent);
+  background: color-mix(in srgb, var(--color-surface-strong) 78%, transparent);
+  box-shadow: var(--shadow-home-soft);
   transition:
     background-color 180ms ease,
     border-color 180ms ease,
@@ -506,8 +464,8 @@ const openFeed = () => {
 }
 
 .blog-index__actions :deep(.holding) {
-  border-color: rgba(196, 68, 124, 0.22);
-  background: rgba(246, 217, 228, 0.92);
+  border-color: color-mix(in srgb, var(--color-rose) 34%, transparent);
+  background: color-mix(in srgb, var(--color-rose-soft) 72%, var(--color-surface));
 }
 
 .blog-index__filter-panel {
@@ -516,9 +474,9 @@ const openFeed = () => {
   gap: 0.5rem;
   margin-top: 1rem;
   padding: 0.75rem;
-  border: 1px solid rgba(23, 32, 51, 0.08);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.56);
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
 }
 
 .blog-index__list {
@@ -529,15 +487,15 @@ const openFeed = () => {
 
 .blog-card {
   padding: clamp(1.15rem, 3vw, 1.65rem);
-  border: 1px solid rgba(23, 32, 51, 0.08);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
   border-radius: 1.45rem;
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 248, 243, 0.64)
+      var(--color-surface-strong),
+      color-mix(in srgb, var(--color-surface) 84%, var(--color-canvas-warm))
     );
-  box-shadow: 0 16px 42px rgba(23, 32, 51, 0.07);
+  box-shadow: var(--shadow-home-soft);
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease,
@@ -545,8 +503,8 @@ const openFeed = () => {
 }
 
 .blog-card:hover {
-  border-color: rgba(23, 32, 51, 0.16);
-  box-shadow: 0 20px 54px rgba(23, 32, 51, 0.1);
+  border-color: color-mix(in srgb, var(--color-ink) 18%, transparent);
+  box-shadow: var(--shadow-home-card);
   transform: translateY(-2px);
 }
 
@@ -564,7 +522,7 @@ const openFeed = () => {
 }
 
 .blog-card__title {
-  color: rgb(23, 32, 51);
+  color: var(--color-ink);
   font-size: clamp(1.15rem, 2vw, 1.45rem);
   font-weight: 750;
   letter-spacing: -0.025em;
@@ -579,7 +537,7 @@ const openFeed = () => {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  color: rgba(23, 32, 51, 0.75);
+  color: color-mix(in srgb, var(--color-ink) 74%, transparent);
   font-size: 1rem;
   line-height: 1.72;
 }
@@ -603,10 +561,10 @@ const openFeed = () => {
 .blog-tag,
 .blog-page-button {
   min-height: 2.75rem;
-  border: 1px solid rgba(17, 153, 119, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-mint) 22%, transparent);
   border-radius: 999px;
-  background: rgba(207, 234, 242, 0.72);
-  color: rgb(23, 32, 51);
+  background: color-mix(in srgb, var(--color-sky) 28%, var(--color-surface));
+  color: var(--color-ink);
   cursor: pointer;
   font: inherit;
   font-size: 0.875rem;
@@ -623,14 +581,14 @@ const openFeed = () => {
 .blog-index__filter-chip.is-active,
 .blog-tag.is-active,
 .blog-page-button.is-active {
-  border-color: rgba(17, 153, 119, 0.24);
-  background: rgba(17, 153, 119, 0.16);
+  border-color: color-mix(in srgb, var(--color-mint) 36%, transparent);
+  background: color-mix(in srgb, var(--color-mint) 20%, var(--color-surface));
 }
 
 .blog-page-button {
   min-width: 2.75rem;
-  border-color: rgba(196, 68, 124, 0.14);
-  background: rgba(255, 255, 255, 0.72);
+  border-color: color-mix(in srgb, var(--color-rose) 22%, transparent);
+  background: color-mix(in srgb, var(--color-surface-strong) 78%, transparent);
 }
 
 .blog-index__pagination {
@@ -639,45 +597,42 @@ const openFeed = () => {
   margin-top: 1.5rem;
 }
 
-:global(.dark) .blog-index__hero,
-:global(.dark) .blog-index__filter-panel,
-:global(.dark) .blog-card {
+:global(:where(.dark, .dark-mode)) .blog-index__hero,
+:global(:where(.dark, .dark-mode)) .blog-index__filter-panel,
+:global(:where(.dark, .dark-mode)) .blog-card {
   border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(17, 24, 39, 0.76);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
 }
 
-:global(.dark) .blog-index__title,
-:global(.dark) .blog-card__title,
-:global(.dark) .blog-index__filter-chip,
-:global(.dark) .blog-tag,
-:global(.dark) .blog-page-button {
+:global(:where(.dark, .dark-mode)) .blog-index__title,
+:global(:where(.dark, .dark-mode)) .blog-card__title,
+:global(:where(.dark, .dark-mode)) .blog-index__filter-chip,
+:global(:where(.dark, .dark-mode)) .blog-tag,
+:global(:where(.dark, .dark-mode)) .blog-page-button {
   color: rgba(248, 250, 252, 0.94);
 }
 
-:global(.dark) .blog-index__intro,
-:global(.dark) .blog-card__description {
+:global(:where(.dark, .dark-mode)) .blog-index__intro,
+:global(:where(.dark, .dark-mode)) .blog-card__description {
   color: rgba(226, 232, 240, 0.76);
 }
 
-:global(.dark) .blog-index__eyebrow,
-:global(.dark) .blog-index__count,
-:global(.dark) .blog-index__page-status,
-:global(.dark) .blog-card__meta {
+:global(:where(.dark, .dark-mode)) .blog-index__eyebrow,
+:global(:where(.dark, .dark-mode)) .blog-index__count,
+:global(:where(.dark, .dark-mode)) .blog-index__page-status,
+:global(:where(.dark, .dark-mode)) .blog-card__meta {
   color: rgba(226, 232, 240, 0.62);
 }
 
-:global(.dark) .blog-index__actions :deep(button),
-:global(.dark) .blog-index__pagination :deep(button),
-:global(.dark) .blog-page-button {
+:global(:where(.dark, .dark-mode)) .blog-index__actions :deep(button),
+:global(:where(.dark, .dark-mode)) .blog-index__pagination :deep(button),
+:global(:where(.dark, .dark-mode)) .blog-page-button {
   border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.7);
 }
 
-:global(.dark) .blog-index__filter-chip,
-:global(.dark) .blog-tag {
+:global(:where(.dark, .dark-mode)) .blog-index__filter-chip,
+:global(:where(.dark, .dark-mode)) .blog-tag {
   border-color: rgba(207, 234, 242, 0.16);
-  background: rgba(31, 41, 55, 0.82);
 }
 
 @media (max-width: 720px) {

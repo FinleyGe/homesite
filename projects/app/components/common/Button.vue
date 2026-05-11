@@ -36,6 +36,12 @@ const slots = useSlots();
 
 <style scoped lang="scss">
 .holding {
-  @reference bg-pink-300 dark:bg-pink-700 text-pink-900 dark:text-pink-100;
+  background-color: #f9a8d4;
+  color: #831843;
+}
+
+:global(.dark) .holding {
+  background-color: #be185d;
+  color: #fce7f3;
 }
 </style>

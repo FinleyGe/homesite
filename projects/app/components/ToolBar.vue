@@ -6,6 +6,7 @@ import ColorfulButton from "~/components/common/ColorfulButton.vue";
 
 const colorMode = useColorMode();
 const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
 const route = useRoute();
 const router = useRouter();
 
@@ -16,8 +17,15 @@ function toggleTheme() {
 
 const { t, locale } = useI18n();
 
-function toggleLocale() {
-  locale.value = locale.value === "en" ? "zh" : "en";
+async function toggleLocale() {
+  const nextLocale = locale.value === "en" ? "zh" : "en";
+  const nextPath = switchLocalePath(nextLocale);
+
+  locale.value = nextLocale;
+
+  if (nextPath) {
+    await router.push(nextPath);
+  }
 }
 
 const tabs = [
