@@ -7,9 +7,23 @@ const { data } = await useAsyncData(() =>
 </script>
 
 <template>
-  <body class="max-w-2xl mx-auto">
-    <h1 class="text-3xl">{{ t("common.now") }}</h1>
-    <h2 class="text-l italic">{{ t("common.nowDescription") }}</h2>
-    <ContentRenderer v-if="data" :value="data" />
-  </body>
+  <section
+    class="mx-auto max-w-3xl rounded-[2rem] border border-white/60 bg-[var(--color-surface)] px-5 py-6 shadow-[var(--shadow-home-card)] backdrop-blur sm:px-8 sm:py-8"
+  >
+    <div class="mb-8 border-b border-white/60 pb-6">
+      <p class="text-xs font-bold uppercase tracking-[0.28em] text-[var(--color-rose)]">
+        Now
+      </p>
+      <h1 class="mt-3 text-4xl font-bold leading-tight text-[var(--color-ink)]">
+        {{ t("common.now") }}
+      </h1>
+      <p class="mt-2 text-lg italic text-[var(--color-muted)]">
+        {{ t("common.nowDescription") }}
+      </p>
+    </div>
+
+    <div class="text-base leading-7 text-[var(--color-ink)]">
+      <ContentRenderer v-if="data" :value="data" />
+    </div>
+  </section>
 </template>
