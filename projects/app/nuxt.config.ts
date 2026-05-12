@@ -74,6 +74,12 @@ export default defineNuxtConfig({
           },
         },
         rehypePlugins: {
+          "rehype-katex": {
+            options: {
+              output: "htmlAndMathml",
+              strict: "ignore",
+            },
+          },
           // "rehype-mermaid": {},
         },
       },
@@ -86,7 +92,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ["~/assets/styles/main.css"],
+  css: ["~/assets/styles/main.css", "katex/dist/katex.min.css"],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -292,6 +292,38 @@ useHead({
   display: none;
 }
 
+.article-rendered :deep(.katex) {
+  color: var(--color-ink);
+  font-size: 1.04em;
+}
+
+.article-rendered :deep(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: clamp(1.2rem, 3vw, 1.8rem) 0;
+  border: 1px solid color-mix(in srgb, var(--color-sky) 26%, transparent);
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-sky) 16%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-rose-soft) 18%, var(--color-surface))
+    );
+  padding: 0.9rem 1rem;
+}
+
+.article-rendered :deep(.katex-display > .katex) {
+  white-space: nowrap;
+}
+
+.article-rendered :deep(.katex-error) {
+  display: inline-block;
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--color-error) 10%, transparent);
+  color: var(--color-error);
+  padding: 0 0.25rem;
+}
+
 :global(:where(.dark, .dark-mode)) .article-layout__toc,
 :global(:where(.dark, .dark-mode)) .article-layout__content {
   border-color: rgba(255, 255, 255, 0.08);
@@ -328,6 +360,13 @@ useHead({
     height: auto;
     max-height: none;
     padding: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .article-rendered :deep(.katex-display) {
+    margin-inline: -0.25rem;
+    padding: 0.8rem 0.75rem;
   }
 }
 </style>
