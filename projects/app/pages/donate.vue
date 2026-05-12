@@ -217,7 +217,11 @@ const selectedMethod = computed(() => list[choice.value]);
 .donate-card__qr-shell {
   display: grid;
   place-items: center;
-  min-height: clamp(18rem, 34vw, 25rem);
+  box-sizing: border-box;
+  width: min(100%, clamp(18rem, 34vw, 25rem));
+  aspect-ratio: 1;
+  justify-self: center;
+  padding: clamp(0.9rem, 2vw, 1.25rem);
   border: 1px solid rgba(23, 32, 51, 0.08);
   border-radius: 1.5rem;
   background:
@@ -227,9 +231,12 @@ const selectedMethod = computed(() => list[choice.value]);
 }
 
 .donate-card__qr {
-  width: min(100%, 24rem);
-  max-height: min(58vh, 28rem);
+  display: block;
+  width: min(100%, 22.5rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
+  object-position: center;
 }
 
 :global(.dark) .donate-hero,
@@ -282,11 +289,8 @@ const selectedMethod = computed(() => list[choice.value]);
   }
 
   .donate-card__qr-shell {
-    min-height: 20rem;
-  }
-
-  .donate-card__qr {
-    max-height: 24rem;
+    width: min(100%, 20rem);
+    min-height: 0;
   }
 }
 </style>
