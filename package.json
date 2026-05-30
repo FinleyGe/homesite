@@ -3,19 +3,29 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "packageManager": "pnpm@10.33.4",
   "scripts": {
-    "generate": "bun --cwd=projects/app run generate",
-    "build": "npm run generate --prefix projects/app",
-    "dev": "bun --cwd=projects/app run dev"
+    "generate": "pnpm --filter app generate",
+    "build": "pnpm run generate",
+    "dev": "pnpm --filter app dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "workspaces": [
-    "projects/*"
-  ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@tailwindcss/oxide",
+      "esbuild",
+      "vue-demi"
+    ],
+    "overrides": {
+      "@nuxt/cli": "3.32.0",
+      "listhen": "1.9.0"
+    }
+  },
   "dependencies": {
-    "@d0rich/nuxt-content-mermaid": "^1.0.0",
-    "mermaid": "^11.8.1"
+    "@d0rich/nuxt-content-mermaid": "1.0.0",
+    "mermaid": "11.8.1"
   }
 }

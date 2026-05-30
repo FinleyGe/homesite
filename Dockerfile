@@ -1,8 +1,24 @@
 FROM node:22-slim AS builder
 WORKDIR /app
-COPY . /app
 
-RUN npm install && npm run build
+RUN set -eu; \
+  corepack enable; \
+  for attempt in 1 2 3 4 5; do \
+    if corepack prepare pnpm@10.33.4 --activate; then \
+      break; \
+    fi; \
+    if [ "$attempt" = "5" ]; then \
+      exit 1; \
+    fi; \
+    sleep 10; \
+  done
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY projects/app/package.json ./projects/app/package.json
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store pnpm --store-dir /pnpm/store fetch --frozen-lockfile
+
+COPY . /app
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store pnpm --store-dir /pnpm/store install --frozen-lockfile --offline && pnpm run generate
 
 FROM nginx:latest
 COPY --from=builder /app/projects/app/.output/public /usr/share/nginx/html

@@ -59,6 +59,9 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   content: {
+    experimental: {
+      sqliteConnector: "native",
+    },
     build: {
       markdown: {
         remarkPlugins: {

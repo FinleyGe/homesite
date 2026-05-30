@@ -8,4 +8,4 @@ script = ""
 [[actions]]
 name = "运行"
 icon = "run"
-command = "bun run dev --port 8888"
+command = "pnpm --filter app dev -- --port 8888"

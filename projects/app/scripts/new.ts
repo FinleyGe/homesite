@@ -1,9 +1,11 @@
 import { formatDate } from "@vueuse/core";
 import inquirer from "inquirer";
-import { join } from "path";
-import { writeFile } from "fs/promises";
+import { writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const time = formatDate(new Date(), "YYYY-MM-DD");
+const scriptDir = dirname(fileURLToPath(import.meta.url));
 
 const template = `---
 lang: zh
@@ -12,7 +14,7 @@ tags:
 ---
 `;
 
-const blogDir = join(__dirname, "../content/blog");
+const blogDir = join(scriptDir, "../content/blog");
 
 const res = await inquirer.prompt([
   {
