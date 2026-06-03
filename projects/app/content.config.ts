@@ -14,6 +14,16 @@ export default defineContentConfig({
         create: z.string(),
         update: z.string(),
         lang: z.string(),
+        cover: z.string().optional(),
+        coverAlt: z.string().optional(),
+        coverGenerated: z
+          .object({
+            provider: z.string(),
+            model: z.string(),
+            acceptedVersion: z.number(),
+            createdAt: z.string(),
+          })
+          .optional(),
       }),
     }),
   },

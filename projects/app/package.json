@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare",
     "build:docker": "nuxt build && docker build -t homesite-app .",
     "lint": "eslint --fix",
-    "new": "tsx scripts/new.ts"
+    "new": "tsx scripts/new.ts",
+    "cover": "tsx scripts/cover.ts",
+    "test": "vitest run"
   },
   "dependencies": {
     "@d0rich/nuxt-content-mermaid": "1.0.0",
@@ -46,6 +48,7 @@
     "vue": "3.5.26",
     "vue-router": "4.6.4",
     "vue3-toastify": "0.2.8",
+    "yaml": "^2.9.0",
     "zod": "3.25.76"
   },
   "devDependencies": {
@@ -68,6 +71,7 @@
     "rollup-plugin-string": "3.0.0",
     "sass": "1.89.2",
     "tsx": "4.21.0",
-    "vite-plugin-string": "1.2.3"
+    "vite-plugin-string": "1.2.3",
+    "vitest": "^4.1.8"
   }
 }

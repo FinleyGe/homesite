@@ -3,3 +3,6 @@ node_modules
 .pnpm-store
 .local
 .gstack/
+.cover-work/
+projects/app/.env
+projects/app/.env.local

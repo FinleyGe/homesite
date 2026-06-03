@@ -13,6 +13,11 @@ const { locale, t } = useI18n();
 
 const title = computed(() => data.value?.title);
 const description = computed(() => data.value?.description);
+const articleCover = computed(() => data.value?.cover);
+const articleCoverAlt = computed(
+  () => data.value?.coverAlt ?? data.value?.title ?? "",
+);
+const coverImage = computed(() => articleCover.value ?? "/favicon.ico");
 const publishedAt = computed(() => data.value?.create);
 const updatedAt = computed(() => data.value?.update);
 const languageLabel = computed(() => {
@@ -26,7 +31,7 @@ useSeoMeta({
   ogTitle: title,
   description,
   ogDescription: description,
-  ogImage: "/favicon.ico",
+  ogImage: coverImage,
 });
 
 useHead({
@@ -107,6 +112,16 @@ useHead({
               #{{ tag }}
             </span>
           </div>
+
+          <figure v-if="articleCover" class="article-header__cover">
+            <img
+              :src="articleCover"
+              :alt="articleCoverAlt"
+              decoding="async"
+              fetchpriority="high"
+              loading="eager"
+            >
+          </figure>
         </header>
 
         <div class="article-rendered">
@@ -286,6 +301,22 @@ useHead({
   color: color-mix(in srgb, var(--color-ink) 78%, transparent);
   font-size: 0.8rem;
   padding: 0.38rem 0.7rem;
+}
+
+.article-header__cover {
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  margin: clamp(0.55rem, 2vw, 1rem) 0 0;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+  border-radius: clamp(1rem, 2vw, 1.35rem);
+  background: color-mix(in srgb, var(--color-surface-strong) 72%, transparent);
+}
+
+.article-header__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .article-rendered :deep(h1:first-child) {

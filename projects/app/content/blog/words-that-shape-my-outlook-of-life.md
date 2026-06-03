@@ -4,6 +4,13 @@ create: 2026-05-29
 tags:
   - 同乐会
   - miscellany
+cover: /images/blogs/words-that-shape-my-outlook-of-life/cover.png
+coverAlt: 呼应《塑造人生观的几句话》主题的安静编辑插画。
+coverGenerated:
+  provider: openai
+  model: gpt-image-2
+  acceptedVersion: 1
+  createdAt: 2026-06-03T11:09:57.626Z
 ---
 
 # 塑造人生观的几句话
