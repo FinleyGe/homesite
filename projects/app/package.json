@@ -72,6 +72,6 @@
     "sass": "1.89.2",
     "tsx": "4.21.0",
     "vite-plugin-string": "1.2.3",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.11"
   }
 }
