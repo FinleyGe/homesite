@@ -7,41 +7,107 @@ defineProps<{
 
 defineSlots<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default(): any;
+  default?(): any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon?(): any;
 }>();
 
 const slots = useSlots();
-
 </script>
+
 <template>
   <button
-    class="bg-pink-200 dark:bg-pink-800 text-pink-800 dark:text-pink-200 m-1
-    hover:bg-pink-300 dark:hover:bg-pink-700 hover:text-pink-900 dark:hover:text-pink-100 transition-all
-    flex flex-row items-center gap-x-2" :class="{
-      'rounded-full p-2': circle,
-      'px-3 py-2': !circle,
-      'holding': hold,
-      'rounded-3xl': rounded,
-  }">
-    <div v-if="slots.icon" class="w-4 h-4">
+    type="button"
+    class="ui-button"
+    :class="{
+      'ui-button--icon': circle,
+      'ui-button--active': hold,
+    }"
+  >
+    <span v-if="slots.icon" class="ui-button__icon" aria-hidden="true">
       <slot name="icon" />
-    </div>
-    <div v-if="slots.default" :class="{ 'w-5 h-5 text-sm': circle }">
+    </span>
+    <span v-if="slots.default" class="ui-button__label">
       <slot />
-    </div>
+    </span>
   </button>
 </template>
 
-<style scoped lang="scss">
-.holding {
-  background-color: #f9a8d4;
-  color: #831843;
+<style scoped>
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  box-shadow: var(--highlight-top);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0 12px;
+  white-space: nowrap;
+  transition:
+    background-color 150ms var(--ease-out),
+    border-color 150ms var(--ease-out),
+    color 150ms var(--ease-out),
+    transform 120ms var(--ease-out);
 }
 
-:global(.dark) .holding {
-  background-color: #be185d;
-  color: #fce7f3;
+.ui-button:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+}
+
+.ui-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ui-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ui-button--icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+.ui-button--active {
+  border-color: var(--color-accent-border);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.ui-button--active:hover:not(:disabled) {
+  border-color: var(--color-accent-border);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.ui-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ui-button__icon :deep(svg) {
+  width: 16px;
+  height: 16px;
+}
+
+.ui-button__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

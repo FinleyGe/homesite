@@ -6,18 +6,18 @@
 
 <style scoped>
 .prose-quote {
-  margin-block: 1.4rem;
-  border-left: 0.35rem solid color-mix(in srgb, var(--color-rose) 70%, transparent);
-  border-radius: 1.1rem;
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--color-rose-soft) 44%, transparent),
-      color-mix(in srgb, var(--color-sky) 20%, transparent)
-    );
-  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
-  font-style: italic;
-  line-height: 1.8;
-  padding: 1rem 1.15rem;
+  margin-block: 20px;
+  margin-inline: 0;
+  border-left: 2px solid var(--color-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-secondary);
+  font-style: normal;
+  line-height: 1.75;
+  padding: 12px 16px;
+}
+
+.prose-quote :deep(p:first-child) {
+  margin-top: 0;
 }
 </style>

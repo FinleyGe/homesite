@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import "vue3-toastify/dist/index.css";
-const { t } = useI18n();
+
+const { t, locale } = useI18n();
 
 useHead({
-  title: t("head.title"),
+  title: computed(() => t("head.title")),
   script: [
     {
       src: "/umami.js",
@@ -12,24 +13,23 @@ useHead({
     },
   ],
   htmlAttrs: {
+    lang: locale,
     style: "font-size: 16px;",
   },
 });
 </script>
 
 <template>
-  <div
-    class="site-shell dark:text-white transition-colors duration-200 min-h-svh flex flex-col max-h-svh overflow-y-auto"
-  >
+  <div class="site-shell">
     <header class="site-header">
       <ColorScheme>
         <ToolBar />
       </ColorScheme>
     </header>
-    <main class="mx-2 px-2 flex-grow">
+    <main class="site-main">
       <NuxtPage />
     </main>
-    <footer class="h-12">
+    <footer class="site-footer">
       <CopyrightFooter />
     </footer>
     <BlogContentSearch />
@@ -38,32 +38,63 @@ useHead({
 
 <style>
 .site-shell {
-  background:
-    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--color-sky) 45%, transparent), transparent 24rem),
-    radial-gradient(circle at 14% 88%, color-mix(in srgb, var(--color-rose-soft) 28%, transparent), transparent 26rem),
-    linear-gradient(180deg, var(--color-canvas) 0%, color-mix(in srgb, var(--color-sky) 38%, var(--color-canvas)) 58%, var(--color-canvas-warm) 100%);
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  max-height: 100svh;
+  overflow-y: auto;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    background-color 180ms var(--ease-out),
+    color 180ms var(--ease-out);
 }
 
 .site-header {
   position: relative;
   z-index: 20;
   flex: 0 0 auto;
-  padding-block: 0.2rem clamp(0.75rem, 1.8vw, 1.1rem);
+  width: min(100%, 68rem);
+  margin-inline: auto;
+  padding: 16px 24px 0;
 }
 
-main {
+.site-main {
   position: relative;
   z-index: 1;
+  flex: 1 0 auto;
+  width: 100%;
+  padding-inline: 24px;
+}
 
-  .page-enter-active,
-  .page-leave-active {
-    transition: all 0.2s;
+.site-footer {
+  flex: 0 0 auto;
+  width: min(100%, 68rem);
+  margin-inline: auto;
+  padding: 0 24px 32px;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 160ms var(--ease-out);
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 12px 16px 0;
   }
 
-  .page-enter-from,
-  .page-leave-to {
-    opacity: 0;
-    filter: blur(1rem);
+  .site-main {
+    padding-inline: 16px;
+  }
+
+  .site-footer {
+    padding: 0 16px 24px;
   }
 }
 </style>

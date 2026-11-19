@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { ArrowUpRight } from "@vicons/carbon";
+
+type HomeFact = {
+  label: string;
+  value: string;
+};
+
 const props = defineProps<{
   label: string;
   currentTitle: string;
@@ -6,7 +13,7 @@ const props = defineProps<{
   avatarSrc: string;
   avatarAlt: string;
   avatarFallback: string;
-  facts: string[];
+  facts: HomeFact[];
   currentHref?: string;
 }>();
 
@@ -26,8 +33,8 @@ function handleImageError() {
           v-if="showAvatarImage"
           :src="avatarSrc"
           :alt="avatarAlt"
-          width="88"
-          height="88"
+          width="64"
+          height="64"
           loading="eager"
           decoding="async"
           @error="handleImageError"
@@ -36,7 +43,8 @@ function handleImageError() {
           {{ avatarFallback }}
         </span>
       </div>
-      <div>
+
+      <div class="home-identity__heading">
         <p class="home-identity__label">
           {{ label }}
         </p>
@@ -54,66 +62,51 @@ function handleImageError() {
       v-if="currentHref"
       class="home-identity__work-link"
       :href="currentHref"
+      target="_blank"
       rel="noopener noreferrer"
     >
-      tryfastgpt.ai
+      <span>tryfastgpt.ai</span>
+      <ArrowUpRight class="home-identity__link-icon" aria-hidden="true" />
     </a>
 
-    <ul class="home-identity__facts" aria-label="Quick facts">
-      <li v-for="fact in facts" :key="fact">
-        {{ fact }}
-      </li>
-    </ul>
+    <dl class="home-identity__facts" aria-label="Quick facts">
+      <div v-for="fact in facts" :key="fact.label" class="home-identity__fact">
+        <dt>{{ fact.label }}</dt>
+        <dd>{{ fact.value }}</dd>
+      </div>
+    </dl>
   </aside>
 </template>
 
 <style scoped>
 .home-identity {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-sky) 38%, transparent);
-  border-radius: 1.75rem;
-  background:
-    linear-gradient(145deg, var(--color-surface-strong), color-mix(in srgb, var(--color-canvas-warm) 84%, transparent)),
-    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-rose-soft) 64%, transparent), transparent 13rem);
-  box-shadow: var(--shadow-home-card);
-  padding: clamp(1.2rem, 3vw, 1.7rem);
-}
-
-.home-identity::before {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 4rem;
-  height: 4rem;
-  border: 1px solid color-mix(in srgb, var(--color-rose) 30%, transparent);
-  border-radius: 999px;
-  content: "";
-  opacity: 0.55;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
 }
 
 .home-identity__header {
-  position: relative;
-  z-index: 1;
   display: flex;
-  gap: 1rem;
+  gap: 16px;
   align-items: center;
 }
 
 .home-identity__avatar {
   display: grid;
   flex: 0 0 auto;
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 64px;
+  height: 64px;
   place-items: center;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-rose) 24%, white);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-rose-soft) 74%, white);
-  color: var(--color-rose);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-secondary);
   font-family: var(--font-display);
-  font-size: 1.7rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .home-identity__avatar img {
@@ -122,84 +115,89 @@ function handleImageError() {
   object-fit: cover;
 }
 
+.home-identity__heading {
+  min-width: 0;
+}
+
 .home-identity__label {
-  margin: 0 0 0.35rem;
-  color: var(--color-rose);
-  font-size: 0.74rem;
-  font-weight: 850;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  margin: 0 0 4px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.33;
 }
 
 .home-identity__title {
   margin: 0;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 3vw, 2rem);
-  line-height: 1.02;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .home-identity__body {
-  position: relative;
-  z-index: 1;
-  margin: 1.2rem 0 0;
-  color: var(--color-muted);
-  font-size: 1rem;
+  margin: 16px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
   line-height: 1.65;
 }
 
 .home-identity__work-link {
-  position: relative;
-  z-index: 1;
   display: inline-flex;
-  min-height: 2.75rem;
   align-items: center;
-  margin-top: 0.9rem;
-  color: var(--color-ink);
+  gap: 6px;
+  margin-top: 12px;
+  color: var(--color-accent);
   font-family: var(--font-code);
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration-color: var(--color-rose-soft);
-  text-decoration-line: underline;
-  text-decoration-thickness: 0.35em;
-  text-underline-offset: -0.12em;
-  transition: text-decoration-color 120ms ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
 }
 
 .home-identity__work-link:hover {
-  text-decoration-color: var(--color-rose);
+  color: var(--color-accent-hover);
+}
+
+.home-identity__link-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .home-identity__facts {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 1.35rem 0 0;
-  list-style: none;
+  display: grid;
+  margin: 20px 0 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: 4px;
 }
 
-.home-identity__facts li {
-  border: 1px solid color-mix(in srgb, var(--color-sky) 30%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-surface-strong) 86%, transparent);
-  color: var(--color-ink);
-  font-size: 0.84rem;
-  font-weight: 750;
-  line-height: 1;
-  padding: 0.52rem 0.72rem;
+.home-identity__fact {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
 
-@media (max-width: 640px) {
-  .home-identity__header {
-    align-items: flex-start;
-  }
+.home-identity__fact:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
 
-  .home-identity__avatar {
-    width: 4.75rem;
-    height: 4.75rem;
-  }
+.home-identity__fact dt {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+}
+
+.home-identity__fact dd {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 400;
 }
 </style>

@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { ArrowLeft } from "@vicons/carbon";
 import { useSeoMeta } from "nuxt/app";
 
 const router = useRouter();
+const localePath = useLocalePath();
 
 const link = router.currentRoute.value.params.title as string;
 
@@ -41,9 +43,10 @@ useHead({
   },
 });
 </script>
+
 <template>
   <div class="article-page">
-    <div class="article-layout">
+    <div class="article-layout" :class="{ 'article-layout--with-toc': Boolean(data?.body.toc?.links?.length) }">
       <button
         v-if="data?.body.toc?.links?.length && isTocOpen"
         type="button"
@@ -60,7 +63,7 @@ useHead({
         <button
           type="button"
           class="article-layout__toc-toggle"
-          :aria-controls="'article-toc-panel'"
+          aria-controls="article-toc-panel"
           :aria-expanded="isTocOpen"
           :aria-label="isTocOpen ? t('blog.closeToc') : t('blog.openToc')"
           @click="isTocOpen = !isTocOpen"
@@ -77,11 +80,12 @@ useHead({
       </aside>
 
       <article class="article-layout__content">
-        <header v-if="data" class="article-header">
-          <p class="article-header__eyebrow">
-            {{ t("blog.eyebrow") }}
-          </p>
+        <NuxtLink class="article-back" :to="localePath('/blog')">
+          <ArrowLeft class="article-back__icon" aria-hidden="true" />
+          <span>{{ t("blog.backToList") }}</span>
+        </NuxtLink>
 
+        <header v-if="data" class="article-header">
           <h1 class="article-header__title">
             {{ data.title }}
           </h1>
@@ -92,7 +96,10 @@ useHead({
               <dd>{{ publishedAt }}</dd>
             </div>
 
-            <div v-if="updatedAt" class="article-header__meta-item">
+            <div
+              v-if="updatedAt && updatedAt !== publishedAt"
+              class="article-header__meta-item"
+            >
               <dt>{{ t("blog.updated") }}</dt>
               <dd>{{ updatedAt }}</dd>
             </div>
@@ -104,13 +111,14 @@ useHead({
           </dl>
 
           <div v-if="data.tags?.length" class="article-header__tags">
-            <span
+            <NuxtLink
               v-for="tag in data.tags"
               :key="tag"
+              :to="{ path: localePath('/blog'), query: { tag } }"
               class="article-header__tag"
             >
               #{{ tag }}
-            </span>
+            </NuxtLink>
           </div>
 
           <figure v-if="articleCover" class="article-header__cover">
@@ -134,14 +142,14 @@ useHead({
 
 <style scoped>
 .article-page {
-  width: min(100% - clamp(1.5rem, 4vw, 3rem), 72rem);
+  width: min(100%, 65rem);
   margin-inline: auto;
-  padding-bottom: 4rem;
+  padding: 36px 0 64px;
 }
 
 .article-layout {
   display: grid;
-  gap: clamp(1rem, 3vw, 1.8rem);
+  gap: 32px;
 }
 
 .article-layout__toc-backdrop {
@@ -149,37 +157,26 @@ useHead({
   z-index: 24;
   inset: 0;
   border: 0;
-  background: transparent;
+  background: rgba(15, 13, 11, 0.36);
   cursor: default;
-}
-
-.article-layout__toc,
-.article-layout__content {
-  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
-  background:
-    linear-gradient(
-      135deg,
-      var(--color-surface-strong),
-      color-mix(in srgb, var(--color-surface) 84%, var(--color-canvas-warm))
-    );
-  box-shadow: var(--shadow-home-card);
-  backdrop-filter: blur(18px);
 }
 
 .article-layout__toc {
   position: fixed;
-  top: clamp(5.5rem, 14svh, 7rem);
+  top: 88px;
   right: 0;
   z-index: 25;
-  width: min(82vw, 22rem);
-  max-height: calc(100svh - 7rem);
+  width: min(82vw, 20rem);
+  max-height: calc(100svh - 112px);
   overflow: visible;
-  border-radius: 1.45rem 0 0 1.45rem;
+  border: 1px solid var(--color-border-strong);
+  border-right: 0;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
   padding: 0;
   transform: translateX(100%);
-  transition:
-    box-shadow 180ms ease,
-    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 200ms var(--ease-out);
 }
 
 .article-layout__toc.is-open {
@@ -187,37 +184,30 @@ useHead({
 }
 
 .article-layout__toc-panel {
-  height: min(32rem, calc(100svh - 7rem));
+  height: min(30rem, calc(100svh - 112px));
   overflow: hidden;
   border-radius: inherit;
-  padding: 1rem;
+  padding: 16px;
 }
 
 .article-layout__toc-toggle {
   position: absolute;
-  top: 1.1rem;
+  top: 16px;
   left: 0;
   display: grid;
   place-items: center;
-  width: 2.75rem;
-  min-height: 7rem;
-  border: 1px solid color-mix(in srgb, var(--color-rose) 28%, transparent);
+  width: 36px;
+  min-height: 88px;
+  border: 1px solid var(--color-border-strong);
   border-right: 0;
-  border-radius: 1.15rem 0 0 1.15rem;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-rose-soft) 86%, var(--color-surface)),
-      color-mix(in srgb, var(--color-sky) 22%, var(--color-surface-strong))
-    );
-  box-shadow: -10px 14px 36px rgba(23, 32, 51, 0.12);
-  color: var(--color-ink);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-secondary);
   cursor: pointer;
   font: inherit;
-  font-size: 0.78rem;
-  font-weight: 820;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
   transform: translateX(-100%);
   writing-mode: vertical-rl;
 }
@@ -228,54 +218,73 @@ useHead({
 
 .article-layout__content {
   min-width: 0;
-  border-radius: clamp(1.5rem, 3vw, 2rem);
-  padding: clamp(1.35rem, 4vw, 3rem);
+  max-width: 46rem;
+  width: 100%;
+  margin-inline: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(24px, 4vw, 44px);
+}
+
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+
+.article-back:hover {
+  color: var(--color-accent);
+}
+
+.article-back__icon {
+  width: 16px;
+  height: 16px;
 }
 
 .article-header {
   display: grid;
-  gap: 0.9rem;
-  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
-  padding-bottom: clamp(1.25rem, 3vw, 2rem);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
-}
-
-.article-header__eyebrow {
-  color: var(--color-rose);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .article-header__title {
-  max-width: 13ch;
-  color: var(--color-ink);
-  font-size: clamp(2.15rem, 5vw, 3.5rem);
-  font-weight: 850;
-  letter-spacing: -0.055em;
-  line-height: 1.02;
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
   text-wrap: balance;
+}
+
+:global([lang^="zh"]) .article-header__title {
+  letter-spacing: 0;
 }
 
 .article-header__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 8px 20px;
   margin: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .article-header__meta-item {
-  display: flex;
-  gap: 0.35rem;
-  align-items: center;
-  min-height: 2rem;
-  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-surface-strong) 72%, transparent);
-  color: color-mix(in srgb, var(--color-ink) 70%, transparent);
-  font-size: 0.82rem;
-  padding: 0 0.75rem;
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 0.8125rem;
 }
 
 .article-header__meta-item dt,
@@ -284,32 +293,49 @@ useHead({
 }
 
 .article-header__meta-item dt {
-  color: color-mix(in srgb, var(--color-rose) 78%, var(--color-ink));
-  font-weight: 760;
+  color: var(--color-text-muted);
+}
+
+.article-header__meta-item dd {
+  color: var(--color-text-secondary);
+  font-family: var(--font-code);
 }
 
 .article-header__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 8px;
 }
 
 .article-header__tag {
-  border: 1px solid color-mix(in srgb, var(--color-mint) 24%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-sky) 22%, var(--color-surface));
-  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
-  font-size: 0.8rem;
-  padding: 0.38rem 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  padding: 0 8px;
+  text-decoration: none;
+  transition:
+    border-color 150ms var(--ease-out),
+    color 150ms var(--ease-out);
+}
+
+.article-header__tag:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-accent);
 }
 
 .article-header__cover {
   overflow: hidden;
   aspect-ratio: 3 / 2;
-  margin: clamp(0.55rem, 2vw, 1rem) 0 0;
-  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
-  border-radius: clamp(1rem, 2vw, 1.35rem);
-  background: color-mix(in srgb, var(--color-surface-strong) 72%, transparent);
+  margin: 8px 0 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
 }
 
 .article-header__cover img {
@@ -323,24 +349,27 @@ useHead({
   display: none;
 }
 
+.article-rendered :deep(img) {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-block: 20px;
+}
+
 .article-rendered :deep(.katex) {
-  color: var(--color-ink);
+  color: var(--color-text);
   font-size: 1.04em;
 }
 
 .article-rendered :deep(.katex-display) {
   overflow-x: auto;
   overflow-y: hidden;
-  margin: clamp(1.2rem, 3vw, 1.8rem) 0;
-  border: 1px solid color-mix(in srgb, var(--color-sky) 26%, transparent);
-  border-radius: 1.1rem;
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--color-sky) 16%, var(--color-surface-strong)),
-      color-mix(in srgb, var(--color-rose-soft) 18%, var(--color-surface))
-    );
-  padding: 0.9rem 1rem;
+  margin: 20px 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-raised);
+  padding: 16px;
 }
 
 .article-rendered :deep(.katex-display > .katex) {
@@ -349,36 +378,36 @@ useHead({
 
 .article-rendered :deep(.katex-error) {
   display: inline-block;
-  border-radius: 0.45rem;
-  background: color-mix(in srgb, var(--color-error) 10%, transparent);
+  border-radius: 4px;
+  background: rgba(220, 38, 38, 0.1);
   color: var(--color-error);
-  padding: 0 0.25rem;
-}
-
-:global(:where(.dark, .dark-mode)) .article-layout__toc,
-:global(:where(.dark, .dark-mode)) .article-layout__content {
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-}
-
-:global(:where(.dark, .dark-mode)) .article-layout__toc-toggle {
-  box-shadow: -10px 14px 36px rgba(0, 0, 0, 0.28);
+  padding: 0 4px;
 }
 
 @media (min-width: 1024px) {
-  .article-layout {
-    grid-template-columns: minmax(14rem, 17rem) minmax(0, 1fr);
+  .article-layout--with-toc {
+    grid-template-columns: 14rem minmax(0, 1fr);
     align-items: start;
+  }
+
+  .article-layout__content {
+    margin-inline: 0;
+    max-width: none;
   }
 
   .article-layout__toc {
     position: sticky;
-    top: 1rem;
-    max-height: calc(100svh - 7rem);
+    top: 24px;
+    right: auto;
+    z-index: 1;
     width: auto;
+    max-height: calc(100svh - 48px);
     overflow: hidden;
-    border-radius: 1.45rem;
-    padding: 1rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 4px 0;
     transform: none;
   }
 
@@ -389,15 +418,18 @@ useHead({
 
   .article-layout__toc-panel {
     height: auto;
-    max-height: none;
+    max-height: calc(100svh - 64px);
     padding: 0;
   }
 }
 
 @media (max-width: 640px) {
+  .article-page {
+    padding: 24px 0 48px;
+  }
+
   .article-rendered :deep(.katex-display) {
-    margin-inline: -0.25rem;
-    padding: 0.8rem 0.75rem;
+    padding: 12px;
   }
 }
 </style>

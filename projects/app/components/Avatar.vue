@@ -12,7 +12,7 @@ const goToAvatar = () => {
       class="w-20 h-20 rounded-full cursor-pointer hover:scale-110 transition-transform duration-300"
       src="https://avatars.githubusercontent.com/u/32237950?v=4"
       @click="goToAvatar"
-    />
+    >
   </div>
 </template>
 

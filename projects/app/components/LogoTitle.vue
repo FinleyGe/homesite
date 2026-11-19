@@ -1,23 +1,28 @@
 <script setup lang="ts">
-
 </script>
+
 <template>
-  <span class="title hover:cursor-pointer m-2 text-nowrap">
+  <span class="logo-wordmark">
     Finley Ge
   </span>
 </template>
 
-<style scoped lang="scss">
-@font-face {
-  font-family: victor;
-  src: url("/fonts/victor.ttf");
+<style scoped>
+.logo-wordmark {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text);
+  font-family: var(--font-signature);
+  font-size: 1.125rem;
   font-style: italic;
+  font-weight: 400;
+  font-variant-ligatures: common-ligatures;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 150ms var(--ease-out);
 }
 
-.title {
-  font-size: 1.2rem;
-  font-family: victor;
-  font-style: italic;
-  font-variant-ligatures: common-ligatures;
+.logo-wordmark:hover {
+  color: var(--color-accent);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="mermaid" v-if="show">
-    <slot></slot>
+  <div v-if="show" class="mermaid">
+    <slot/>
   </div>
 </template>
 

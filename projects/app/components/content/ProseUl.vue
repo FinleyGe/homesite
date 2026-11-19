@@ -7,11 +7,11 @@
 <style scoped>
 .prose-list {
   display: grid;
-  gap: 0.45rem;
-  margin-block: 1rem 1.2rem;
-  padding-left: 1.45rem;
-  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
-  line-height: 1.78;
+  gap: 8px;
+  margin-block: 16px;
+  padding-left: 20px;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
 }
 
 .prose-list--unordered {
@@ -20,14 +20,14 @@
 
 .prose-list :deep(ul),
 .prose-list :deep(ol) {
-  margin-block: 0.45rem 0.2rem;
+  margin-block: 8px 4px;
 }
 
 .prose-list :deep(input[type="checkbox"]) {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-  accent-color: var(--color-rose);
-  transform: translateY(0.12rem);
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  accent-color: var(--color-accent);
+  transform: translateY(2px);
 }
 </style>

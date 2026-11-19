@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { ArrowRight } from "@vicons/carbon";
+
 type HomeCta = {
   label: string;
   href: string;
-  kind: "primary" | "secondary" | "quiet";
+  kind: "primary" | "secondary";
   external?: boolean;
+};
+
+type HomeFact = {
+  label: string;
+  value: string;
 };
 
 type HomeNoteGroup = {
@@ -27,6 +34,14 @@ const {
   status,
 } = await useAsyncData("home-about", () =>
   queryCollection("about").where("title", "=", "about").all(),
+);
+
+const { data: recentBlogs } = await useAsyncData("home-recent-blogs", () =>
+  queryCollection("blog")
+    .order("create", "DESC")
+    .select("id", "title", "path", "description", "create", "update", "lang", "cover", "coverAlt")
+    .limit(4)
+    .all(),
 );
 
 const selectedAbout = computed(() => {
@@ -53,6 +68,16 @@ const homeState = computed<"ready" | "loading" | "empty" | "error">(() => {
   return "ready";
 });
 
+const featuredBlog = computed(() => {
+  const list = recentBlogs.value ?? [];
+  return list.find((item) => Boolean(item.cover)) ?? list[0] ?? null;
+});
+
+const secondaryBlogs = computed(() => {
+  const list = recentBlogs.value ?? [];
+  return list.filter((item) => item.id !== featuredBlog.value?.id).slice(0, 3);
+});
+
 const blogPath = computed(() => localePath("/blog"));
 const nowPath = computed(() => localePath("/now"));
 
@@ -67,19 +92,25 @@ const heroCtas = computed<HomeCta[]>(() => [
     href: nowPath.value,
     kind: "secondary",
   },
-  {
-    label: t("home.contactCta"),
-    href: "#contact",
-    kind: "quiet",
-    external: true,
-  },
 ]);
 
-const identityFacts = computed(() => [
-  t("home.identity.factSchool"),
-  t("home.identity.factType"),
-  t("home.identity.factStack"),
-  t("home.identity.factMode"),
+const identityFacts = computed<HomeFact[]>(() => [
+  {
+    label: t("home.identity.factSchoolLabel"),
+    value: t("home.identity.factSchool"),
+  },
+  {
+    label: t("home.identity.factTypeLabel"),
+    value: t("home.identity.factType"),
+  },
+  {
+    label: t("home.identity.factStackLabel"),
+    value: t("home.identity.factStack"),
+  },
+  {
+    label: t("home.identity.factModeLabel"),
+    value: t("home.identity.factMode"),
+  },
 ]);
 
 const noteGroups = computed<HomeNoteGroup[]>(() => [
@@ -184,7 +215,6 @@ const stateBody = computed(() => {
       />
 
       <HomeIdentityCard
-        class="home-page__identity"
         :label="t('home.identity.label')"
         :current-title="t('home.identity.currentTitle')"
         :current-body="t('home.identity.currentBody')"
@@ -219,24 +249,69 @@ const stateBody = computed(() => {
       </div>
     </section>
 
-    <section class="home-page__direction" aria-labelledby="home-direction-title">
-      <div>
-        <p class="home-page__kicker">
-          01 / direction
-        </p>
-        <h2 id="home-direction-title">
-          {{ t("home.direction.title") }}
-        </h2>
+    <section class="home-writing" aria-labelledby="home-direction-title">
+      <div class="home-writing__header">
+        <div>
+          <p class="home-section-label">
+            {{ t("home.direction.eyebrow") }}
+          </p>
+          <h2 id="home-direction-title" class="home-section-title">
+            {{ t("home.direction.title") }}
+          </h2>
+          <p class="home-writing__intro">
+            {{ t("home.direction.body") }}
+          </p>
+        </div>
+
+        <NuxtLink class="home-writing__all" :to="blogPath">
+          <span>{{ t("home.direction.allPosts") }}</span>
+          <ArrowRight class="home-writing__icon" aria-hidden="true" />
+        </NuxtLink>
       </div>
-      <p>
-        {{ t("home.direction.body") }}
-      </p>
-      <NuxtLink :to="blogPath">
-        {{ t("home.primaryCta") }}
-      </NuxtLink>
+
+      <div v-if="featuredBlog" class="home-writing__showcase">
+        <NuxtLink class="home-featured" :to="localePath(featuredBlog.path)">
+          <div v-if="featuredBlog.cover" class="home-featured__media">
+            <img
+              :src="featuredBlog.cover"
+              :alt="featuredBlog.coverAlt ?? featuredBlog.title"
+              loading="eager"
+              decoding="async"
+            >
+          </div>
+
+          <div class="home-featured__body">
+            <p class="home-featured__meta">
+              <span>{{ featuredBlog.update ?? featuredBlog.create }}</span>
+              <span aria-hidden="true">·</span>
+              <span>{{ t(`lang.${featuredBlog.lang}`) }}</span>
+            </p>
+            <h3 class="home-featured__title">
+              {{ featuredBlog.title }}
+            </h3>
+            <p class="home-featured__desc">
+              {{ featuredBlog.description }}
+            </p>
+            <span class="home-featured__cta">
+              <span>{{ t("blog.readArticle") }}</span>
+              <ArrowRight class="home-writing__icon" aria-hidden="true" />
+            </span>
+          </div>
+        </NuxtLink>
+
+        <ul v-if="secondaryBlogs.length" class="home-recent-list">
+          <li v-for="post in secondaryBlogs" :key="post.id" class="home-recent-item">
+            <NuxtLink class="home-recent-item__link" :to="localePath(post.path)">
+              <span class="home-recent-item__title">{{ post.title }}</span>
+              <span class="home-recent-item__date">{{ post.update ?? post.create }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <HomeNoteSection
+      :eyebrow="t('home.notes.eyebrow')"
       :title="t('home.notes.title')"
       :intro="t('home.notes.intro')"
       :groups="noteGroups"
@@ -244,6 +319,7 @@ const stateBody = computed(() => {
 
     <HomeContactStrip
       id="contact"
+      :eyebrow="t('home.contact.eyebrow')"
       :title="t('home.contact.title')"
       :body="t('home.contact.body')"
       :links="contactLinks"
@@ -253,135 +329,293 @@ const stateBody = computed(() => {
 
 <style scoped>
 .home-page {
-  width: min(100%, 72rem);
-  margin: 0 auto;
-  padding: 0 clamp(0.25rem, 2vw, 1rem);
-  color: var(--color-ink);
+  width: min(100%, 65rem);
+  margin-inline: auto;
+  color: var(--color-text);
   overflow-wrap: anywhere;
 }
 
 .home-page__lead {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.62fr);
-  gap: clamp(1.2rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+  gap: 48px;
   align-items: center;
-}
-
-.home-page__identity {
-  margin-top: clamp(1rem, 5vw, 4rem);
+  padding: 56px 0 64px;
 }
 
 .home-page__state-card {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 16px;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid color-mix(in srgb, var(--color-warning) 44%, transparent);
-  border-radius: 1.4rem;
-  background: color-mix(in srgb, var(--color-surface-strong) 88%, transparent);
-  margin: 0 0 2rem;
-  padding: 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  margin: 0 0 32px;
+  padding: 16px 20px;
 }
 
 .home-page__state-card--error {
-  border-color: color-mix(in srgb, var(--color-error) 48%, transparent);
+  border-color: var(--color-error);
 }
 
 .home-page__state-card h2 {
   margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-size: 1.35rem;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .home-page__state-card p {
-  margin: 0.35rem 0 0;
-  color: var(--color-muted);
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
 }
 
 .home-page__state-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 8px;
 }
 
 .home-page__state-actions a,
-.home-page__state-actions button,
-.home-page__direction a {
+.home-page__state-actions button {
   display: inline-flex;
-  min-height: 2.75rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--color-rose) 28%, transparent);
-  border-radius: 999px;
-  background: var(--color-surface-strong);
-  color: var(--color-ink);
+  min-height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
   cursor: pointer;
-  font-weight: 800;
-  line-height: 1;
-  padding: 0.62rem 0.95rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 12px;
   text-decoration: none;
 }
 
-.home-page__direction {
-  display: grid;
-  grid-template-columns: minmax(13rem, 0.65fr) minmax(0, 1fr) auto;
-  gap: clamp(1rem, 3vw, 2rem);
-  align-items: center;
-  border-block: 1px solid color-mix(in srgb, var(--color-sky) 34%, transparent);
-  padding: clamp(1.2rem, 3vw, 1.8rem) 0;
+.home-section-label {
+  margin: 0 0 8px;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-.home-page__kicker {
-  margin: 0 0 0.55rem;
-  color: var(--color-rose);
-  font-family: var(--font-code);
-  font-size: 0.82rem;
-  font-weight: 800;
-}
-
-.home-page__direction h2 {
+.home-section-title {
   margin: 0;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 3.25rem);
-  line-height: 0.95;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-.home-page__direction p {
+:global([lang^="zh"]) .home-section-title {
+  letter-spacing: 0;
+}
+
+.home-writing {
+  border-top: 1px solid var(--color-border);
+  padding: 56px 0;
+}
+
+.home-writing__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: 32px;
+}
+
+.home-writing__intro {
+  max-width: 38rem;
+  margin: 12px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.home-writing__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+
+.home-writing__all:hover {
+  color: var(--color-accent-hover);
+}
+
+.home-writing__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.home-writing__showcase {
+  display: grid;
+  gap: 24px;
+}
+
+.home-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  text-decoration: none;
+  transition:
+    border-color 150ms var(--ease-out),
+    background-color 150ms var(--ease-out);
+}
+
+.home-featured:hover {
+  border-color: var(--color-border-strong);
+}
+
+.home-featured__media {
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-raised);
+}
+
+.home-featured__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-featured__body {
+  display: grid;
+  gap: 12px;
+  padding: 8px 12px 8px 0;
+}
+
+.home-featured__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
-  color: var(--color-muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
 }
 
-.home-page__direction a {
-  background: var(--color-rose);
-  color: white;
+.home-featured__title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
-@media (max-width: 980px) {
-  .home-page__lead,
-  .home-page__direction {
+.home-featured__desc {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.home-featured__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.home-recent-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.home-recent-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.home-recent-item__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 4px;
+  text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+
+.home-recent-item__title {
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  transition: color 150ms var(--ease-out);
+}
+
+.home-recent-item__link:hover .home-recent-item__title {
+  color: var(--color-accent);
+}
+
+.home-recent-item__date {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .home-page__lead {
     grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 0 48px;
   }
 
-  .home-page__identity {
-    margin-top: 0;
+  .home-featured {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .home-page__direction a {
-    width: fit-content;
+  .home-featured__body {
+    padding: 4px;
   }
 }
 
-@media (max-width: 520px) {
-  .home-page__state-actions,
-  .home-page__state-actions a,
-  .home-page__state-actions button,
-  .home-page__direction a {
-    width: 100%;
+@media (max-width: 640px) {
+  .home-writing {
+    padding: 40px 0;
+  }
+
+  .home-recent-item__link {
+    flex-direction: column;
+    gap: 4px;
   }
 }
 </style>

@@ -1,21 +1,22 @@
 <script setup lang="ts">
+import { ArrowUpRight, Email } from "@vicons/carbon";
 import { linkList } from "../../const/links";
 
 const { t } = useI18n({
   messages: {
     zh: {
-      eyebrow: "Friends & neighbors",
+      eyebrow: "友邻目录",
       title: "友情链接",
       intro: "一些值得顺手拜访的个人站点。互联网最可爱的部分，往往藏在这些小门牌后面。",
-      askForExchange: "申请友情链接",
-      visit: "访问站点",
+      askForExchange: "申请交换友链",
+      count: "{count} 个站点",
     },
     en: {
-      eyebrow: "Friends & neighbors",
+      eyebrow: "Directory",
       title: "Link Exchange",
       intro: "A small directory of personal sites worth visiting. The best corners of the web usually live behind tiny doorplates.",
-      askForExchange: "Ask for exchange",
-      visit: "Visit site",
+      askForExchange: "Request exchange",
+      count: "{count} sites",
     },
   },
 });
@@ -28,19 +29,22 @@ function handleAskForLinkExchange() {
   window.open("mailto:finleyge@qq.com");
 }
 </script>
+
 <template>
   <div class="link-exchange-page">
-    <section class="link-exchange-hero" aria-labelledby="link-exchange-title">
-      <div class="link-exchange-hero__copy">
-        <p class="link-exchange-hero__eyebrow">
-          {{ t("eyebrow") }}
+    <header class="link-exchange-header" aria-labelledby="link-exchange-title">
+      <div class="link-exchange-header__copy">
+        <p class="link-exchange-header__eyebrow">
+          <span>{{ t("eyebrow") }}</span>
+          <span aria-hidden="true">·</span>
+          <span class="link-exchange-header__count">{{ t("count", { count: linkList.length }) }}</span>
         </p>
 
-        <h1 id="link-exchange-title" class="link-exchange-hero__title">
+        <h1 id="link-exchange-title" class="link-exchange-header__title">
           {{ t("title") }}
         </h1>
 
-        <p class="link-exchange-hero__intro">
+        <p class="link-exchange-header__intro">
           {{ t("intro") }}
         </p>
       </div>
@@ -48,32 +52,38 @@ function handleAskForLinkExchange() {
       <ClientOnly>
         <button
           type="button"
-          class="link-exchange-hero__action"
+          class="link-exchange-header__action"
           @click="handleAskForLinkExchange"
         >
-          {{ t("askForExchange") }}
+          <Email class="link-exchange-header__action-icon" aria-hidden="true" />
+          <span>{{ t("askForExchange") }}</span>
         </button>
       </ClientOnly>
-    </section>
+    </header>
 
-    <section class="friend-grid" aria-label="Friend links">
+    <section class="friend-directory" aria-label="Friend links">
       <a
-        v-for="link in linkList"
+        v-for="(link, index) in linkList"
         :key="link.link"
         :href="link.link"
         target="_blank"
         rel="noopener noreferrer"
-        class="friend-card"
+        class="friend-row"
       >
-        <span class="friend-card__name">
-          {{ link.name }}
+        <span class="friend-row__index">
+          {{ index + 1 }}
         </span>
-        <span class="friend-card__url">
-          {{ getHost(link.link) }}
+
+        <span class="friend-row__body">
+          <span class="friend-row__name">
+            {{ link.name }}
+          </span>
+          <span class="friend-row__url">
+            {{ getHost(link.link) }}
+          </span>
         </span>
-        <span class="friend-card__visit">
-          {{ t("visit") }}
-        </span>
+
+        <ArrowUpRight class="friend-row__arrow" aria-hidden="true" />
       </a>
     </section>
   </div>
@@ -81,183 +91,191 @@ function handleAskForLinkExchange() {
 
 <style scoped>
 .link-exchange-page {
-  width: min(100% - clamp(2rem, 5vw, 4rem), 64rem);
+  width: min(100%, 65rem);
   margin-inline: auto;
-  padding-bottom: 4rem;
+  padding: 40px 0 64px;
 }
 
-.link-exchange-hero {
+.link-exchange-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1rem, 4vw, 2.5rem);
+  gap: 24px 32px;
   align-items: end;
-  padding: clamp(1.35rem, 4vw, 2.4rem);
-  border: 1px solid rgba(23, 32, 51, 0.08);
-  border-radius: 2rem;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.84),
-      rgba(255, 248, 243, 0.68) 58%,
-      rgba(207, 234, 242, 0.48)
-    );
-  box-shadow: 0 22px 60px rgba(23, 32, 51, 0.08);
-  backdrop-filter: blur(18px);
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.link-exchange-hero__copy {
+.link-exchange-header__copy {
   display: grid;
-  gap: 0.7rem;
+  gap: 8px;
 }
 
-.link-exchange-hero__eyebrow {
-  color: rgba(23, 32, 51, 0.62);
-  font-size: 0.875rem;
+.link-exchange-header__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.link-exchange-header__count {
+  font-family: var(--font-code);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
 }
 
-.link-exchange-hero__title {
-  max-width: 11ch;
-  color: rgb(23, 32, 51);
-  font-size: clamp(2.25rem, 6vw, 4.7rem);
-  font-weight: 800;
-  letter-spacing: -0.065em;
-  line-height: 0.95;
-  text-wrap: balance;
+.link-exchange-header__title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-.link-exchange-hero__intro {
-  max-width: 45rem;
-  color: rgba(23, 32, 51, 0.76);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.7;
+:global([lang^="zh"]) .link-exchange-header__title {
+  letter-spacing: 0;
+}
+
+.link-exchange-header__intro {
+  margin: 4px 0 0;
+  max-width: 38rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
   text-wrap: pretty;
 }
 
-.link-exchange-hero__action {
-  min-height: 2.75rem;
-  border: 1px solid rgba(196, 68, 124, 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 12px 26px rgba(23, 32, 51, 0.08);
-  color: oklch(0.408 0.153 2.432);
+.link-exchange-header__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  box-shadow: var(--highlight-top);
+  color: var(--color-text);
   cursor: pointer;
   font: inherit;
-  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0 16px;
+  white-space: nowrap;
   transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    background-color 150ms var(--ease-out),
+    border-color 150ms var(--ease-out),
+    transform 120ms var(--ease-out);
 }
 
-.link-exchange-hero__action:hover,
-.friend-card:hover {
-  transform: translateY(-2px);
+.link-exchange-header__action:hover {
+  background-color: var(--color-surface-raised);
 }
 
-.friend-grid {
+.link-exchange-header__action:active {
+  transform: scale(0.98);
+}
+
+.link-exchange-header__action-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+}
+
+.friend-directory {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: 0.9rem;
-  margin-top: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 28px;
 }
 
-.friend-card {
+.friend-row {
   display: grid;
-  min-height: 8rem;
-  align-content: space-between;
-  gap: 1rem;
-  padding: 1.2rem;
-  border: 1px solid rgba(23, 32, 51, 0.08);
-  border-radius: 1.45rem;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.78),
-      rgba(255, 248, 243, 0.62)
-    );
-  box-shadow: 0 16px 42px rgba(23, 32, 51, 0.07);
+  grid-template-columns: 2rem minmax(0, 1fr) 16px;
+  gap: 12px;
+  align-items: center;
+  min-height: 76px;
+  padding: 16px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
   color: inherit;
   text-decoration: none;
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    border-color 150ms var(--ease-out),
+    background-color 150ms var(--ease-out);
 }
 
-.friend-card:hover {
-  border-color: rgba(17, 153, 119, 0.18);
-  box-shadow: 0 20px 54px rgba(23, 32, 51, 0.1);
+.friend-row:hover {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
 }
 
-.friend-card__name {
-  color: rgb(23, 32, 51);
-  font-size: 1.15rem;
-  font-weight: 750;
-  letter-spacing: -0.025em;
+.friend-row:hover .friend-row__name,
+.friend-row:hover .friend-row__arrow {
+  color: var(--color-accent);
 }
 
-.friend-card__url {
-  color: rgba(23, 32, 51, 0.62);
-  font-size: 0.875rem;
-  overflow-wrap: anywhere;
+.friend-row__index {
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
 }
 
-.friend-card__visit {
-  width: fit-content;
-  min-height: 2.25rem;
-  border-radius: 999px;
-  background: rgba(207, 234, 242, 0.72);
-  color: rgb(23, 32, 51);
-  font-size: 0.875rem;
-  line-height: 2.25rem;
-  padding: 0 0.8rem;
+.friend-row__body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
 }
 
-:global(.dark) .link-exchange-hero,
-:global(.dark) .friend-card {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(17, 24, 39, 0.76);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+.friend-row__name {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: color 150ms var(--ease-out);
 }
 
-:global(.dark) .link-exchange-hero__title,
-:global(.dark) .friend-card__name,
-:global(.dark) .friend-card__visit {
-  color: rgba(248, 250, 252, 0.94);
+.friend-row__url {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  line-height: 1.4;
 }
 
-:global(.dark) .link-exchange-hero__intro,
-:global(.dark) .friend-card__url,
-:global(.dark) .link-exchange-hero__eyebrow {
-  color: rgba(226, 232, 240, 0.68);
-}
-
-:global(.dark) .link-exchange-hero__action {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.7);
-}
-
-:global(.dark) .friend-card__visit {
-  background: rgba(31, 41, 55, 0.82);
+.friend-row__arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+  transition: color 150ms var(--ease-out);
 }
 
 @media (max-width: 720px) {
   .link-exchange-page {
-    width: min(100% - 2rem, 64rem);
+    padding: 28px 0 48px;
   }
 
-  .link-exchange-hero {
+  .link-exchange-header {
     grid-template-columns: 1fr;
     align-items: start;
-    border-radius: 1.5rem;
   }
 
-  .link-exchange-hero__action {
-    width: 100%;
+  .link-exchange-header__action {
+    width: fit-content;
+  }
+
+  .friend-directory {
+    grid-template-columns: 1fr;
   }
 }
 </style>

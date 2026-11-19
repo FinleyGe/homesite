@@ -5,6 +5,7 @@ type HomeNoteGroup = {
 };
 
 defineProps<{
+  eyebrow: string;
   title: string;
   intro: string;
   groups: HomeNoteGroup[];
@@ -14,21 +15,23 @@ defineProps<{
 <template>
   <section class="home-notes" aria-labelledby="home-notes-title">
     <div class="home-notes__heading">
-      <p class="home-notes__kicker">
-        02 / notes
+      <p class="home-notes__label">
+        {{ eyebrow }}
       </p>
-      <h2 id="home-notes-title">
+      <h2 id="home-notes-title" class="home-notes__title">
         {{ title }}
       </h2>
-      <p>
+      <p class="home-notes__intro">
         {{ intro }}
       </p>
     </div>
 
     <div class="home-notes__grid">
       <article v-for="group in groups" :key="group.title" class="home-notes__card">
-        <h3>{{ group.title }}</h3>
-        <ul>
+        <h3 class="home-notes__card-title">
+          {{ group.title }}
+        </h3>
+        <ul class="home-notes__list">
           <li v-for="item in group.items" :key="item">
             {{ item }}
           </li>
@@ -41,94 +44,90 @@ defineProps<{
 <style scoped>
 .home-notes {
   display: grid;
-  grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(1.4rem, 4vw, 3rem);
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  gap: 40px;
   align-items: start;
-  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+  border-top: 1px solid var(--color-border);
+  padding: 56px 0;
 }
 
 .home-notes__heading {
   position: sticky;
-  top: 1.5rem;
+  top: 24px;
 }
 
-.home-notes__kicker {
-  margin: 0 0 0.75rem;
-  color: var(--color-rose);
-  font-family: var(--font-code);
-  font-size: 0.82rem;
-  font-weight: 800;
+.home-notes__label {
+  margin: 0 0 8px;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-.home-notes h2 {
+.home-notes__title {
   margin: 0;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5vw, 4.2rem);
-  line-height: 0.95;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-.home-notes__heading p:last-child {
+:global([lang^="zh"]) .home-notes__title {
+  letter-spacing: 0;
+}
+
+.home-notes__intro {
   max-width: 22rem;
-  margin: 1rem 0 0;
-  color: var(--color-muted);
-  line-height: 1.7;
+  margin: 12px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
 }
 
 .home-notes__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
+  gap: 16px;
 }
 
 .home-notes__card {
-  min-height: 12rem;
-  border: 1px solid color-mix(in srgb, var(--color-sky) 26%, transparent);
-  border-radius: 1.45rem;
-  background: var(--color-surface);
-  padding: clamp(1rem, 2.5vw, 1.35rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  padding: 20px;
 }
 
-.home-notes__card:nth-child(2n) {
-  transform: translateY(1.25rem);
-}
-
-.home-notes__card h3 {
+.home-notes__card-title {
   margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-size: 1.45rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-.home-notes__card ul {
+.home-notes__list {
   display: grid;
-  gap: 0.72rem;
+  gap: 10px;
   padding: 0;
-  margin: 1rem 0 0;
+  margin: 14px 0 0;
   list-style: none;
 }
 
-.home-notes__card li {
-  position: relative;
-  padding-left: 1.05rem;
-  color: var(--color-muted);
-  line-height: 1.55;
-}
-
-.home-notes__card li::before {
-  position: absolute;
-  top: 0.68em;
-  left: 0;
-  width: 0.38rem;
-  height: 0.38rem;
-  border-radius: 999px;
-  background: var(--color-rose);
-  content: "";
+.home-notes__list li {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 860px) {
   .home-notes {
     grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 0;
   }
 
   .home-notes__heading {
@@ -139,16 +138,6 @@ defineProps<{
 @media (max-width: 640px) {
   .home-notes__grid {
     grid-template-columns: 1fr;
-  }
-
-  .home-notes__card:nth-child(2n) {
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-notes__card:nth-child(2n) {
-    transform: none;
   }
 }
 </style>

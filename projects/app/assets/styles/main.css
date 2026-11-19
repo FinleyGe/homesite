@@ -15,49 +15,112 @@
 
 :root {
   color-scheme: light;
-  --font-display: Georgia, "Times New Roman", "Songti SC", serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-signature: victor, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-code: "Fira Code", monospace;
 
-  --color-canvas: #f7fbfc;
-  --color-canvas-warm: #fff8f3;
-  --color-surface: rgba(255, 255, 255, 0.76);
-  --color-surface-strong: rgba(255, 255, 255, 0.92);
-  --color-ink: #172033;
-  --color-muted: #64748b;
-  --color-rose: #d94f86;
-  --color-rose-soft: #f6d9e4;
-  --color-sky: #cfeaf2;
-  --color-mint: #7ac7a4;
-  --color-warning: #eab857;
-  --color-error: #d94a4a;
-  --shadow-home-card: 0 22px 70px rgba(54, 82, 105, 0.12);
-  --shadow-home-soft: 0 14px 40px rgba(192, 111, 137, 0.1);
+  /* Typography */
+  --font-display: "Iowan Old Style", "New York", Georgia, "Songti SC", "Noto Serif SC", "STSong", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-signature: victor, Georgia, serif;
+  --font-code: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Warm paper neutral ramp */
+  --color-bg: #f6f3ed;
+  --color-surface: #fcfaf6;
+  --color-surface-raised: #eee9df;
+  --color-surface-hover: #e5dfd3;
+  --color-border: rgba(31, 27, 22, 0.09);
+  --color-border-strong: rgba(31, 27, 22, 0.18);
+
+  /* Text roles (3-step ramp) */
+  --color-text: #1f1b16;
+  --color-text-secondary: #574f45;
+  --color-text-muted: #6f665b;
+
+  /* One restrained accent: seal vermilion */
+  --color-accent: #a93444;
+  --color-accent-hover: #8f2a38;
+  --color-accent-soft: rgba(169, 52, 68, 0.09);
+  --color-accent-border: rgba(169, 52, 68, 0.24);
+
+  /* Primary control fill */
+  --color-primary-bg: #1f1b16;
+  --color-primary-text: #fcfaf6;
+  --color-primary-hover: #332d25;
+
+  /* Semantic */
+  --color-positive: #16a34a;
+  --color-warning: #b47d19;
+  --color-error: #dc2626;
+  --color-mark-bg: rgba(196, 146, 56, 0.22);
+
+  /* Radii (nested scale) */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Depth & Motion */
+  --shadow-sm: 0 1px 2px rgba(31, 27, 22, 0.05);
+  --shadow-md: 0 8px 24px rgba(31, 27, 22, 0.07);
+  --highlight-top: none;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Legacy aliases for untouched routes */
+  --color-canvas: var(--color-bg);
+  --color-canvas-warm: var(--color-bg);
+  --color-surface-strong: var(--color-surface);
+  --color-ink: var(--color-text);
+  --color-muted: var(--color-text-secondary);
+  --color-rose: var(--color-accent);
+  --color-rose-soft: var(--color-accent-soft);
+  --color-sky: var(--color-surface-raised);
+  --color-mint: var(--color-positive);
+  --shadow-home-card: var(--shadow-sm);
+  --shadow-home-soft: var(--shadow-sm);
 }
 
 .dark,
 .dark-mode {
   color-scheme: dark;
-  --color-canvas: #111827;
-  --color-canvas-warm: #1f2937;
-  --color-surface: rgba(17, 24, 39, 0.72);
-  --color-surface-strong: rgba(31, 41, 55, 0.92);
-  --color-ink: #f8fafc;
-  --color-muted: #cbd5e1;
-  --color-rose: #f08ab6;
-  --color-rose-soft: rgba(240, 138, 182, 0.28);
-  --color-sky: #66b9df;
-  --color-mint: #86d7b4;
-  --color-warning: #f0c76f;
-  --color-error: #f87171;
-  --shadow-home-card: 0 22px 70px rgba(0, 0, 0, 0.28);
-  --shadow-home-soft: 0 14px 40px rgba(240, 138, 182, 0.12);
+
+  /* Warm charcoal neutral ramp */
+  --color-bg: #151412;
+  --color-surface: #1c1a17;
+  --color-surface-raised: #26231f;
+  --color-surface-hover: #302c27;
+  --color-border: rgba(239, 233, 222, 0.09);
+  --color-border-strong: rgba(239, 233, 222, 0.18);
+
+  /* Text roles */
+  --color-text: #efe9de;
+  --color-text-secondary: #b6aea2;
+  --color-text-muted: #91897d;
+
+  /* One restrained accent */
+  --color-accent: #de7582;
+  --color-accent-hover: #e98d98;
+  --color-accent-soft: rgba(222, 117, 130, 0.13);
+  --color-accent-border: rgba(222, 117, 130, 0.3);
+
+  /* Primary control fill */
+  --color-primary-bg: #efe9de;
+  --color-primary-text: #151412;
+  --color-primary-hover: #ffffff;
+
+  /* Semantic */
+  --color-positive: #4cc38a;
+  --color-warning: #e0b052;
+  --color-error: #e5484d;
+  --color-mark-bg: rgba(224, 176, 82, 0.22);
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.36);
+  --highlight-top: inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 html {
-  background: var(--color-canvas);
-  color: var(--color-ink);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -66,11 +129,8 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background:
-    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--color-rose-soft) 34%, transparent), transparent 30rem),
-    radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--color-sky) 42%, transparent), transparent 26rem),
-    linear-gradient(180deg, var(--color-canvas), var(--color-canvas-warm));
-  color: var(--color-ink);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body);
 }
 
@@ -93,29 +153,20 @@ samp {
 }
 
 ::selection {
-  background: var(--color-rose-soft);
-  color: var(--color-ink);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-rose);
-  outline-offset: 4px;
-  border-radius: 0.5rem;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
 }
 
-@keyframes fadeIn {
+@keyframes fadeRise {
   0% {
     opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes homeFloatIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   100% {
     opacity: 1;

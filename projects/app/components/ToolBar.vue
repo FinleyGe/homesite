@@ -30,22 +30,18 @@ async function toggleLocale() {
 
 const tabs = [
   {
-    color: "pink",
     link: "blog",
     label: "common.blog",
   },
   {
-    color: "blue",
     link: "link-exchange",
     label: "common.link-exchange",
   },
   {
-    color: "yellow",
     link: "donate",
     label: "common.donate",
   },
   {
-    color: "green",
     link: "now",
     label: "common.now",
   },
@@ -59,14 +55,15 @@ const isTabActive = (link: string) => {
 
 <template>
   <div class="toolbar">
-    <LogoTitle @click="router.push(localePath('/'))" />
+    <NuxtLink class="toolbar__brand" :to="localePath('/')">
+      <LogoTitle />
+    </NuxtLink>
 
     <nav class="toolbar__nav" aria-label="Primary">
       <ColorfulButton
         v-for="tab in tabs"
         :key="tab.link"
         :active="isTabActive(tab.link)"
-        :color="tab.color"
         :router-link="localePath(tab.link)"
       >
         {{ t(tab.label) }}
@@ -74,14 +71,22 @@ const isTabActive = (link: string) => {
     </nav>
 
     <div class="toolbar__controls">
-      <Button circle @click="toggleTheme">
+      <Button
+        circle
+        :aria-label="colorMode.value === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+        @click="toggleTheme"
+      >
         <template #icon>
           <Sun v-if="colorMode.value == 'dark'" />
           <Moon v-else />
         </template>
       </Button>
 
-      <Button circle @click="toggleLocale">
+      <Button
+        circle
+        :aria-label="locale === 'en' ? '切换到中文' : 'Switch to English'"
+        @click="toggleLocale"
+      >
         {{ locale === "en" ? "中" : "EN" }}
       </Button>
     </div>
@@ -94,21 +99,27 @@ const isTabActive = (link: string) => {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.35rem 0.75rem;
-  position: relative;
-  z-index: 30;
-  padding: 0.25rem 0.5rem 0;
+  gap: 8px 16px;
+  min-height: 56px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.toolbar__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  text-decoration: none;
 }
 
 .toolbar__nav {
   display: flex;
   flex: 1 1 auto;
-  gap: 1rem;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   min-width: 0;
   overflow-x: auto;
-  padding: 0.25rem 0.5rem;
   scrollbar-width: none;
 }
 
@@ -119,25 +130,17 @@ const isTabActive = (link: string) => {
 .toolbar__controls {
   display: flex;
   flex: 0 0 auto;
-  gap: 0.25rem;
-}
-
-.toolbar__controls :deep(button) {
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 @media (max-width: 640px) {
-  .toolbar {
-    padding-top: 0.45rem;
-  }
-
   .toolbar__nav {
     order: 3;
     flex-basis: 100%;
     justify-content: flex-start;
-    padding-inline: 0.1rem;
+    margin-inline: -12px;
+    padding-inline: 12px;
   }
 }
 </style>

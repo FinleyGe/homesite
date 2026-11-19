@@ -6,18 +6,17 @@
 
 <style scoped>
 .prose-heading {
-  color: var(--color-ink);
-  scroll-margin-top: 6rem;
+  color: var(--color-text);
+  scroll-margin-top: 80px;
   text-wrap: balance;
 }
 
 .prose-heading--h4 {
-  margin-top: 1.35rem;
-  margin-bottom: 0.35rem;
-  color: color-mix(in srgb, var(--color-ink) 84%, var(--color-rose));
-  font-size: 1.05rem;
-  font-weight: 780;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 </style>

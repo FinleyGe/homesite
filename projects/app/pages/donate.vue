@@ -3,59 +3,63 @@ const { t } = useI18n({
   messages: {
     en: {
       donate: "Donate",
-      eyebrow: "Support the site",
-      intro: "If something here helped you, a coffee is a lovely little signal to keep writing.",
+      eyebrow: "Support",
+      intro: "If something here helped you, a coffee is a welcome signal to keep writing.",
       buymeacoffee: "Buy me a coffee",
-      scan: "Scan with",
+      scan: "Scan with {method}",
+      wechat: "WeChat",
+      alipay: "Alipay",
     },
     zh: {
-      donate: "捐赠",
-      eyebrow: "Support the site",
-      intro: "如果这里的文章或工具帮到了你，请我喝杯咖啡就是很开心的反馈。",
-      buymeacoffee: "请我喝杯咖啡吧～",
-      scan: "扫码使用",
+      donate: "赞助",
+      eyebrow: "支持站点",
+      intro: "如果这里的文章或工具帮到了你，请我喝杯咖啡就是很好的反馈。",
+      buymeacoffee: "请我喝杯咖啡",
+      scan: "使用 {method} 扫码",
+      wechat: "微信",
+      alipay: "支付宝",
     },
   },
 });
 
-const list = [
+const list = computed(() => [
   {
-    name: "Wechat",
+    key: "wechat",
+    name: t("wechat"),
     image: "/wechat-pay.png",
-    color: "green",
   },
   {
-    name: "Alipay",
+    key: "alipay",
+    name: t("alipay"),
     image: "/alipay.jpg",
-    color: "blue",
   },
-];
+]);
 
 const choice = ref(0);
-const selectedMethod = computed(() => list[choice.value]);
+const selectedMethod = computed(() => list.value[choice.value]);
 </script>
 
 <template>
   <div class="donate-page">
-    <section class="donate-hero" aria-labelledby="donate-title">
-      <div class="donate-hero__copy">
-        <p class="donate-hero__eyebrow">
+    <header class="donate-header" aria-labelledby="donate-title">
+      <div class="donate-header__copy">
+        <p class="donate-header__eyebrow">
           {{ t("eyebrow") }}
         </p>
 
-        <h1 id="donate-title" class="donate-hero__title">
+        <h1 id="donate-title" class="donate-header__title">
           {{ t("donate") }}
         </h1>
 
-        <p class="donate-hero__intro">
+        <p class="donate-header__intro">
           {{ t("intro") }}
         </p>
       </div>
 
-      <div class="donate-methods" aria-label="Donation methods">
+      <div class="donate-methods" role="group" aria-label="Donation methods">
         <button
           v-for="(item, index) in list"
-          :key="item.name"
+          :key="item.key"
           type="button"
           class="donate-method"
           :class="{ 'is-active': choice === index }"
@@ -65,232 +69,206 @@ const selectedMethod = computed(() => list[choice.value]);
           {{ item.name }}
         </button>
       </div>
-    </section>
+    </header>
 
-    <section class="donate-card" aria-live="polite">
-      <div class="donate-card__copy">
-        <p class="donate-card__method">
+    <section class="donate-panel" aria-live="polite">
+      <div class="donate-panel__copy">
+        <p class="donate-panel__method">
           {{ selectedMethod.name }}
         </p>
 
-        <h2 class="donate-card__title">
+        <h2 class="donate-panel__title">
           {{ t("buymeacoffee") }}
         </h2>
 
-        <p class="donate-card__hint">
-          {{ t("scan") }} {{ selectedMethod.name }}
+        <p class="donate-panel__hint">
+          {{ t("scan", { method: selectedMethod.name }) }}
         </p>
       </div>
 
-      <div class="donate-card__qr-shell">
+      <figure class="donate-panel__qr-frame">
         <img
           :src="selectedMethod.image"
           :alt="`${selectedMethod.name} donation QR code`"
-          class="donate-card__qr"
+          class="donate-panel__qr"
         >
-      </div>
+      </figure>
     </section>
   </div>
 </template>
 
 <style scoped>
 .donate-page {
-  width: min(100% - clamp(2rem, 5vw, 4rem), 64rem);
+  width: min(100%, 65rem);
   margin-inline: auto;
-  padding-bottom: 4rem;
+  padding: 40px 0 64px;
 }
 
-.donate-hero,
-.donate-card {
-  border: 1px solid rgba(23, 32, 51, 0.08);
-  border-radius: 2rem;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.84),
-      rgba(255, 248, 243, 0.68) 58%,
-      rgba(207, 234, 242, 0.48)
-    );
-  box-shadow: 0 22px 60px rgba(23, 32, 51, 0.08);
-  backdrop-filter: blur(18px);
-}
-
-.donate-hero {
+.donate-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1rem, 4vw, 2.5rem);
+  gap: 24px 32px;
   align-items: end;
-  padding: clamp(1.35rem, 4vw, 2.4rem);
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.donate-hero__copy {
+.donate-header__copy {
   display: grid;
-  gap: 0.7rem;
+  gap: 8px;
 }
 
-.donate-hero__eyebrow,
-.donate-card__method,
-.donate-card__hint {
-  color: rgba(23, 32, 51, 0.62);
-  font-size: 0.875rem;
-  font-variant-numeric: tabular-nums;
+.donate-header__eyebrow {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-.donate-hero__eyebrow {
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+.donate-header__title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-.donate-hero__title {
-  color: rgb(23, 32, 51);
-  font-size: clamp(2.35rem, 6vw, 5rem);
-  font-weight: 800;
-  letter-spacing: -0.065em;
-  line-height: 0.95;
-  text-wrap: balance;
+:global([lang^="zh"]) .donate-header__title {
+  letter-spacing: 0;
 }
 
-.donate-hero__intro {
-  max-width: 45rem;
-  color: rgba(23, 32, 51, 0.76);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.7;
-  text-wrap: pretty;
+.donate-header__intro {
+  margin: 4px 0 0;
+  max-width: 38rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
 }
 
 .donate-methods {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: flex-end;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background-color: var(--color-surface-raised);
 }
 
 .donate-method {
-  min-height: 2.75rem;
-  border: 1px solid rgba(196, 68, 124, 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 12px 26px rgba(23, 32, 51, 0.08);
-  color: oklch(0.408 0.153 2.432);
+  min-height: 36px;
+  min-width: 88px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--color-text-secondary);
   cursor: pointer;
   font: inherit;
-  padding: 0 1rem;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.donate-method:hover,
-.donate-method.is-active {
-  border-color: rgba(196, 68, 124, 0.22);
-  background: rgba(246, 217, 228, 0.9);
-  transform: translateY(-1px);
-}
-
-.donate-card {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(16rem, 1fr);
-  gap: clamp(1.25rem, 4vw, 3rem);
-  align-items: center;
-  margin-top: 1.25rem;
-  padding: clamp(1.2rem, 4vw, 2.6rem);
-}
-
-.donate-card__copy {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.donate-card__title {
-  max-width: 12ch;
-  color: rgb(23, 32, 51);
-  font-size: clamp(1.8rem, 4vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.055em;
+  font-size: 0.875rem;
+  font-weight: 500;
   line-height: 1;
-  text-wrap: balance;
+  padding: 0 16px;
+  transition:
+    background-color 150ms var(--ease-out),
+    border-color 150ms var(--ease-out),
+    color 150ms var(--ease-out);
 }
 
-.donate-card__qr-shell {
+.donate-method:hover {
+  color: var(--color-text);
+}
+
+.donate-method.is-active {
+  border-color: var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.donate-panel {
   display: grid;
-  place-items: center;
-  box-sizing: border-box;
-  width: min(100%, clamp(18rem, 34vw, 25rem));
-  aspect-ratio: 1;
-  justify-self: center;
-  padding: clamp(0.9rem, 2vw, 1.25rem);
-  border: 1px solid rgba(23, 32, 51, 0.08);
-  border-radius: 1.5rem;
-  background:
-    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.5), transparent 12rem),
-    rgba(255, 255, 255, 0.56);
-  overflow: hidden;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 20rem);
+  gap: 32px;
+  align-items: center;
+  margin-top: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(24px, 4vw, 40px);
 }
 
-.donate-card__qr {
+.donate-panel__copy {
+  display: grid;
+  gap: 8px;
+}
+
+.donate-panel__method {
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.donate-panel__title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+:global([lang^="zh"]) .donate-panel__title {
+  letter-spacing: 0;
+}
+
+.donate-panel__hint {
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.donate-panel__qr-frame {
+  margin: 0;
+  width: 100%;
+  max-width: 20rem;
+  justify-self: end;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+.donate-panel__qr {
   display: block;
-  width: min(100%, 22.5rem);
+  width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
-  object-fit: contain;
-  object-position: center;
-}
-
-:global(.dark) .donate-hero,
-:global(.dark) .donate-card,
-:global(.dark) .donate-card__qr-shell {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(17, 24, 39, 0.76);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-}
-
-:global(.dark) .donate-hero__title,
-:global(.dark) .donate-card__title {
-  color: rgba(248, 250, 252, 0.94);
-}
-
-:global(.dark) .donate-hero__intro,
-:global(.dark) .donate-hero__eyebrow,
-:global(.dark) .donate-card__method,
-:global(.dark) .donate-card__hint {
-  color: rgba(226, 232, 240, 0.68);
-}
-
-:global(.dark) .donate-method {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.7);
-}
-
-:global(.dark) .donate-method:hover,
-:global(.dark) .donate-method.is-active {
-  background: rgba(246, 217, 228, 0.16);
+  object-fit: cover;
 }
 
 @media (max-width: 760px) {
   .donate-page {
-    width: min(100% - 2rem, 64rem);
+    padding: 28px 0 48px;
   }
 
-  .donate-hero,
-  .donate-card {
+  .donate-header,
+  .donate-panel {
     grid-template-columns: 1fr;
-    border-radius: 1.5rem;
   }
 
   .donate-methods {
-    justify-content: flex-start;
+    width: fit-content;
   }
 
-  .donate-method {
-    flex: 1 1 calc(50% - 0.5rem);
-  }
-
-  .donate-card__qr-shell {
-    width: min(100%, 20rem);
-    min-height: 0;
+  .donate-panel__qr-frame {
+    justify-self: start;
   }
 }
 </style>

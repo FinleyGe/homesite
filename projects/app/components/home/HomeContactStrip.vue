@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ArrowUpRight } from "@vicons/carbon";
+
 type ContactLink = {
   label: string;
   href: string;
@@ -6,6 +8,7 @@ type ContactLink = {
 };
 
 defineProps<{
+  eyebrow: string;
   title: string;
   body: string;
   links: ContactLink[];
@@ -18,11 +21,11 @@ function targetFor(href: string) {
 
 <template>
   <section class="home-contact" aria-labelledby="home-contact-title">
-    <div>
-      <p class="home-contact__kicker">
-        03 / contact
+    <div class="home-contact__copy">
+      <p class="home-contact__label">
+        {{ eyebrow }}
       </p>
-      <h2 id="home-contact-title">
+      <h2 id="home-contact-title" class="home-contact__title">
         {{ title }}
       </h2>
       <p class="home-contact__body">
@@ -39,8 +42,11 @@ function targetFor(href: string) {
         :target="targetFor(link.href)"
         rel="noopener noreferrer"
       >
-        <span>{{ link.label }}</span>
-        <small>{{ link.platform }}</small>
+        <div class="home-contact__link-copy">
+          <span class="home-contact__link-name">{{ link.label }}</span>
+          <span class="home-contact__link-platform">{{ link.platform }}</span>
+        </div>
+        <ArrowUpRight class="home-contact__link-icon" aria-hidden="true" />
       </a>
     </div>
   </section>
@@ -49,96 +55,116 @@ function targetFor(href: string) {
 <style scoped>
 .home-contact {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: center;
-  margin: clamp(2rem, 5vw, 4.5rem) 0 clamp(3rem, 7vw, 6rem);
-  border: 1px solid color-mix(in srgb, var(--color-rose) 26%, transparent);
-  border-radius: 2rem;
-  background:
-    radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--color-rose-soft) 72%, transparent), transparent 15rem),
-    linear-gradient(135deg, var(--color-surface-strong), color-mix(in srgb, var(--color-sky) 12%, var(--color-surface)));
-  box-shadow: var(--shadow-home-soft);
-  padding: clamp(1.25rem, 4vw, 2rem);
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  gap: 40px;
+  align-items: start;
+  border-top: 1px solid var(--color-border);
+  padding: 56px 0 64px;
 }
 
-.home-contact__kicker {
-  margin: 0 0 0.7rem;
-  color: var(--color-rose);
-  font-family: var(--font-code);
-  font-size: 0.82rem;
-  font-weight: 800;
+.home-contact__label {
+  margin: 0 0 8px;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-.home-contact h2 {
+.home-contact__title {
   margin: 0;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.8vw, 4rem);
-  line-height: 0.95;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+:global([lang^="zh"]) .home-contact__title {
+  letter-spacing: 0;
 }
 
 .home-contact__body {
-  max-width: 31rem;
-  margin: 1rem 0 0;
-  color: var(--color-muted);
-  line-height: 1.7;
+  max-width: 24rem;
+  margin: 12px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
 }
 
 .home-contact__links {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  border-top: 1px solid var(--color-border);
 }
 
 .home-contact__link {
   display: flex;
-  min-height: 4.4rem;
-  flex-direction: column;
-  justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--color-sky) 30%, transparent);
-  border-radius: 1.2rem;
-  background: color-mix(in srgb, var(--color-surface-strong) 88%, transparent);
-  color: var(--color-ink);
-  padding: 0.85rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 8px;
+  color: var(--color-text);
   text-decoration: none;
   transition:
-    transform 140ms ease,
-    border-color 140ms ease,
-    background-color 140ms ease;
+    background-color 150ms var(--ease-out),
+    color 150ms var(--ease-out);
 }
 
 .home-contact__link:hover {
-  border-color: var(--color-rose);
-  transform: translateY(-2px);
+  background-color: var(--color-surface);
 }
 
-.home-contact__link span {
-  font-weight: 850;
+.home-contact__link:hover .home-contact__link-name,
+.home-contact__link:hover .home-contact__link-icon {
+  color: var(--color-accent);
 }
 
-.home-contact__link small {
-  margin-top: 0.32rem;
-  color: var(--color-muted);
+.home-contact__link-copy {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.home-contact__link-name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: color 150ms var(--ease-out);
+}
+
+.home-contact__link-platform {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-muted);
   font-family: var(--font-code);
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
 }
 
-@media (max-width: 760px) {
+.home-contact__link-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: color 150ms var(--ease-out);
+}
+
+@media (max-width: 860px) {
   .home-contact {
     grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 0 48px;
   }
 }
 
-@media (max-width: 460px) {
-  .home-contact__links {
+@media (max-width: 520px) {
+  .home-contact__link-copy {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-contact__link:hover {
-    transform: none;
+    gap: 2px;
   }
 }
 </style>

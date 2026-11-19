@@ -6,29 +6,30 @@
 
 <style scoped>
 .prose-heading {
-  color: var(--color-ink);
-  scroll-margin-top: 6rem;
+  color: var(--color-text);
+  scroll-margin-top: 80px;
   text-wrap: balance;
 }
 
 .prose-heading--h2 {
-  position: relative;
-  margin-top: 2.4rem;
-  margin-bottom: 0.8rem;
-  font-size: clamp(1.75rem, 4vw, 2.6rem);
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.05;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 24px;
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.5vw, 1.625rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
 }
 
-.prose-heading--h2::before {
-  display: block;
-  width: 3.5rem;
-  height: 0.35rem;
-  margin-bottom: 0.75rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--color-rose), var(--color-mint));
-  content: "";
-  opacity: 0.72;
+.prose-heading--h2:first-child {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
+}
+
+:global([lang^="zh"]) .prose-heading--h2 {
+  letter-spacing: 0;
 }
 </style>

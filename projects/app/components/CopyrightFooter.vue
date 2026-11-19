@@ -9,13 +9,38 @@ watch(count, () => {
   }
 });
 </script>
+
 <template>
-  <div class="flex flex-col items-center">
-    <span @click="count++">
-      FinleyGe © 2022 - {{ new Date().getFullYear() }}
-    </span>
-    <!-- <a href="https://beian.miit.gov.cn/" target="_blank" class="text-blue-500 dark:text-blue-400">晋ICP备2022008114号-1</a> -->
+  <div class="copyright-footer">
+    <button
+      type="button"
+      class="copyright-footer__text"
+      @click="count++"
+    >
+      Finley Ge © 2022–{{ new Date().getFullYear() }}
+    </button>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped>
+.copyright-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.copyright-footer__text {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.33;
+  cursor: default;
+}
+</style>

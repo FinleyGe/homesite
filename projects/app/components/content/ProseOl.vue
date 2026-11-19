@@ -7,11 +7,12 @@
 <style scoped>
 .prose-list {
   display: grid;
-  gap: 0.45rem;
-  margin-block: 1rem 1.2rem;
-  padding-left: 1.55rem;
-  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
-  line-height: 1.78;
+  gap: 8px;
+  margin-block: 16px;
+  padding-left: 24px;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  font-variant-numeric: tabular-nums;
 }
 
 .prose-list--ordered {
@@ -20,6 +21,6 @@
 
 .prose-list :deep(ul),
 .prose-list :deep(ol) {
-  margin-block: 0.45rem 0.2rem;
+  margin-block: 8px 4px;
 }
 </style>

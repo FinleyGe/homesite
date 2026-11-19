@@ -6,19 +6,19 @@
 
 <style scoped>
 .prose-link {
-  color: color-mix(in srgb, var(--color-rose) 78%, var(--color-ink));
-  font-weight: 650;
-  text-decoration-color: color-mix(in srgb, var(--color-rose) 38%, transparent);
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration-color: var(--color-accent-border);
   text-decoration-line: underline;
-  text-decoration-thickness: 0.12em;
-  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
   transition:
-    color 160ms ease,
-    text-decoration-color 160ms ease;
+    color 150ms var(--ease-out),
+    text-decoration-color 150ms var(--ease-out);
 }
 
 .prose-link:hover {
-  color: var(--color-rose);
-  text-decoration-color: var(--color-rose);
+  color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent-hover);
 }
 </style>
