@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import type { Collection } from '@prisma/client';
+interface Collection {
+  id: string;
+  content: string;
+  from: string | null;
+  createdAt: Date | string;
+}
 
 const { item } = defineProps<{
   item: Collection;

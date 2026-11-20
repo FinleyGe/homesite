@@ -1,3 +1,4 @@
+import { queryCollection } from "@nuxt/content/server";
 import rss from "rss";
 
 const feed = new rss({

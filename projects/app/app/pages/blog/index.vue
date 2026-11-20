@@ -18,11 +18,12 @@ const route = useRoute();
 const router = useRouter();
 const isBlogSearchOpen = useState("blog-content-search-open", () => false);
 
-const { data: blogsTotal } = useAsyncData(
+const { data: blogsTotal } = await useAsyncData(
+  "blogs-total",
   async () => (await queryCollection("blog").count()) ?? 0,
 );
 
-const { data: blogs } = useAsyncData("blogs", () => {
+const { data: blogs } = await useAsyncData("blogs", () => {
   return queryCollection("blog")
     .order("create", "DESC")
     .select(

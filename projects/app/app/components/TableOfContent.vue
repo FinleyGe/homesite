@@ -49,7 +49,8 @@ const updateActiveHeading = () => {
     .map((item) => document.getElementById(item.id))
     .filter((item): item is HTMLElement => Boolean(item));
 
-  if (!headings.length) {
+  const firstHeading = headings[0];
+  if (!firstHeading) {
     activeId.value = "";
     return;
   }
@@ -58,7 +59,7 @@ const updateActiveHeading = () => {
   const current = headings.reduce((active, heading) => {
     const top = heading.getBoundingClientRect().top;
     return top <= activationLine ? heading : active;
-  }, headings[0]);
+  }, firstHeading);
 
   activeId.value = current.id;
 };

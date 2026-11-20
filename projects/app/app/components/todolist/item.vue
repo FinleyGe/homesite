@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import type { TodoList } from '@prisma/client';
 import { Checkmark, Pen, TrashCan } from '@vicons/carbon';
 import { toast } from 'vue3-toastify';
+
+interface TodoList {
+  id: string;
+  content: string;
+  endTime: string | null;
+  done: boolean;
+  priority: number;
+}
 
 const props = defineProps<{
   todo: TodoList

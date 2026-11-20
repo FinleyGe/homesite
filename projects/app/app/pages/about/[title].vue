@@ -2,11 +2,12 @@
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
 
-const router = useRouter();
-const link = router.currentRoute.value.params.title as string;
+const route = useRoute();
+const slug = computed(() => String(route.params.title ?? ""));
 
-const { data: aboutContents } = await useAsyncData(() =>
-  queryCollection("about").where("title", "=", link).all(),
+const { data: aboutContents } = await useAsyncData(
+  () => `about-${slug.value}`,
+  () => queryCollection("about").where("title", "=", slug.value).all(),
 );
 
 const data = computed(() => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 
-const { data } = await useAsyncData(() =>
+const { data } = await useAsyncData("about-now", () =>
   queryCollection("about").where("title", "=", "now").first(),
 );
 </script>

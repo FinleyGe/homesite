@@ -2,13 +2,14 @@
 import { ArrowLeft } from "@vicons/carbon";
 import { useSeoMeta } from "nuxt/app";
 
-const router = useRouter();
+const route = useRoute();
 const localePath = useLocalePath();
 
-const link = router.currentRoute.value.params.title as string;
+const slug = computed(() => String(route.params.title ?? ""));
 
-const { data } = useAsyncData(() =>
-  queryCollection("blog").path(`/blog/${link}`).first(),
+const { data } = await useAsyncData(
+  () => `blog-${slug.value}`,
+  () => queryCollection("blog").path(`/blog/${slug.value}`).first(),
 );
 
 const { locale, t } = useI18n();

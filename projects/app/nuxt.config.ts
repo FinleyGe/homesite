@@ -1,4 +1,3 @@
-import tailwindcss from "@tailwindcss/vite";
 import { readdirSync } from "node:fs";
 import { extname, join, relative } from "node:path";
 
@@ -45,13 +44,15 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/ui",
     "@nuxtjs/color-mode",
-    "@nuxtjs/fontaine",
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@nuxt/content",
   ],
+  ui: {
+    fonts: false,
+  },
   colorMode: {
     preference: "system",
     fallback: "dark",
@@ -96,9 +97,6 @@ export default defineNuxtConfig({
   },
 
   css: ["~/assets/styles/main.css", "katex/dist/katex.min.css"],
-  vite: {
-    plugins: [tailwindcss()],
-  },
 
   i18n: {
     locales: ["en", "zh"],
@@ -112,7 +110,7 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: "2024-07-18",
+  compatibilityDate: "2025-07-15",
 
   nitro: {
     prerender: {

@@ -1,6 +1,13 @@
 <script setup lang="ts">
-import type { Progress } from '@prisma/client';
 import { Minus, Plus } from '@vicons/fa';
+
+interface Progress {
+  id: string;
+  name: string;
+  description: string | null;
+  target: number;
+  status: number;
+}
 
 const { item } = defineProps<{
   item: Progress,

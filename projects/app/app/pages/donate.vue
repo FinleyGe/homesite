@@ -22,7 +22,13 @@ const { t } = useI18n({
   },
 });
 
-const list = computed(() => [
+type DonateMethod = {
+  key: string;
+  name: string;
+  image: string;
+};
+
+const list = computed<[DonateMethod, DonateMethod]>(() => [
   {
     key: "wechat",
     name: t("wechat"),
@@ -36,7 +42,7 @@ const list = computed(() => [
 ]);
 
 const choice = ref(0);
-const selectedMethod = computed(() => list.value[choice.value]);
+const selectedMethod = computed(() => list.value[choice.value] ?? list.value[0]);
 </script>
 
 <template>

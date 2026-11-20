@@ -18,14 +18,9 @@
       "@tailwindcss/oxide",
       "esbuild",
       "vue-demi"
-    ],
-    "overrides": {
-      "@nuxt/cli": "3.32.0",
-      "listhen": "1.9.0"
-    }
+    ]
   },
   "dependencies": {
-    "@d0rich/nuxt-content-mermaid": "1.0.0",
     "mermaid": "11.15.0"
   }
 }

@@ -1,15 +1,9 @@
 // @ts-check
 import withNuxt from "./.nuxt/eslint.config.mjs";
-import stylisticTs from "@stylistic/eslint-plugin-ts";
-import stylisticJs from "@stylistic/eslint-plugin-js";
 
 export default withNuxt(
   // Your custom configs here
   {
-    plugins: {
-      "@stylistic/ts": stylisticTs,
-      "@stylistic/js": stylisticJs,
-    },
     rules: {
       "vue/html-indent": [
         "error",
@@ -24,7 +18,7 @@ export default withNuxt(
       ],
       "vue/multi-word-component-names": "off",
     },
-  }
+  },
 ).prepend({
   ignores: ["public/*"],
-})
+});
