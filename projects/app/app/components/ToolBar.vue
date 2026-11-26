@@ -48,6 +48,10 @@ const tabs = [
     link: "now",
     label: "common.now",
   },
+  {
+    link: "uses",
+    label: "common.uses",
+  },
 ] as const;
 
 const isTabActive = (link: string) => {

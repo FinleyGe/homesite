@@ -17,6 +17,8 @@ export default defineI18nConfig(() => ({
         donate: "Donate",
         now: "Now",
         nowDescription: "What I am focused on right now",
+        uses: "Uses",
+        usesDescription: "Hardware, peripherals, editors, and everyday tools I use",
       },
       projects: {
         eyebrow: "Vibe Coding",
@@ -137,6 +139,8 @@ export default defineI18nConfig(() => ({
         donate: "赞助",
         now: "此刻",
         nowDescription: "近期的关注与日常",
+        uses: "装备",
+        usesDescription: "日常使用的硬件、外设、编辑器与软件工具",
       },
       projects: {
         eyebrow: "Vibe Coding",
