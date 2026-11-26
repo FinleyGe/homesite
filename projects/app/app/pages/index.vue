@@ -79,6 +79,7 @@ const secondaryBlogs = computed(() => {
 });
 
 const blogPath = computed(() => localePath("/blog"));
+const projectsPath = computed(() => localePath("/projects"));
 const nowPath = computed(() => localePath("/now"));
 
 const heroCtas = computed<HomeCta[]>(() => [
@@ -86,6 +87,11 @@ const heroCtas = computed<HomeCta[]>(() => [
     label: t("home.primaryCta"),
     href: blogPath.value,
     kind: "primary",
+  },
+  {
+    label: t("home.projectsCta"),
+    href: projectsPath.value,
+    kind: "secondary",
   },
   {
     label: t("home.secondaryCta"),

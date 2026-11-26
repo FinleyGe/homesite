@@ -33,6 +33,10 @@ const tabs = [
     label: "common.blog",
   },
   {
+    link: "projects",
+    label: "common.projects",
+  },
+  {
     link: "link-exchange",
     label: "common.link-exchange",
   },
