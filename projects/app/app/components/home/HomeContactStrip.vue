@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ArrowUpRight } from "@vicons/carbon";
+import { ArrowRight, ArrowUpRight } from "@vicons/carbon";
 
 type ContactLink = {
   label: string;
   href: string;
   platform: string;
+  internal?: boolean;
 };
 
 defineProps<{
@@ -34,20 +35,32 @@ function targetFor(href: string) {
     </div>
 
     <div class="home-contact__links" aria-label="Contact links">
-      <a
-        v-for="link in links"
-        :key="link.href"
-        class="home-contact__link"
-        :href="link.href"
-        :target="targetFor(link.href)"
-        rel="noopener noreferrer"
-      >
-        <div class="home-contact__link-copy">
-          <span class="home-contact__link-name">{{ link.label }}</span>
-          <span class="home-contact__link-platform">{{ link.platform }}</span>
-        </div>
-        <ArrowUpRight class="home-contact__link-icon" aria-hidden="true" />
-      </a>
+      <template v-for="link in links" :key="link.href">
+        <NuxtLink
+          v-if="link.internal"
+          class="home-contact__link"
+          :to="link.href"
+        >
+          <div class="home-contact__link-copy">
+            <span class="home-contact__link-name">{{ link.label }}</span>
+            <span class="home-contact__link-platform">{{ link.platform }}</span>
+          </div>
+          <ArrowRight class="home-contact__link-icon" aria-hidden="true" />
+        </NuxtLink>
+        <a
+          v-else
+          class="home-contact__link"
+          :href="link.href"
+          :target="targetFor(link.href)"
+          rel="noopener noreferrer"
+        >
+          <div class="home-contact__link-copy">
+            <span class="home-contact__link-name">{{ link.label }}</span>
+            <span class="home-contact__link-platform">{{ link.platform }}</span>
+          </div>
+          <ArrowUpRight class="home-contact__link-icon" aria-hidden="true" />
+        </a>
+      </template>
     </div>
   </section>
 </template>

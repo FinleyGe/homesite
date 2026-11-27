@@ -22,6 +22,7 @@ type ContactLink = {
   label: string;
   href: string;
   platform: string;
+  internal?: boolean;
 };
 
 const { t, locale } = useI18n();
@@ -80,6 +81,7 @@ const secondaryBlogs = computed(() => {
 
 const blogPath = computed(() => localePath("/blog"));
 const projectsPath = computed(() => localePath("/projects"));
+const momentsPath = computed(() => localePath("/moments"));
 const nowPath = computed(() => localePath("/now"));
 
 const heroCtas = computed<HomeCta[]>(() => [
@@ -167,8 +169,9 @@ const contactLinks = computed<ContactLink[]>(() => [
   },
   {
     label: t("home.contact.mastodon"),
-    href: "https://g0v.social/@FinleyGe@g0v.social",
-    platform: "g0v.social",
+    href: momentsPath.value,
+    platform: "/moments · g0v.social",
+    internal: true,
   },
   {
     label: t("home.contact.zhihu"),
@@ -315,6 +318,8 @@ const stateBody = computed(() => {
         </ul>
       </div>
     </section>
+
+    <HomeMomentsSection />
 
     <HomeNoteSection
       :eyebrow="t('home.notes.eyebrow')"

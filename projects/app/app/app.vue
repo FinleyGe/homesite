@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import "vue3-toastify/dist/index.css";
+import { MASTODON_CONFIG } from "~/const/mastodon";
 
 const { t, locale } = useI18n();
 
 useHead({
   title: computed(() => t("head.title")),
+  link: [
+    {
+      rel: "me",
+      href: MASTODON_CONFIG.profileUrl,
+    },
+  ],
   script: [
     {
       src: "/umami.js",

@@ -114,7 +114,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ["/blog", ...getBlogRoutes()],
+      routes: ["/blog", "/moments", "/zh/moments", ...getBlogRoutes()],
     },
   },
 

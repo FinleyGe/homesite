@@ -37,6 +37,10 @@ const tabs = [
     label: "common.projects",
   },
   {
+    link: "moments",
+    label: "common.moments",
+  },
+  {
     link: "link-exchange",
     label: "common.link-exchange",
   },
